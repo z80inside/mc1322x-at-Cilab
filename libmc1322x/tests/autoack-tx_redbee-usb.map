@@ -1,0 +1,836 @@
+Archive member included because of file (symbol)
+
+obj_redbee-usb/board.a(tests.o)
+                              obj_redbee-usb/autoack-tx.o (print_packet)
+../lib/libmc1322x.a(maca.o)   obj_redbee-usb/autoack-tx.o (free_packet)
+../lib/libmc1322x.a(nvm.o)    ../lib/libmc1322x.a(maca.o) (nvm_detect)
+../lib/libmc1322x.a(printf.o)
+                              obj_redbee-usb/autoack-tx.o (printf)
+../lib/libmc1322x.a(uart1.o)  ../lib/libmc1322x.a(printf.o) (uart1_putc)
+../src/src-romvars.a(default_lowlevel.o)
+                              obj_redbee-usb/autoack-tx.o (default_vreg_init)
+../src/src-romvars.a(start-romvars.o)
+                              (_start)
+../src/src-romvars.a(isr.o)   ../src/src-romvars.a(start-romvars.o) (irq)
+/usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_udivsi3.o)
+                              ../lib/libmc1322x.a(printf.o) (__aeabi_uidiv)
+/usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_dvmd_tls.o)
+                              /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_udivsi3.o) (__aeabi_idiv0)
+/usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a(lib_a-strlen.o)
+                              ../lib/libmc1322x.a(printf.o) (strlen)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+ram              0x00400000         0x00018000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+START GROUP
+LOAD obj_redbee-usb/autoack-tx.o
+LOAD obj_redbee-usb/board.a
+LOAD ../lib/libmc1322x.a
+LOAD ../src/src-romvars.a
+LOAD /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libm.a
+END GROUP
+START GROUP
+LOAD /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a
+LOAD /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a
+END GROUP
+                0x00000400                SYS_STACK_SIZE = 0x400
+                0x00000100                IRQ_STACK_SIZE = 0x100
+                0x00000100                FIQ_STACK_SIZE = 0x100
+                0x00000100                SVC_STACK_SIZE = 0x100
+                0x00000010                ABT_STACK_SIZE = 0x10
+                0x00000010                UND_STACK_SIZE = 0x10
+                0x00000400                HEAP_SIZE = 0x400
+                0x00400000                PROVIDE (__executable_start, 0x400000)
+                0x00400000                . = 0x400000
+
+.text           0x00400000     0x2ddc
+ *(.start)
+ .start         0x00400000     0x1000 ../src/src-romvars.a(start-romvars.o)
+                0x00400880                _bss_start
+                0x00400884                _bss_end
+                0x00400000                _start
+ *(.irq)
+ .irq           0x00401000      0x1dc ../src/src-romvars.a(isr.o)
+                0x00401000                irq
+ *(.text .stub .text.* .gnu.linkonce.t.*)
+ .text          0x004011dc        0x0 obj_redbee-usb/autoack-tx.o
+ .text.fill_packet
+                0x004011dc       0x64 obj_redbee-usb/autoack-tx.o
+                0x004011dc                fill_packet
+                0x004011e4                .real_start_offill_packet
+ .text.maca_tx_callback
+                0x00401240       0x58 obj_redbee-usb/autoack-tx.o
+                0x00401248                .real_start_ofmaca_tx_callback
+                0x00401240                maca_tx_callback
+ .text.main     0x00401298      0x204 obj_redbee-usb/autoack-tx.o
+                0x004012a0                .real_start_ofmain
+                0x00401298                main
+ .text          0x0040149c        0x0 obj_redbee-usb/board.a(tests.o)
+ .text.dump_regs
+                0x0040149c       0x84 obj_redbee-usb/board.a(tests.o)
+                0x004014a4                .real_start_ofdump_regs
+                0x0040149c                dump_regs
+ .text.print_packet
+                0x00401520       0xd4 obj_redbee-usb/board.a(tests.o)
+                0x00401528                .real_start_ofprint_packet
+                0x00401520                print_packet
+ .text.print_welcome
+                0x004015f4       0x38 obj_redbee-usb/board.a(tests.o)
+                0x004015f4                print_welcome
+                0x004015fc                .real_start_ofprint_welcome
+ .text          0x0040162c        0x0 ../lib/libmc1322x.a(maca.o)
+ .text.bad_packet_bounds
+                0x0040162c        0xc ../lib/libmc1322x.a(maca.o)
+                0x00401634                .real_start_ofbad_packet_bounds
+                0x0040162c                bad_packet_bounds
+ .text.count_packets
+                0x00401638       0x20 ../lib/libmc1322x.a(maca.o)
+                0x00401638                count_packets
+                0x00401640                .real_start_ofcount_packets
+ .text.bound_check
+                0x00401658       0x48 ../lib/libmc1322x.a(maca.o)
+                0x00401658                bound_check
+                0x00401660                .real_start_ofbound_check
+ .text.free_packet
+                0x004016a0       0x64 ../lib/libmc1322x.a(maca.o)
+                0x004016a0                free_packet
+                0x004016a8                .real_start_offree_packet
+ .text.get_free_packet
+                0x00401704       0x54 ../lib/libmc1322x.a(maca.o)
+                0x00401704                get_free_packet
+                0x0040170c                .real_start_ofget_free_packet
+ .text.post_receive
+                0x00401758       0xb0 ../lib/libmc1322x.a(maca.o)
+                0x00401758                post_receive
+                0x00401760                .real_start_ofpost_receive
+ .text.rx_packet
+                0x00401808       0x54 ../lib/libmc1322x.a(maca.o)
+                0x00401810                .real_start_ofrx_packet
+                0x00401808                rx_packet
+ .text.post_tx  0x0040185c       0xcc ../lib/libmc1322x.a(maca.o)
+                0x0040185c                post_tx
+                0x00401864                .real_start_ofpost_tx
+ .text.tx_packet
+                0x00401928       0x8c ../lib/libmc1322x.a(maca.o)
+                0x00401930                .real_start_oftx_packet
+                0x00401928                tx_packet
+ .text.free_all_packets
+                0x004019b4       0x80 ../lib/libmc1322x.a(maca.o)
+                0x004019bc                .real_start_offree_all_packets
+                0x004019b4                free_all_packets
+ .text.free_tx_head
+                0x00401a34       0x60 ../lib/libmc1322x.a(maca.o)
+                0x00401a34                free_tx_head
+                0x00401a3c                .real_start_offree_tx_head
+ .text.add_to_rx
+                0x00401a94       0x68 ../lib/libmc1322x.a(maca.o)
+                0x00401a9c                .real_start_ofadd_to_rx
+                0x00401a94                add_to_rx
+ .text.init_phy
+                0x00401afc       0x68 ../lib/libmc1322x.a(maca.o)
+                0x00401b04                .real_start_ofinit_phy
+                0x00401afc                init_phy
+ .text.reset_maca
+                0x00401b64       0x5c ../lib/libmc1322x.a(maca.o)
+                0x00401b64                reset_maca
+                0x00401b6c                .real_start_ofreset_maca
+ .text.flyback_init
+                0x00401bc0       0x3c ../lib/libmc1322x.a(maca.o)
+                0x00401bc0                flyback_init
+                0x00401bc8                .real_start_offlyback_init
+ .text.maca_off
+                0x00401bfc       0x2c ../lib/libmc1322x.a(maca.o)
+                0x00401c04                .real_start_ofmaca_off
+                0x00401bfc                maca_off
+ .text.maca_on  0x00401c28       0x48 ../lib/libmc1322x.a(maca.o)
+                0x00401c30                .real_start_ofmaca_on
+                0x00401c28                maca_on
+ .text.get_ctov
+                0x00401c70       0x24 ../lib/libmc1322x.a(maca.o)
+                0x00401c78                .real_start_ofget_ctov
+                0x00401c70                get_ctov
+ .text.set_demodulator_type
+                0x00401c94       0x28 ../lib/libmc1322x.a(maca.o)
+                0x00401c94                set_demodulator_type
+                0x00401c9c                .real_start_ofset_demodulator_type
+ .text.set_power
+                0x00401cbc       0x78 ../lib/libmc1322x.a(maca.o)
+                0x00401cbc                set_power
+                0x00401cc4                .real_start_ofset_power
+ .text.set_channel
+                0x00401d34       0xcc ../lib/libmc1322x.a(maca.o)
+                0x00401d34                set_channel
+                0x00401d3c                .real_start_ofset_channel
+ .text.exec_init_entry
+                0x00401e00       0x88 ../lib/libmc1322x.a(maca.o)
+                0x00401e00                exec_init_entry
+                0x00401e08                .real_start_ofexec_init_entry
+ .text.init_from_flash
+                0x00401e88       0xd4 ../lib/libmc1322x.a(maca.o)
+                0x00401e90                .real_start_ofinit_from_flash
+                0x00401e88                init_from_flash
+ .text.radio_init
+                0x00401f5c      0x200 ../lib/libmc1322x.a(maca.o)
+                0x00401f64                .real_start_ofradio_init
+                0x00401f5c                radio_init
+ .text.maca_init
+                0x0040215c       0x80 ../lib/libmc1322x.a(maca.o)
+                0x00402164                .real_start_ofmaca_init
+                0x0040215c                maca_init
+ .text.ResumeMACASync
+                0x004021dc       0xe0 ../lib/libmc1322x.a(maca.o)
+                0x004021dc                ResumeMACASync
+                0x004021e4                .real_start_ofResumeMACASync
+ .text.decode_status
+                0x004022bc       0x48 ../lib/libmc1322x.a(maca.o)
+                0x004022bc                decode_status
+                0x004022c4                .real_start_ofdecode_status
+ .text.check_maca
+                0x00402304       0xb8 ../lib/libmc1322x.a(maca.o)
+                0x00402304                check_maca
+                0x0040230c                .real_start_ofcheck_maca
+ .text.maca_isr
+                0x004023bc      0x174 ../lib/libmc1322x.a(maca.o)
+                0x004023c4                .real_start_ofmaca_isr
+                0x004023bc                maca_isr
+ .text.Print_Packets
+                0x00402530       0xb8 ../lib/libmc1322x.a(maca.o)
+                0x00402530                Print_Packets
+                0x00402538                .real_start_ofPrint_Packets
+ .text          0x004025e8        0x0 ../lib/libmc1322x.a(nvm.o)
+ .text          0x004025e8        0x0 ../lib/libmc1322x.a(printf.o)
+ .text.__print_char
+                0x004025e8       0x60 ../lib/libmc1322x.a(printf.o)
+ .text.__print_str
+                0x00402648       0xf4 ../lib/libmc1322x.a(printf.o)
+ .text.__print_int
+                0x0040273c       0xdc ../lib/libmc1322x.a(printf.o)
+ .text.__print_fmt
+                0x00402818      0x1bc ../lib/libmc1322x.a(printf.o)
+ .text.printf   0x004029d4       0x30 ../lib/libmc1322x.a(printf.o)
+                0x004029d4                printf
+                0x004029dc                .real_start_ofprintf
+ .text.sprintf  0x00402a04       0x3c ../lib/libmc1322x.a(printf.o)
+                0x00402a0c                .real_start_ofsprintf
+                0x00402a04                sprintf
+ .text          0x00402a40        0x0 ../lib/libmc1322x.a(uart1.o)
+ .text.uart1_isr
+                0x00402a40       0x54 ../lib/libmc1322x.a(uart1.o)
+                0x00402a40                uart1_isr
+                0x00402a48                .real_start_ofuart1_isr
+ .text.uart1_putc
+                0x00402a94       0x78 ../lib/libmc1322x.a(uart1.o)
+                0x00402a9c                .real_start_ofuart1_putc
+                0x00402a94                uart1_putc
+ .text.uart1_getc
+                0x00402b0c       0x28 ../lib/libmc1322x.a(uart1.o)
+                0x00402b0c                uart1_getc
+                0x00402b14                .real_start_ofuart1_getc
+ .text          0x00402b34        0x0 ../src/src-romvars.a(default_lowlevel.o)
+ .text.default_vreg_init
+                0x00402b34       0x4c ../src/src-romvars.a(default_lowlevel.o)
+                0x00402b3c                .real_start_ofdefault_vreg_init
+                0x00402b34                default_vreg_init
+ .text.uart1_init
+                0x00402b80       0x98 ../src/src-romvars.a(default_lowlevel.o)
+                0x00402b80                uart1_init
+                0x00402b88                .real_start_ofuart1_init
+ .text          0x00402c18        0x0 ../src/src-romvars.a(start-romvars.o)
+ .text          0x00402c18        0x0 ../src/src-romvars.a(isr.o)
+ .text.irq_register_timer_handler
+                0x00402c18       0x10 ../src/src-romvars.a(isr.o)
+                0x00402c18                irq_register_timer_handler
+ .text          0x00402c28      0x114 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_udivsi3.o)
+                0x00402c28                __udivsi3
+                0x00402c28                __aeabi_uidiv
+                0x00402d1c                __aeabi_uidivmod
+ .text          0x00402d3c        0x4 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_dvmd_tls.o)
+                0x00402d3c                __aeabi_ldiv0
+                0x00402d3c                __aeabi_idiv0
+ .text          0x00402d40       0x9c /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a(lib_a-strlen.o)
+                0x00402d40                strlen
+ *(.gnu.warning)
+ *(.glue_7t)
+ .glue_7t       0x00402ddc        0x0 obj_redbee-usb/autoack-tx.o
+ .glue_7t       0x00402ddc        0x0 obj_redbee-usb/board.a(tests.o)
+ .glue_7t       0x00402ddc        0x0 ../lib/libmc1322x.a(maca.o)
+ .glue_7t       0x00402ddc        0x0 ../lib/libmc1322x.a(nvm.o)
+ .glue_7t       0x00402ddc        0x0 ../lib/libmc1322x.a(printf.o)
+ .glue_7t       0x00402ddc        0x0 ../lib/libmc1322x.a(uart1.o)
+ .glue_7t       0x00402ddc        0x0 ../src/src-romvars.a(default_lowlevel.o)
+ .glue_7t       0x00402ddc        0x0 ../src/src-romvars.a(start-romvars.o)
+ .glue_7t       0x00402ddc        0x0 ../src/src-romvars.a(isr.o)
+ .glue_7t       0x00402ddc        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_udivsi3.o)
+ .glue_7t       0x00402ddc        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_dvmd_tls.o)
+ .glue_7t       0x00402ddc        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a(lib_a-strlen.o)
+ *(.glue_7)
+ .glue_7        0x00402ddc        0x0 obj_redbee-usb/autoack-tx.o
+ .glue_7        0x00402ddc        0x0 obj_redbee-usb/board.a(tests.o)
+ .glue_7        0x00402ddc        0x0 ../lib/libmc1322x.a(maca.o)
+ .glue_7        0x00402ddc        0x0 ../lib/libmc1322x.a(nvm.o)
+ .glue_7        0x00402ddc        0x0 ../lib/libmc1322x.a(printf.o)
+ .glue_7        0x00402ddc        0x0 ../lib/libmc1322x.a(uart1.o)
+ .glue_7        0x00402ddc        0x0 ../src/src-romvars.a(default_lowlevel.o)
+ .glue_7        0x00402ddc        0x0 ../src/src-romvars.a(start-romvars.o)
+ .glue_7        0x00402ddc        0x0 ../src/src-romvars.a(isr.o)
+ .glue_7        0x00402ddc        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_udivsi3.o)
+ .glue_7        0x00402ddc        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_dvmd_tls.o)
+ .glue_7        0x00402ddc        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a(lib_a-strlen.o)
+ *(.vfp11_veneer)
+ .vfp11_veneer  0x00402ddc        0x0 obj_redbee-usb/autoack-tx.o
+ .vfp11_veneer  0x00402ddc        0x0 obj_redbee-usb/board.a(tests.o)
+ .vfp11_veneer  0x00402ddc        0x0 ../lib/libmc1322x.a(maca.o)
+ .vfp11_veneer  0x00402ddc        0x0 ../lib/libmc1322x.a(nvm.o)
+ .vfp11_veneer  0x00402ddc        0x0 ../lib/libmc1322x.a(printf.o)
+ .vfp11_veneer  0x00402ddc        0x0 ../lib/libmc1322x.a(uart1.o)
+ .vfp11_veneer  0x00402ddc        0x0 ../src/src-romvars.a(default_lowlevel.o)
+ .vfp11_veneer  0x00402ddc        0x0 ../src/src-romvars.a(start-romvars.o)
+ .vfp11_veneer  0x00402ddc        0x0 ../src/src-romvars.a(isr.o)
+ .vfp11_veneer  0x00402ddc        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_udivsi3.o)
+ .vfp11_veneer  0x00402ddc        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_dvmd_tls.o)
+ .vfp11_veneer  0x00402ddc        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a(lib_a-strlen.o)
+ *(.v4_bx)
+ .v4_bx         0x00402ddc        0x0 obj_redbee-usb/autoack-tx.o
+ .v4_bx         0x00402ddc        0x0 obj_redbee-usb/board.a(tests.o)
+ .v4_bx         0x00402ddc        0x0 ../lib/libmc1322x.a(maca.o)
+ .v4_bx         0x00402ddc        0x0 ../lib/libmc1322x.a(nvm.o)
+ .v4_bx         0x00402ddc        0x0 ../lib/libmc1322x.a(printf.o)
+ .v4_bx         0x00402ddc        0x0 ../lib/libmc1322x.a(uart1.o)
+ .v4_bx         0x00402ddc        0x0 ../src/src-romvars.a(default_lowlevel.o)
+ .v4_bx         0x00402ddc        0x0 ../src/src-romvars.a(start-romvars.o)
+ .v4_bx         0x00402ddc        0x0 ../src/src-romvars.a(isr.o)
+ .v4_bx         0x00402ddc        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_udivsi3.o)
+ .v4_bx         0x00402ddc        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_dvmd_tls.o)
+ .v4_bx         0x00402ddc        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a(lib_a-strlen.o)
+
+.janus_2cc_veneer
+                0x00402ddc        0x0
+ .janus_2cc_veneer
+                0x00402ddc        0x0 obj_redbee-usb/autoack-tx.o
+ .janus_2cc_veneer
+                0x00402ddc        0x0 obj_redbee-usb/board.a(tests.o)
+ .janus_2cc_veneer
+                0x00402ddc        0x0 ../lib/libmc1322x.a(maca.o)
+ .janus_2cc_veneer
+                0x00402ddc        0x0 ../lib/libmc1322x.a(nvm.o)
+ .janus_2cc_veneer
+                0x00402ddc        0x0 ../lib/libmc1322x.a(printf.o)
+ .janus_2cc_veneer
+                0x00402ddc        0x0 ../lib/libmc1322x.a(uart1.o)
+ .janus_2cc_veneer
+                0x00402ddc        0x0 ../src/src-romvars.a(default_lowlevel.o)
+ .janus_2cc_veneer
+                0x00402ddc        0x0 ../src/src-romvars.a(start-romvars.o)
+ .janus_2cc_veneer
+                0x00402ddc        0x0 ../src/src-romvars.a(isr.o)
+ .janus_2cc_veneer
+                0x00402ddc        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_udivsi3.o)
+ .janus_2cc_veneer
+                0x00402ddc        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_dvmd_tls.o)
+ .janus_2cc_veneer
+                0x00402ddc        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a(lib_a-strlen.o)
+
+.interp
+ *(.interp)
+
+.note.gnu.build-id
+ *(.note.gnu.build-id)
+
+.hash
+ *(.hash)
+
+.gnu.hash
+ *(.gnu.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.dyn
+ *(.rel.init)
+ *(.rel.text .rel.text.* .rel.gnu.linkonce.t.*)
+ *(.rel.fini)
+ *(.rel.rodata .rel.rodata.* .rel.gnu.linkonce.r.*)
+ *(.rel.data.rel.ro* .rel.gnu.linkonce.d.rel.ro.*)
+ *(.rel.data .rel.data.* .rel.gnu.linkonce.d.*)
+ *(.rel.tdata .rel.tdata.* .rel.gnu.linkonce.td.*)
+ *(.rel.tbss .rel.tbss.* .rel.gnu.linkonce.tb.*)
+ *(.rel.ctors)
+ *(.rel.dtors)
+ *(.rel.got)
+ *(.rel.bss .rel.bss.* .rel.gnu.linkonce.b.*)
+
+.rela.dyn
+ *(.rela.init)
+ *(.rela.text .rela.text.* .rela.gnu.linkonce.t.*)
+ *(.rela.fini)
+ *(.rela.rodata .rela.rodata.* .rela.gnu.linkonce.r.*)
+ *(.rela.data .rela.data.* .rela.gnu.linkonce.d.*)
+ *(.rela.tdata .rela.tdata.* .rela.gnu.linkonce.td.*)
+ *(.rela.tbss .rela.tbss.* .rela.gnu.linkonce.tb.*)
+ *(.rela.ctors)
+ *(.rela.dtors)
+ *(.rela.got)
+ *(.rela.bss .rela.bss.* .rela.gnu.linkonce.b.*)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.init
+ *(.init)
+
+.plt
+ *(.plt)
+
+.fini
+ *(.fini)
+                0x00402ddc                PROVIDE (__etext, .)
+                0x00402ddc                PROVIDE (_etext, .)
+                0x00402ddc                PROVIDE (etext, .)
+
+.rodata         0x00402ddc      0x4e7
+ *(.rodata .rodata.* .gnu.linkonce.r.*)
+ .rodata.str1.1
+                0x00402ddc       0x7e obj_redbee-usb/autoack-tx.o
+ .rodata.str1.1
+                0x00402e5a       0xb8 obj_redbee-usb/board.a(tests.o)
+                                 0xbb (size before relaxing)
+ *fill*         0x00402f12        0x2 00
+ .rodata        0x00402f14      0x338 ../lib/libmc1322x.a(maca.o)
+                0x004030e4                data_cal5
+                0x00403034                VCODivI
+                0x00402f9c                PAVAL
+                0x00403044                VCODivF
+                0x004030c4                data_cal3_seq2
+                0x004030cc                addr_cal3_seq3
+                0x004030a4                addr_cal3_seq1
+                0x004031a0                data_reg_rep
+                0x00403094                addr_seq2
+                0x004030d0                data_cal3_seq3
+                0x004030d4                addr_cal5
+                0x0040308c                data_seq1
+                0x004030b0                data_cal3_seq1
+                0x0040309c                data_seq2
+                0x00402f50                PSMVAL
+                0x004030bc                addr_cal3_seq2
+                0x00402fe8                AIMVAL
+                0x004030f4                addr_reg_rep
+                0x00403084                addr_seq1
+ .rodata.str1.1
+                0x0040324c       0x70 ../lib/libmc1322x.a(maca.o)
+                                 0x73 (size before relaxing)
+ .rodata.str1.1
+                0x004032bc        0x7 ../lib/libmc1322x.a(printf.o)
+
+.rodata1
+ *(.rodata1)
+
+.eh_frame_hdr
+ *(.eh_frame_hdr)
+
+.eh_frame
+ *(.eh_frame)
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+                0x004032c4                . = ALIGN (0x4)
+                0x004032c4                . = (0x4 DATA_SEGMENT_ALIGN 0x4)
+
+.eh_frame
+ *(.eh_frame)
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+
+.tdata
+ *(.tdata .tdata.* .gnu.linkonce.td.*)
+
+.tbss
+ *(.tbss .tbss.* .gnu.linkonce.tb.*)
+ *(.tcommon)
+
+.preinit_array  0x004032c4        0x0
+                0x004032c4                PROVIDE (__preinit_array_start, .)
+ *(.preinit_array)
+                0x004032c4                PROVIDE (__preinit_array_end, .)
+
+.init_array     0x004032c4        0x0
+                0x004032c4                PROVIDE (__init_array_start, .)
+ *(SORT(.init_array.*))
+ *(.init_array)
+                0x004032c4                PROVIDE (__init_array_end, .)
+
+.fini_array     0x004032c4        0x0
+                0x004032c4                PROVIDE (__fini_array_start, .)
+ *(.fini_array)
+ *(SORT(.fini_array.*))
+                0x004032c4                PROVIDE (__fini_array_end, .)
+
+.ctors
+ *crtbegin.o(.ctors)
+ *crtbegin?.o(.ctors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .ctors)
+ *(SORT(.ctors.*))
+ *(.ctors)
+
+.dtors
+ *crtbegin.o(.dtors)
+ *crtbegin?.o(.dtors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .dtors)
+ *(SORT(.dtors.*))
+ *(.dtors)
+
+.jcr
+ *(.jcr)
+
+.data.rel.ro
+ *(.data.rel.ro.local* .gnu.linkonce.d.rel.ro.local.*)
+ *(.data.rel.ro* .gnu.linkonce.d.rel.ro.*)
+
+.dynamic
+ *(.dynamic)
+                0x004032c4                . = (. DATA_SEGMENT_RELRO_END 0x0)
+
+.got
+ *(.got.plt)
+ *(.got)
+
+.data           0x004032c4       0x3c
+                0x004032c4                __data_start = .
+ *(.data .data.* .gnu.linkonce.d.*)
+ .data          0x004032c4        0x0 obj_redbee-usb/autoack-tx.o
+ .data          0x004032c4        0x0 obj_redbee-usb/board.a(tests.o)
+ .data          0x004032c4       0x18 ../lib/libmc1322x.a(maca.o)
+                0x004032d8                get_lqi
+                0x004032c5                ctov
+                0x004032c4                prm_mode
+ .data          0x004032dc       0x14 ../lib/libmc1322x.a(nvm.o)
+                0x004032e8                nvm_erase
+                0x004032ec                nvm_setsvar
+                0x004032e0                nvm_read
+                0x004032e4                nvm_write
+                0x004032dc                nvm_detect
+ .data          0x004032f0        0x0 ../lib/libmc1322x.a(printf.o)
+ .data          0x004032f0        0x0 ../lib/libmc1322x.a(uart1.o)
+ .data          0x004032f0        0x0 ../src/src-romvars.a(default_lowlevel.o)
+ .data          0x004032f0        0x0 ../src/src-romvars.a(start-romvars.o)
+ .data          0x004032f0       0x10 ../src/src-romvars.a(isr.o)
+ .data          0x00403300        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_udivsi3.o)
+ .data          0x00403300        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_dvmd_tls.o)
+ .data          0x00403300        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a(lib_a-strlen.o)
+
+.data1
+ *(.data1)
+                0x00403300                _edata = .
+                0x00403300                PROVIDE (edata, .)
+
+.stack          0x00403300      0x720
+                0x00403300                __stack_start__ = .
+                0x00403400                . = (. + IRQ_STACK_SIZE)
+ *fill*         0x00403300      0x100 00
+                0x00403400                . = ALIGN (0x4)
+                0x00403400                __irq_stack_top__ = .
+                0x00403500                . = (. + FIQ_STACK_SIZE)
+ *fill*         0x00403400      0x100 00
+                0x00403500                . = ALIGN (0x4)
+                0x00403500                __fiq_stack_top__ = .
+                0x00403600                . = (. + SVC_STACK_SIZE)
+ *fill*         0x00403500      0x100 00
+                0x00403600                . = ALIGN (0x4)
+                0x00403600                __svc_stack_top__ = .
+                0x00403610                . = (. + ABT_STACK_SIZE)
+ *fill*         0x00403600       0x10 00
+                0x00403610                . = ALIGN (0x4)
+                0x00403610                __abt_stack_top__ = .
+                0x00403620                . = (. + UND_STACK_SIZE)
+ *fill*         0x00403610       0x10 00
+                0x00403620                . = ALIGN (0x4)
+                0x00403620                __und_stack_top__ = .
+                0x00403a20                . = (. + SYS_STACK_SIZE)
+ *fill*         0x00403620      0x400 00
+                0x00403a20                . = ALIGN (0x4)
+                0x00403a20                __sys_stack_top__ = .
+                0x00403a20                __stack_end__ = .
+                0x00403a20                __bss_start = .
+                0x00403a20                __bss_start__ = .
+
+.bss            0x00403a20     0x1394
+ *(.dynbss)
+ *(.bss .bss.* .gnu.linkonce.b.*)
+ .bss           0x00403a20        0x1 obj_redbee-usb/autoack-tx.o
+ .bss           0x00403a21        0x0 obj_redbee-usb/board.a(tests.o)
+ *fill*         0x00403a21        0x3 00
+ .bss           0x00403a24     0x1348 ../lib/libmc1322x.a(maca.o)
+                0x00404d44                fcs_mode
+                0x00404d68                maca_entry
+                0x00404d4c                tx_head
+                0x00404d48                rx_head
+ .bss           0x00404d6c        0x0 ../lib/libmc1322x.a(nvm.o)
+ .bss           0x00404d6c        0x0 ../lib/libmc1322x.a(printf.o)
+ .bss           0x00404d6c       0x48 ../lib/libmc1322x.a(uart1.o)
+                0x00404d74                u1_tx_buf
+                0x00404d70                u1_tail
+                0x00404d6c                u1_head
+ .bss           0x00404db4        0x0 ../src/src-romvars.a(default_lowlevel.o)
+ .bss           0x00404db4        0x0 ../src/src-romvars.a(start-romvars.o)
+ .bss           0x00404db4        0x0 ../src/src-romvars.a(isr.o)
+ .bss           0x00404db4        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_udivsi3.o)
+ .bss           0x00404db4        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_dvmd_tls.o)
+ .bss           0x00404db4        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a(lib_a-strlen.o)
+ *(COMMON)
+                0x00404db4                . = ALIGN ((. != 0x0)?0x4:0x1)
+                0x00404db4                _bss_end__ = .
+                0x00404db4                __bss_end__ = .
+                0x00404db4                . = ALIGN (0x4)
+
+.heap           0x00404db4      0x400
+                0x00404db4                __heap_start__ = .
+ *(.heap)
+                0x004051b4                . = (. + HEAP_SIZE)
+ *fill*         0x00404db4      0x400 00
+                0x004051b4                . = ALIGN (0x4)
+                0x004051b4                __heap_end__ = .
+                0x004051b4                . = ALIGN (0x4)
+                0x004051b4                __end__ = .
+                0x004051b4                _end = .
+                0x004051b4                PROVIDE (end, .)
+                0x004051b4                . = DATA_SEGMENT_END (.)
+
+.stab           0x00000000      0x1e0
+ *(.stab)
+ .stab          0x00000000      0x1e0 ../src/src-romvars.a(start-romvars.o)
+
+.stabstr        0x00000000       0x21
+ *(.stabstr)
+ .stabstr       0x00000000       0x21 ../src/src-romvars.a(start-romvars.o)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x00000000      0x150
+ *(.comment)
+ .comment       0x00000000       0x2a obj_redbee-usb/autoack-tx.o
+ .comment       0x0000002a       0x2a obj_redbee-usb/board.a(tests.o)
+ .comment       0x00000054       0x2a ../lib/libmc1322x.a(maca.o)
+ .comment       0x0000007e       0x2a ../lib/libmc1322x.a(nvm.o)
+ .comment       0x000000a8       0x2a ../lib/libmc1322x.a(printf.o)
+ .comment       0x000000d2       0x2a ../lib/libmc1322x.a(uart1.o)
+ .comment       0x000000fc       0x2a ../src/src-romvars.a(default_lowlevel.o)
+ .comment       0x00000126       0x2a ../src/src-romvars.a(isr.o)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000      0x230
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x30 obj_redbee-usb/autoack-tx.o
+ .debug_aranges
+                0x00000030       0x30 obj_redbee-usb/board.a(tests.o)
+ .debug_aranges
+                0x00000060      0x108 ../lib/libmc1322x.a(maca.o)
+ .debug_aranges
+                0x00000168       0x48 ../lib/libmc1322x.a(printf.o)
+ .debug_aranges
+                0x000001b0       0x30 ../lib/libmc1322x.a(uart1.o)
+ .debug_aranges
+                0x000001e0       0x28 ../src/src-romvars.a(default_lowlevel.o)
+ .debug_aranges
+                0x00000208       0x28 ../src/src-romvars.a(isr.o)
+
+.debug_pubnames
+                0x00000000      0x54d
+ *(.debug_pubnames)
+ .debug_pubnames
+                0x00000000       0x40 obj_redbee-usb/autoack-tx.o
+ .debug_pubnames
+                0x00000040       0x43 obj_redbee-usb/board.a(tests.o)
+ .debug_pubnames
+                0x00000083      0x373 ../lib/libmc1322x.a(maca.o)
+ .debug_pubnames
+                0x000003f6       0x5a ../lib/libmc1322x.a(nvm.o)
+ .debug_pubnames
+                0x00000450       0x29 ../lib/libmc1322x.a(printf.o)
+ .debug_pubnames
+                0x00000479       0x64 ../lib/libmc1322x.a(uart1.o)
+ .debug_pubnames
+                0x000004dd       0x37 ../src/src-romvars.a(default_lowlevel.o)
+ .debug_pubnames
+                0x00000514       0x39 ../src/src-romvars.a(isr.o)
+
+.debug_info     0x00000000    0x3b603
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x00000000     0x8593 obj_redbee-usb/autoack-tx.o
+ .debug_info    0x00008593     0x858e obj_redbee-usb/board.a(tests.o)
+ .debug_info    0x00010b21     0x9219 ../lib/libmc1322x.a(maca.o)
+ .debug_info    0x00019d3a      0x1f8 ../lib/libmc1322x.a(nvm.o)
+ .debug_info    0x00019f32     0x8816 ../lib/libmc1322x.a(printf.o)
+ .debug_info    0x00022748     0x8502 ../lib/libmc1322x.a(uart1.o)
+ .debug_info    0x0002ac4a     0x84e5 ../src/src-romvars.a(default_lowlevel.o)
+ .debug_info    0x0003312f     0x84d4 ../src/src-romvars.a(isr.o)
+
+.debug_abbrev   0x00000000      0xee3
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000      0x1dc obj_redbee-usb/autoack-tx.o
+ .debug_abbrev  0x000001dc      0x182 obj_redbee-usb/board.a(tests.o)
+ .debug_abbrev  0x0000035e      0x387 ../lib/libmc1322x.a(maca.o)
+ .debug_abbrev  0x000006e5       0x89 ../lib/libmc1322x.a(nvm.o)
+ .debug_abbrev  0x0000076e      0x286 ../lib/libmc1322x.a(printf.o)
+ .debug_abbrev  0x000009f4      0x1aa ../lib/libmc1322x.a(uart1.o)
+ .debug_abbrev  0x00000b9e      0x19c ../src/src-romvars.a(default_lowlevel.o)
+ .debug_abbrev  0x00000d3a      0x1a9 ../src/src-romvars.a(isr.o)
+
+.debug_line     0x00000000      0xd8a
+ *(.debug_line)
+ .debug_line    0x00000000      0x16d obj_redbee-usb/autoack-tx.o
+ .debug_line    0x0000016d      0x133 obj_redbee-usb/board.a(tests.o)
+ .debug_line    0x000002a0      0x498 ../lib/libmc1322x.a(maca.o)
+ .debug_line    0x00000738       0xb6 ../lib/libmc1322x.a(nvm.o)
+ .debug_line    0x000007ee      0x235 ../lib/libmc1322x.a(printf.o)
+ .debug_line    0x00000a23      0x125 ../lib/libmc1322x.a(uart1.o)
+ .debug_line    0x00000b48      0x12b ../src/src-romvars.a(default_lowlevel.o)
+ .debug_line    0x00000c73      0x117 ../src/src-romvars.a(isr.o)
+
+.debug_frame    0x00000000      0x57c
+ *(.debug_frame)
+ .debug_frame   0x00000000       0x54 obj_redbee-usb/autoack-tx.o
+ .debug_frame   0x00000054       0x68 obj_redbee-usb/board.a(tests.o)
+ .debug_frame   0x000000bc      0x2e4 ../lib/libmc1322x.a(maca.o)
+ .debug_frame   0x000003a0       0xc0 ../lib/libmc1322x.a(printf.o)
+ .debug_frame   0x00000460       0x58 ../lib/libmc1322x.a(uart1.o)
+ .debug_frame   0x000004b8       0x40 ../src/src-romvars.a(default_lowlevel.o)
+ .debug_frame   0x000004f8       0x44 ../src/src-romvars.a(isr.o)
+ .debug_frame   0x0000053c       0x20 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_udivsi3.o)
+ .debug_frame   0x0000055c       0x20 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a(lib_a-strlen.o)
+
+.debug_str      0x00000000     0x3f28
+ *(.debug_str)
+ .debug_str     0x00000000     0x340d obj_redbee-usb/autoack-tx.o
+                               0x3625 (size before relaxing)
+ .debug_str     0x0000340d       0x36 obj_redbee-usb/board.a(tests.o)
+                               0x3612 (size before relaxing)
+ .debug_str     0x00003443      0x91b ../lib/libmc1322x.a(maca.o)
+                               0x3f36 (size before relaxing)
+ .debug_str     0x00003d5e       0x21 ../lib/libmc1322x.a(nvm.o)
+                                0x297 (size before relaxing)
+ .debug_str     0x00003d7f       0xe0 ../lib/libmc1322x.a(printf.o)
+                               0x368e (size before relaxing)
+ .debug_str     0x00003e5f       0x49 ../lib/libmc1322x.a(uart1.o)
+                               0x367c (size before relaxing)
+ .debug_str     0x00003ea8       0x3c ../src/src-romvars.a(default_lowlevel.o)
+                               0x367a (size before relaxing)
+ .debug_str     0x00003ee4       0x44 ../src/src-romvars.a(isr.o)
+                               0x366a (size before relaxing)
+
+.debug_loc      0x00000000     0x19cf
+ *(.debug_loc)
+ .debug_loc     0x00000000       0xda obj_redbee-usb/autoack-tx.o
+ .debug_loc     0x000000da      0x22f obj_redbee-usb/board.a(tests.o)
+ .debug_loc     0x00000309      0xd9d ../lib/libmc1322x.a(maca.o)
+ .debug_loc     0x000010a6      0x7f4 ../lib/libmc1322x.a(printf.o)
+ .debug_loc     0x0000189a       0x5d ../lib/libmc1322x.a(uart1.o)
+ .debug_loc     0x000018f7       0xb9 ../src/src-romvars.a(default_lowlevel.o)
+ .debug_loc     0x000019b0       0x1f ../src/src-romvars.a(isr.o)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.debug_pubtypes
+ *(.debug_pubtypes)
+
+.debug_ranges   0x00000000      0x1f8
+ *(.debug_ranges)
+ .debug_ranges  0x00000000       0x28 obj_redbee-usb/autoack-tx.o
+ .debug_ranges  0x00000028       0x28 obj_redbee-usb/board.a(tests.o)
+ .debug_ranges  0x00000050      0x100 ../lib/libmc1322x.a(maca.o)
+ .debug_ranges  0x00000150       0x40 ../lib/libmc1322x.a(printf.o)
+ .debug_ranges  0x00000190       0x28 ../lib/libmc1322x.a(uart1.o)
+ .debug_ranges  0x000001b8       0x20 ../src/src-romvars.a(default_lowlevel.o)
+ .debug_ranges  0x000001d8       0x20 ../src/src-romvars.a(isr.o)
+
+.gnu.attributes
+ *(.gnu.attributes)
+
+.note.gnu.arm.ident
+ *(.note.gnu.arm.ident)
+
+/DISCARD/
+ *(.note.GNU-stack)
+ *(.gnu_debuglink)
+OUTPUT(autoack-tx_redbee-usb.elf elf32-littlearm)
+
+.ARM.attributes
+                0x00000000       0x2a
+ .ARM.attributes
+                0x00000000       0x2a obj_redbee-usb/autoack-tx.o
+ .ARM.attributes
+                0x0000002a       0x2a obj_redbee-usb/board.a(tests.o)
+ .ARM.attributes
+                0x00000054       0x2a ../lib/libmc1322x.a(maca.o)
+ .ARM.attributes
+                0x0000007e       0x26 ../lib/libmc1322x.a(nvm.o)
+ .ARM.attributes
+                0x000000a4       0x2a ../lib/libmc1322x.a(printf.o)
+ .ARM.attributes
+                0x000000ce       0x2a ../lib/libmc1322x.a(uart1.o)
+ .ARM.attributes
+                0x000000f8       0x2a ../src/src-romvars.a(default_lowlevel.o)
+ .ARM.attributes
+                0x00000122       0x1a ../src/src-romvars.a(start-romvars.o)
+ .ARM.attributes
+                0x0000013c       0x28 ../src/src-romvars.a(isr.o)
+ .ARM.attributes
+                0x00000164       0x14 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_udivsi3.o)
+ .ARM.attributes
+                0x00000178       0x14 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_dvmd_tls.o)
+ .ARM.attributes
+                0x0000018c       0x2e /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a(lib_a-strlen.o)

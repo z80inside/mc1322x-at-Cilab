@@ -1,0 +1,421 @@
+Archive member included because of file (symbol)
+
+../src/src.a(start.o)         (_start)
+../src/src.a(isr.o)           ../src/src.a(start.o) (irq)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+ram              0x00400000         0x00018000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+START GROUP
+LOAD obj_redbee-dev/blink-allio.o
+LOAD obj_redbee-dev/board.a
+LOAD ../lib/libmc1322x.a
+LOAD ../src/src.a
+LOAD /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libm.a
+END GROUP
+START GROUP
+LOAD /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a
+LOAD /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a
+END GROUP
+                0x00000400                SYS_STACK_SIZE = 0x400
+                0x00000100                IRQ_STACK_SIZE = 0x100
+                0x00000100                FIQ_STACK_SIZE = 0x100
+                0x00000100                SVC_STACK_SIZE = 0x100
+                0x00000010                ABT_STACK_SIZE = 0x10
+                0x00000010                UND_STACK_SIZE = 0x10
+                0x00000400                HEAP_SIZE = 0x400
+                0x00400000                PROVIDE (__executable_start, 0x400000)
+                0x00400000                . = 0x400000
+
+.text           0x00400000      0xa5c
+ *(.start)
+ .start         0x00400000      0x800 ../src/src.a(start.o)
+                0x00400090                _bss_start
+                0x00400094                _bss_end
+                0x00400000                _start
+ *(.irq)
+ .irq           0x00400800      0x1dc ../src/src.a(isr.o)
+                0x00400800                irq
+ *(.text .stub .text.* .gnu.linkonce.t.*)
+ .text          0x004009dc        0x0 obj_redbee-dev/blink-allio.o
+ .text.main     0x004009dc       0x70 obj_redbee-dev/blink-allio.o
+                0x004009e4                .real_start_ofmain
+                0x004009dc                main
+ .text          0x00400a4c        0x0 ../src/src.a(start.o)
+ .text          0x00400a4c        0x0 ../src/src.a(isr.o)
+ .text.irq_register_timer_handler
+                0x00400a4c       0x10 ../src/src.a(isr.o)
+                0x00400a4c                irq_register_timer_handler
+ *(.gnu.warning)
+ *(.glue_7t)
+ .glue_7t       0x00400a5c        0x0 obj_redbee-dev/blink-allio.o
+ .glue_7t       0x00400a5c        0x0 ../src/src.a(start.o)
+ .glue_7t       0x00400a5c        0x0 ../src/src.a(isr.o)
+ *(.glue_7)
+ .glue_7        0x00400a5c        0x0 obj_redbee-dev/blink-allio.o
+ .glue_7        0x00400a5c        0x0 ../src/src.a(start.o)
+ .glue_7        0x00400a5c        0x0 ../src/src.a(isr.o)
+ *(.vfp11_veneer)
+ .vfp11_veneer  0x00400a5c        0x0 obj_redbee-dev/blink-allio.o
+ .vfp11_veneer  0x00400a5c        0x0 ../src/src.a(start.o)
+ .vfp11_veneer  0x00400a5c        0x0 ../src/src.a(isr.o)
+ *(.v4_bx)
+ .v4_bx         0x00400a5c        0x0 obj_redbee-dev/blink-allio.o
+ .v4_bx         0x00400a5c        0x0 ../src/src.a(start.o)
+ .v4_bx         0x00400a5c        0x0 ../src/src.a(isr.o)
+
+.janus_2cc_veneer
+                0x00400a5c        0x0
+ .janus_2cc_veneer
+                0x00400a5c        0x0 obj_redbee-dev/blink-allio.o
+ .janus_2cc_veneer
+                0x00400a5c        0x0 ../src/src.a(start.o)
+ .janus_2cc_veneer
+                0x00400a5c        0x0 ../src/src.a(isr.o)
+
+.interp
+ *(.interp)
+
+.note.gnu.build-id
+ *(.note.gnu.build-id)
+
+.hash
+ *(.hash)
+
+.gnu.hash
+ *(.gnu.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.dyn
+ *(.rel.init)
+ *(.rel.text .rel.text.* .rel.gnu.linkonce.t.*)
+ *(.rel.fini)
+ *(.rel.rodata .rel.rodata.* .rel.gnu.linkonce.r.*)
+ *(.rel.data.rel.ro* .rel.gnu.linkonce.d.rel.ro.*)
+ *(.rel.data .rel.data.* .rel.gnu.linkonce.d.*)
+ *(.rel.tdata .rel.tdata.* .rel.gnu.linkonce.td.*)
+ *(.rel.tbss .rel.tbss.* .rel.gnu.linkonce.tb.*)
+ *(.rel.ctors)
+ *(.rel.dtors)
+ *(.rel.got)
+ *(.rel.bss .rel.bss.* .rel.gnu.linkonce.b.*)
+
+.rela.dyn
+ *(.rela.init)
+ *(.rela.text .rela.text.* .rela.gnu.linkonce.t.*)
+ *(.rela.fini)
+ *(.rela.rodata .rela.rodata.* .rela.gnu.linkonce.r.*)
+ *(.rela.data .rela.data.* .rela.gnu.linkonce.d.*)
+ *(.rela.tdata .rela.tdata.* .rela.gnu.linkonce.td.*)
+ *(.rela.tbss .rela.tbss.* .rela.gnu.linkonce.tb.*)
+ *(.rela.ctors)
+ *(.rela.dtors)
+ *(.rela.got)
+ *(.rela.bss .rela.bss.* .rela.gnu.linkonce.b.*)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.init
+ *(.init)
+
+.plt
+ *(.plt)
+
+.fini
+ *(.fini)
+                0x00400a5c                PROVIDE (__etext, .)
+                0x00400a5c                PROVIDE (_etext, .)
+                0x00400a5c                PROVIDE (etext, .)
+
+.rodata
+ *(.rodata .rodata.* .gnu.linkonce.r.*)
+
+.rodata1
+ *(.rodata1)
+
+.eh_frame_hdr
+ *(.eh_frame_hdr)
+
+.eh_frame
+ *(.eh_frame)
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+                0x00400a5c                . = ALIGN (0x4)
+                0x00400a5c                . = (0x4 DATA_SEGMENT_ALIGN 0x4)
+
+.eh_frame
+ *(.eh_frame)
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+
+.tdata
+ *(.tdata .tdata.* .gnu.linkonce.td.*)
+
+.tbss
+ *(.tbss .tbss.* .gnu.linkonce.tb.*)
+ *(.tcommon)
+
+.preinit_array  0x00400a5c        0x0
+                0x00400a5c                PROVIDE (__preinit_array_start, .)
+ *(.preinit_array)
+                0x00400a5c                PROVIDE (__preinit_array_end, .)
+
+.init_array     0x00400a5c        0x0
+                0x00400a5c                PROVIDE (__init_array_start, .)
+ *(SORT(.init_array.*))
+ *(.init_array)
+                0x00400a5c                PROVIDE (__init_array_end, .)
+
+.fini_array     0x00400a5c        0x0
+                0x00400a5c                PROVIDE (__fini_array_start, .)
+ *(.fini_array)
+ *(SORT(.fini_array.*))
+                0x00400a5c                PROVIDE (__fini_array_end, .)
+
+.ctors
+ *crtbegin.o(.ctors)
+ *crtbegin?.o(.ctors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .ctors)
+ *(SORT(.ctors.*))
+ *(.ctors)
+
+.dtors
+ *crtbegin.o(.dtors)
+ *crtbegin?.o(.dtors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .dtors)
+ *(SORT(.dtors.*))
+ *(.dtors)
+
+.jcr
+ *(.jcr)
+
+.data.rel.ro
+ *(.data.rel.ro.local* .gnu.linkonce.d.rel.ro.local.*)
+ *(.data.rel.ro* .gnu.linkonce.d.rel.ro.*)
+
+.dynamic
+ *(.dynamic)
+                0x00400a5c                . = (. DATA_SEGMENT_RELRO_END 0x0)
+
+.got
+ *(.got.plt)
+ *(.got)
+
+.data           0x00400a5c       0x10
+                0x00400a5c                __data_start = .
+ *(.data .data.* .gnu.linkonce.d.*)
+ .data          0x00400a5c        0x0 obj_redbee-dev/blink-allio.o
+ .data          0x00400a5c        0x0 ../src/src.a(start.o)
+ .data          0x00400a5c       0x10 ../src/src.a(isr.o)
+
+.data1
+ *(.data1)
+                0x00400a6c                _edata = .
+                0x00400a6c                PROVIDE (edata, .)
+
+.stack          0x00400a6c      0x720
+                0x00400a6c                __stack_start__ = .
+                0x00400b6c                . = (. + IRQ_STACK_SIZE)
+ *fill*         0x00400a6c      0x100 00
+                0x00400b6c                . = ALIGN (0x4)
+                0x00400b6c                __irq_stack_top__ = .
+                0x00400c6c                . = (. + FIQ_STACK_SIZE)
+ *fill*         0x00400b6c      0x100 00
+                0x00400c6c                . = ALIGN (0x4)
+                0x00400c6c                __fiq_stack_top__ = .
+                0x00400d6c                . = (. + SVC_STACK_SIZE)
+ *fill*         0x00400c6c      0x100 00
+                0x00400d6c                . = ALIGN (0x4)
+                0x00400d6c                __svc_stack_top__ = .
+                0x00400d7c                . = (. + ABT_STACK_SIZE)
+ *fill*         0x00400d6c       0x10 00
+                0x00400d7c                . = ALIGN (0x4)
+                0x00400d7c                __abt_stack_top__ = .
+                0x00400d8c                . = (. + UND_STACK_SIZE)
+ *fill*         0x00400d7c       0x10 00
+                0x00400d8c                . = ALIGN (0x4)
+                0x00400d8c                __und_stack_top__ = .
+                0x0040118c                . = (. + SYS_STACK_SIZE)
+ *fill*         0x00400d8c      0x400 00
+                0x0040118c                . = ALIGN (0x4)
+                0x0040118c                __sys_stack_top__ = .
+                0x0040118c                __stack_end__ = .
+                0x0040118c                __bss_start = .
+                0x0040118c                __bss_start__ = .
+
+.bss            0x0040118c        0x0
+ *(.dynbss)
+ *(.bss .bss.* .gnu.linkonce.b.*)
+ .bss           0x0040118c        0x0 obj_redbee-dev/blink-allio.o
+ .bss           0x0040118c        0x0 ../src/src.a(start.o)
+ .bss           0x0040118c        0x0 ../src/src.a(isr.o)
+ *(COMMON)
+                0x0040118c                . = ALIGN ((. != 0x0)?0x4:0x1)
+                0x0040118c                _bss_end__ = .
+                0x0040118c                __bss_end__ = .
+                0x0040118c                . = ALIGN (0x4)
+
+.heap           0x0040118c      0x400
+                0x0040118c                __heap_start__ = .
+ *(.heap)
+                0x0040158c                . = (. + HEAP_SIZE)
+ *fill*         0x0040118c      0x400 00
+                0x0040158c                . = ALIGN (0x4)
+                0x0040158c                __heap_end__ = .
+                0x0040158c                . = ALIGN (0x4)
+                0x0040158c                __end__ = .
+                0x0040158c                _end = .
+                0x0040158c                PROVIDE (end, .)
+                0x0040158c                . = DATA_SEGMENT_END (.)
+
+.stab           0x00000000      0x18c
+ *(.stab)
+ .stab          0x00000000      0x18c ../src/src.a(start.o)
+
+.stabstr        0x00000000       0x21
+ *(.stabstr)
+ .stabstr       0x00000000       0x21 ../src/src.a(start.o)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x00000000       0x54
+ *(.comment)
+ .comment       0x00000000       0x2a obj_redbee-dev/blink-allio.o
+ .comment       0x0000002a       0x2a ../src/src.a(isr.o)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000       0x48
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x20 obj_redbee-dev/blink-allio.o
+ .debug_aranges
+                0x00000020       0x28 ../src/src.a(isr.o)
+
+.debug_pubnames
+                0x00000000       0x54
+ *(.debug_pubnames)
+ .debug_pubnames
+                0x00000000       0x1b obj_redbee-dev/blink-allio.o
+ .debug_pubnames
+                0x0000001b       0x39 ../src/src.a(isr.o)
+
+.debug_info     0x00000000    0x108fe
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x00000000     0x842a obj_redbee-dev/blink-allio.o
+ .debug_info    0x0000842a     0x84d4 ../src/src.a(isr.o)
+
+.debug_abbrev   0x00000000      0x2fe
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000      0x155 obj_redbee-dev/blink-allio.o
+ .debug_abbrev  0x00000155      0x1a9 ../src/src.a(isr.o)
+
+.debug_line     0x00000000      0x213
+ *(.debug_line)
+ .debug_line    0x00000000       0xfc obj_redbee-dev/blink-allio.o
+ .debug_line    0x000000fc      0x117 ../src/src.a(isr.o)
+
+.debug_frame    0x00000000       0x6c
+ *(.debug_frame)
+ .debug_frame   0x00000000       0x28 obj_redbee-dev/blink-allio.o
+ .debug_frame   0x00000028       0x44 ../src/src.a(isr.o)
+
+.debug_str      0x00000000     0x347e
+ *(.debug_str)
+ .debug_str     0x00000000     0x33a1 obj_redbee-dev/blink-allio.o
+                               0x35a0 (size before relaxing)
+ .debug_str     0x000033a1       0xdd ../src/src.a(isr.o)
+                               0x366a (size before relaxing)
+
+.debug_loc      0x00000000       0x8c
+ *(.debug_loc)
+ .debug_loc     0x00000000       0x6d obj_redbee-dev/blink-allio.o
+ .debug_loc     0x0000006d       0x1f ../src/src.a(isr.o)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.debug_pubtypes
+ *(.debug_pubtypes)
+
+.debug_ranges   0x00000000       0x38
+ *(.debug_ranges)
+ .debug_ranges  0x00000000       0x18 obj_redbee-dev/blink-allio.o
+ .debug_ranges  0x00000018       0x20 ../src/src.a(isr.o)
+
+.gnu.attributes
+ *(.gnu.attributes)
+
+.note.gnu.arm.ident
+ *(.note.gnu.arm.ident)
+
+/DISCARD/
+ *(.note.GNU-stack)
+ *(.gnu_debuglink)
+OUTPUT(blink-allio_redbee-dev.elf elf32-littlearm)
+
+.ARM.attributes
+                0x00000000       0x2a
+ .ARM.attributes
+                0x00000000       0x2a obj_redbee-dev/blink-allio.o
+ .ARM.attributes
+                0x0000002a       0x18 ../src/src.a(start.o)
+ .ARM.attributes
+                0x00000042       0x28 ../src/src.a(isr.o)

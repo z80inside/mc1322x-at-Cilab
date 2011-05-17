@@ -1,0 +1,582 @@
+Archive member included because of file (symbol)
+
+obj_freescale-ncb/board.a(put.o)
+                              obj_freescale-ncb/flasher.o (putstr)
+../lib/libmc1322x.a(nvm.o)    obj_freescale-ncb/flasher.o (nvm_detect)
+../lib/libmc1322x.a(uart1.o)  obj_freescale-ncb/flasher.o (uart1_getc)
+../src/src-romvars.a(default_lowlevel.o)
+                              obj_freescale-ncb/flasher.o (default_vreg_init)
+../src/src-romvars.a(start-romvars.o)
+                              (_start)
+../src/src-romvars.a(isr.o)   ../src/src-romvars.a(start-romvars.o) (irq)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+ram              0x00400000         0x00018000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+START GROUP
+LOAD obj_freescale-ncb/flasher.o
+LOAD obj_freescale-ncb/board.a
+LOAD ../lib/libmc1322x.a
+LOAD ../src/src-romvars.a
+LOAD /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libm.a
+END GROUP
+START GROUP
+LOAD /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a
+LOAD /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a
+END GROUP
+                0x00000400                SYS_STACK_SIZE = 0x400
+                0x00000100                IRQ_STACK_SIZE = 0x100
+                0x00000100                FIQ_STACK_SIZE = 0x100
+                0x00000100                SVC_STACK_SIZE = 0x100
+                0x00000010                ABT_STACK_SIZE = 0x10
+                0x00000010                UND_STACK_SIZE = 0x10
+                0x00000400                HEAP_SIZE = 0x400
+                0x00400000                PROVIDE (__executable_start, 0x400000)
+                0x00400000                . = 0x400000
+
+.text           0x00400000     0x18a8
+ *(.start)
+ .start         0x00400000     0x1000 ../src/src-romvars.a(start-romvars.o)
+                0x00400880                _bss_start
+                0x00400884                _bss_end
+                0x00400000                _start
+ *(.irq)
+ .irq           0x00401000      0x1dc ../src/src-romvars.a(isr.o)
+                0x00401000                irq
+ *(.text .stub .text.* .gnu.linkonce.t.*)
+ .text          0x004011dc        0x0 obj_freescale-ncb/flasher.o
+ .text.getc     0x004011dc       0x34 obj_freescale-ncb/flasher.o
+                0x004011dc                getc
+                0x004011e4                .real_start_ofgetc
+ .text.flushrx  0x00401210       0x34 obj_freescale-ncb/flasher.o
+                0x00401218                .real_start_offlushrx
+                0x00401210                flushrx
+ .text.from_hex
+                0x00401244       0x48 obj_freescale-ncb/flasher.o
+                0x0040124c                .real_start_offrom_hex
+                0x00401244                from_hex
+ .text.to_u32   0x0040128c       0x50 obj_freescale-ncb/flasher.o
+                0x00401294                .real_start_ofto_u32
+                0x0040128c                to_u32
+ .text.main     0x004012dc      0x2f4 obj_freescale-ncb/flasher.o
+                0x004012e4                .real_start_ofmain
+                0x004012dc                main
+ .text          0x004015d0        0x0 obj_freescale-ncb/board.a(put.o)
+ .text.putchr   0x004015d0       0x24 obj_freescale-ncb/board.a(put.o)
+                0x004015d8                .real_start_ofputchr
+                0x004015d0                putchr
+ .text.putstr   0x004015f4       0x30 obj_freescale-ncb/board.a(put.o)
+                0x004015fc                .real_start_ofputstr
+                0x004015f4                putstr
+ .text.put_hex  0x00401624       0x34 obj_freescale-ncb/board.a(put.o)
+                0x0040162c                .real_start_ofput_hex
+                0x00401624                put_hex
+ .text.put_hex16
+                0x00401658       0x2c obj_freescale-ncb/board.a(put.o)
+                0x00401658                put_hex16
+                0x00401660                .real_start_ofput_hex16
+ .text.put_hex32
+                0x00401684       0x3c obj_freescale-ncb/board.a(put.o)
+                0x0040168c                .real_start_ofput_hex32
+                0x00401684                put_hex32
+ .text          0x004016c0        0x0 ../lib/libmc1322x.a(nvm.o)
+ .text          0x004016c0        0x0 ../lib/libmc1322x.a(uart1.o)
+ .text.uart1_isr
+                0x004016c0       0x54 ../lib/libmc1322x.a(uart1.o)
+                0x004016c0                uart1_isr
+                0x004016c8                .real_start_ofuart1_isr
+ .text.uart1_putc
+                0x00401714       0x78 ../lib/libmc1322x.a(uart1.o)
+                0x0040171c                .real_start_ofuart1_putc
+                0x00401714                uart1_putc
+ .text.uart1_getc
+                0x0040178c       0x28 ../lib/libmc1322x.a(uart1.o)
+                0x0040178c                uart1_getc
+                0x00401794                .real_start_ofuart1_getc
+ .text          0x004017b4        0x0 ../src/src-romvars.a(default_lowlevel.o)
+ .text.default_vreg_init
+                0x004017b4       0x4c ../src/src-romvars.a(default_lowlevel.o)
+                0x004017bc                .real_start_ofdefault_vreg_init
+                0x004017b4                default_vreg_init
+ .text.uart1_init
+                0x00401800       0x98 ../src/src-romvars.a(default_lowlevel.o)
+                0x00401800                uart1_init
+                0x00401808                .real_start_ofuart1_init
+ .text          0x00401898        0x0 ../src/src-romvars.a(start-romvars.o)
+ .text          0x00401898        0x0 ../src/src-romvars.a(isr.o)
+ .text.irq_register_timer_handler
+                0x00401898       0x10 ../src/src-romvars.a(isr.o)
+                0x00401898                irq_register_timer_handler
+ *(.gnu.warning)
+ *(.glue_7t)
+ .glue_7t       0x004018a8        0x0 obj_freescale-ncb/flasher.o
+ .glue_7t       0x004018a8        0x0 obj_freescale-ncb/board.a(put.o)
+ .glue_7t       0x004018a8        0x0 ../lib/libmc1322x.a(nvm.o)
+ .glue_7t       0x004018a8        0x0 ../lib/libmc1322x.a(uart1.o)
+ .glue_7t       0x004018a8        0x0 ../src/src-romvars.a(default_lowlevel.o)
+ .glue_7t       0x004018a8        0x0 ../src/src-romvars.a(start-romvars.o)
+ .glue_7t       0x004018a8        0x0 ../src/src-romvars.a(isr.o)
+ *(.glue_7)
+ .glue_7        0x004018a8        0x0 obj_freescale-ncb/flasher.o
+ .glue_7        0x004018a8        0x0 obj_freescale-ncb/board.a(put.o)
+ .glue_7        0x004018a8        0x0 ../lib/libmc1322x.a(nvm.o)
+ .glue_7        0x004018a8        0x0 ../lib/libmc1322x.a(uart1.o)
+ .glue_7        0x004018a8        0x0 ../src/src-romvars.a(default_lowlevel.o)
+ .glue_7        0x004018a8        0x0 ../src/src-romvars.a(start-romvars.o)
+ .glue_7        0x004018a8        0x0 ../src/src-romvars.a(isr.o)
+ *(.vfp11_veneer)
+ .vfp11_veneer  0x004018a8        0x0 obj_freescale-ncb/flasher.o
+ .vfp11_veneer  0x004018a8        0x0 obj_freescale-ncb/board.a(put.o)
+ .vfp11_veneer  0x004018a8        0x0 ../lib/libmc1322x.a(nvm.o)
+ .vfp11_veneer  0x004018a8        0x0 ../lib/libmc1322x.a(uart1.o)
+ .vfp11_veneer  0x004018a8        0x0 ../src/src-romvars.a(default_lowlevel.o)
+ .vfp11_veneer  0x004018a8        0x0 ../src/src-romvars.a(start-romvars.o)
+ .vfp11_veneer  0x004018a8        0x0 ../src/src-romvars.a(isr.o)
+ *(.v4_bx)
+ .v4_bx         0x004018a8        0x0 obj_freescale-ncb/flasher.o
+ .v4_bx         0x004018a8        0x0 obj_freescale-ncb/board.a(put.o)
+ .v4_bx         0x004018a8        0x0 ../lib/libmc1322x.a(nvm.o)
+ .v4_bx         0x004018a8        0x0 ../lib/libmc1322x.a(uart1.o)
+ .v4_bx         0x004018a8        0x0 ../src/src-romvars.a(default_lowlevel.o)
+ .v4_bx         0x004018a8        0x0 ../src/src-romvars.a(start-romvars.o)
+ .v4_bx         0x004018a8        0x0 ../src/src-romvars.a(isr.o)
+
+.janus_2cc_veneer
+                0x004018a8        0x0
+ .janus_2cc_veneer
+                0x004018a8        0x0 obj_freescale-ncb/flasher.o
+ .janus_2cc_veneer
+                0x004018a8        0x0 obj_freescale-ncb/board.a(put.o)
+ .janus_2cc_veneer
+                0x004018a8        0x0 ../lib/libmc1322x.a(nvm.o)
+ .janus_2cc_veneer
+                0x004018a8        0x0 ../lib/libmc1322x.a(uart1.o)
+ .janus_2cc_veneer
+                0x004018a8        0x0 ../src/src-romvars.a(default_lowlevel.o)
+ .janus_2cc_veneer
+                0x004018a8        0x0 ../src/src-romvars.a(start-romvars.o)
+ .janus_2cc_veneer
+                0x004018a8        0x0 ../src/src-romvars.a(isr.o)
+
+.interp
+ *(.interp)
+
+.note.gnu.build-id
+ *(.note.gnu.build-id)
+
+.hash
+ *(.hash)
+
+.gnu.hash
+ *(.gnu.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.dyn
+ *(.rel.init)
+ *(.rel.text .rel.text.* .rel.gnu.linkonce.t.*)
+ *(.rel.fini)
+ *(.rel.rodata .rel.rodata.* .rel.gnu.linkonce.r.*)
+ *(.rel.data.rel.ro* .rel.gnu.linkonce.d.rel.ro.*)
+ *(.rel.data .rel.data.* .rel.gnu.linkonce.d.*)
+ *(.rel.tdata .rel.tdata.* .rel.gnu.linkonce.td.*)
+ *(.rel.tbss .rel.tbss.* .rel.gnu.linkonce.tb.*)
+ *(.rel.ctors)
+ *(.rel.dtors)
+ *(.rel.got)
+ *(.rel.bss .rel.bss.* .rel.gnu.linkonce.b.*)
+
+.rela.dyn
+ *(.rela.init)
+ *(.rela.text .rela.text.* .rela.gnu.linkonce.t.*)
+ *(.rela.fini)
+ *(.rela.rodata .rela.rodata.* .rela.gnu.linkonce.r.*)
+ *(.rela.data .rela.data.* .rela.gnu.linkonce.d.*)
+ *(.rela.tdata .rela.tdata.* .rela.gnu.linkonce.td.*)
+ *(.rela.tbss .rela.tbss.* .rela.gnu.linkonce.tb.*)
+ *(.rela.ctors)
+ *(.rela.dtors)
+ *(.rela.got)
+ *(.rela.bss .rela.bss.* .rela.gnu.linkonce.b.*)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.init
+ *(.init)
+
+.plt
+ *(.plt)
+
+.fini
+ *(.fini)
+                0x004018a8                PROVIDE (__etext, .)
+                0x004018a8                PROVIDE (_etext, .)
+                0x004018a8                PROVIDE (etext, .)
+
+.rodata         0x004018a8       0xac
+ *(.rodata .rodata.* .gnu.linkonce.r.*)
+ .rodata.str1.1
+                0x004018a8       0x9c obj_freescale-ncb/flasher.o
+                                 0x9f (size before relaxing)
+ .rodata        0x00401944       0x10 obj_freescale-ncb/board.a(put.o)
+                0x00401944                hex
+
+.rodata1
+ *(.rodata1)
+
+.eh_frame_hdr
+ *(.eh_frame_hdr)
+
+.eh_frame
+ *(.eh_frame)
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+                0x00401954                . = ALIGN (0x4)
+                0x00401954                . = (0x4 DATA_SEGMENT_ALIGN 0x4)
+
+.eh_frame
+ *(.eh_frame)
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+
+.tdata
+ *(.tdata .tdata.* .gnu.linkonce.td.*)
+
+.tbss
+ *(.tbss .tbss.* .gnu.linkonce.tb.*)
+ *(.tcommon)
+
+.preinit_array  0x00401954        0x0
+                0x00401954                PROVIDE (__preinit_array_start, .)
+ *(.preinit_array)
+                0x00401954                PROVIDE (__preinit_array_end, .)
+
+.init_array     0x00401954        0x0
+                0x00401954                PROVIDE (__init_array_start, .)
+ *(SORT(.init_array.*))
+ *(.init_array)
+                0x00401954                PROVIDE (__init_array_end, .)
+
+.fini_array     0x00401954        0x0
+                0x00401954                PROVIDE (__fini_array_start, .)
+ *(.fini_array)
+ *(SORT(.fini_array.*))
+                0x00401954                PROVIDE (__fini_array_end, .)
+
+.ctors
+ *crtbegin.o(.ctors)
+ *crtbegin?.o(.ctors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .ctors)
+ *(SORT(.ctors.*))
+ *(.ctors)
+
+.dtors
+ *crtbegin.o(.dtors)
+ *crtbegin?.o(.dtors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .dtors)
+ *(SORT(.dtors.*))
+ *(.dtors)
+
+.jcr
+ *(.jcr)
+
+.data.rel.ro
+ *(.data.rel.ro.local* .gnu.linkonce.d.rel.ro.local.*)
+ *(.data.rel.ro* .gnu.linkonce.d.rel.ro.*)
+
+.dynamic
+ *(.dynamic)
+                0x00401954                . = (. DATA_SEGMENT_RELRO_END 0x0)
+
+.got
+ *(.got.plt)
+ *(.got)
+
+.data           0x00401954       0x24
+                0x00401954                __data_start = .
+ *(.data .data.* .gnu.linkonce.d.*)
+ .data          0x00401954        0x0 obj_freescale-ncb/flasher.o
+ .data          0x00401954        0x0 obj_freescale-ncb/board.a(put.o)
+ .data          0x00401954       0x14 ../lib/libmc1322x.a(nvm.o)
+                0x00401960                nvm_erase
+                0x00401964                nvm_setsvar
+                0x00401958                nvm_read
+                0x0040195c                nvm_write
+                0x00401954                nvm_detect
+ .data          0x00401968        0x0 ../lib/libmc1322x.a(uart1.o)
+ .data          0x00401968        0x0 ../src/src-romvars.a(default_lowlevel.o)
+ .data          0x00401968        0x0 ../src/src-romvars.a(start-romvars.o)
+ .data          0x00401968       0x10 ../src/src-romvars.a(isr.o)
+
+.data1
+ *(.data1)
+                0x00401978                _edata = .
+                0x00401978                PROVIDE (edata, .)
+
+.stack          0x00401978      0x720
+                0x00401978                __stack_start__ = .
+                0x00401a78                . = (. + IRQ_STACK_SIZE)
+ *fill*         0x00401978      0x100 00
+                0x00401a78                . = ALIGN (0x4)
+                0x00401a78                __irq_stack_top__ = .
+                0x00401b78                . = (. + FIQ_STACK_SIZE)
+ *fill*         0x00401a78      0x100 00
+                0x00401b78                . = ALIGN (0x4)
+                0x00401b78                __fiq_stack_top__ = .
+                0x00401c78                . = (. + SVC_STACK_SIZE)
+ *fill*         0x00401b78      0x100 00
+                0x00401c78                . = ALIGN (0x4)
+                0x00401c78                __svc_stack_top__ = .
+                0x00401c88                . = (. + ABT_STACK_SIZE)
+ *fill*         0x00401c78       0x10 00
+                0x00401c88                . = ALIGN (0x4)
+                0x00401c88                __abt_stack_top__ = .
+                0x00401c98                . = (. + UND_STACK_SIZE)
+ *fill*         0x00401c88       0x10 00
+                0x00401c98                . = ALIGN (0x4)
+                0x00401c98                __und_stack_top__ = .
+                0x00402098                . = (. + SYS_STACK_SIZE)
+ *fill*         0x00401c98      0x400 00
+                0x00402098                . = ALIGN (0x4)
+                0x00402098                __sys_stack_top__ = .
+                0x00402098                __stack_end__ = .
+                0x00402098                __bss_start = .
+                0x00402098                __bss_start__ = .
+
+.bss            0x00402098       0x48
+ *(.dynbss)
+ *(.bss .bss.* .gnu.linkonce.b.*)
+ .bss           0x00402098        0x0 obj_freescale-ncb/flasher.o
+ .bss           0x00402098        0x0 obj_freescale-ncb/board.a(put.o)
+ .bss           0x00402098        0x0 ../lib/libmc1322x.a(nvm.o)
+ .bss           0x00402098       0x48 ../lib/libmc1322x.a(uart1.o)
+                0x004020a0                u1_tx_buf
+                0x0040209c                u1_tail
+                0x00402098                u1_head
+ .bss           0x004020e0        0x0 ../src/src-romvars.a(default_lowlevel.o)
+ .bss           0x004020e0        0x0 ../src/src-romvars.a(start-romvars.o)
+ .bss           0x004020e0        0x0 ../src/src-romvars.a(isr.o)
+ *(COMMON)
+                0x004020e0                . = ALIGN ((. != 0x0)?0x4:0x1)
+                0x004020e0                _bss_end__ = .
+                0x004020e0                __bss_end__ = .
+                0x004020e0                . = ALIGN (0x4)
+
+.heap           0x004020e0      0x400
+                0x004020e0                __heap_start__ = .
+ *(.heap)
+                0x004024e0                . = (. + HEAP_SIZE)
+ *fill*         0x004020e0      0x400 00
+                0x004024e0                . = ALIGN (0x4)
+                0x004024e0                __heap_end__ = .
+                0x004024e0                . = ALIGN (0x4)
+                0x004024e0                __end__ = .
+                0x004024e0                _end = .
+                0x004024e0                PROVIDE (end, .)
+                0x004024e0                . = DATA_SEGMENT_END (.)
+
+.stab           0x00000000      0x1e0
+ *(.stab)
+ .stab          0x00000000      0x1e0 ../src/src-romvars.a(start-romvars.o)
+
+.stabstr        0x00000000       0x21
+ *(.stabstr)
+ .stabstr       0x00000000       0x21 ../src/src-romvars.a(start-romvars.o)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x00000000       0xfc
+ *(.comment)
+ .comment       0x00000000       0x2a obj_freescale-ncb/flasher.o
+ .comment       0x0000002a       0x2a obj_freescale-ncb/board.a(put.o)
+ .comment       0x00000054       0x2a ../lib/libmc1322x.a(nvm.o)
+ .comment       0x0000007e       0x2a ../lib/libmc1322x.a(uart1.o)
+ .comment       0x000000a8       0x2a ../src/src-romvars.a(default_lowlevel.o)
+ .comment       0x000000d2       0x2a ../src/src-romvars.a(isr.o)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000      0x100
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x40 obj_freescale-ncb/flasher.o
+ .debug_aranges
+                0x00000040       0x40 obj_freescale-ncb/board.a(put.o)
+ .debug_aranges
+                0x00000080       0x30 ../lib/libmc1322x.a(uart1.o)
+ .debug_aranges
+                0x000000b0       0x28 ../src/src-romvars.a(default_lowlevel.o)
+ .debug_aranges
+                0x000000d8       0x28 ../src/src-romvars.a(isr.o)
+
+.debug_pubnames
+                0x00000000      0x1ce
+ *(.debug_pubnames)
+ .debug_pubnames
+                0x00000000       0x48 obj_freescale-ncb/flasher.o
+ .debug_pubnames
+                0x00000048       0x58 obj_freescale-ncb/board.a(put.o)
+ .debug_pubnames
+                0x000000a0       0x5a ../lib/libmc1322x.a(nvm.o)
+ .debug_pubnames
+                0x000000fa       0x64 ../lib/libmc1322x.a(uart1.o)
+ .debug_pubnames
+                0x0000015e       0x37 ../src/src-romvars.a(default_lowlevel.o)
+ .debug_pubnames
+                0x00000195       0x39 ../src/src-romvars.a(isr.o)
+
+.debug_info     0x00000000    0x29cf0
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x00000000     0x873a obj_freescale-ncb/flasher.o
+ .debug_info    0x0000873a     0x8503 obj_freescale-ncb/board.a(put.o)
+ .debug_info    0x00010c3d      0x1f8 ../lib/libmc1322x.a(nvm.o)
+ .debug_info    0x00010e35     0x8502 ../lib/libmc1322x.a(uart1.o)
+ .debug_info    0x00019337     0x84e5 ../src/src-romvars.a(default_lowlevel.o)
+ .debug_info    0x0002181c     0x84d4 ../src/src-romvars.a(isr.o)
+
+.debug_abbrev   0x00000000      0x8fe
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000      0x211 obj_freescale-ncb/flasher.o
+ .debug_abbrev  0x00000211      0x175 obj_freescale-ncb/board.a(put.o)
+ .debug_abbrev  0x00000386       0x89 ../lib/libmc1322x.a(nvm.o)
+ .debug_abbrev  0x0000040f      0x1aa ../lib/libmc1322x.a(uart1.o)
+ .debug_abbrev  0x000005b9      0x19c ../src/src-romvars.a(default_lowlevel.o)
+ .debug_abbrev  0x00000755      0x1a9 ../src/src-romvars.a(isr.o)
+
+.debug_line     0x00000000      0x6fc
+ *(.debug_line)
+ .debug_line    0x00000000      0x19f obj_freescale-ncb/flasher.o
+ .debug_line    0x0000019f      0x140 obj_freescale-ncb/board.a(put.o)
+ .debug_line    0x000002df       0xb6 ../lib/libmc1322x.a(nvm.o)
+ .debug_line    0x00000395      0x125 ../lib/libmc1322x.a(uart1.o)
+ .debug_line    0x000004ba      0x12b ../src/src-romvars.a(default_lowlevel.o)
+ .debug_line    0x000005e5      0x117 ../src/src-romvars.a(isr.o)
+
+.debug_frame    0x00000000      0x204
+ *(.debug_frame)
+ .debug_frame   0x00000000       0x94 obj_freescale-ncb/flasher.o
+ .debug_frame   0x00000094       0x94 obj_freescale-ncb/board.a(put.o)
+ .debug_frame   0x00000128       0x58 ../lib/libmc1322x.a(uart1.o)
+ .debug_frame   0x00000180       0x40 ../src/src-romvars.a(default_lowlevel.o)
+ .debug_frame   0x000001c0       0x44 ../src/src-romvars.a(isr.o)
+
+.debug_str      0x00000000     0x376e
+ *(.debug_str)
+ .debug_str     0x00000000     0x3653 obj_freescale-ncb/flasher.o
+                               0x3857 (size before relaxing)
+ .debug_str     0x00003653       0x30 obj_freescale-ncb/board.a(put.o)
+                               0x35ca (size before relaxing)
+ .debug_str     0x00003683       0x22 ../lib/libmc1322x.a(nvm.o)
+                                0x297 (size before relaxing)
+ .debug_str     0x000036a5       0x49 ../lib/libmc1322x.a(uart1.o)
+                               0x367c (size before relaxing)
+ .debug_str     0x000036ee       0x3c ../src/src-romvars.a(default_lowlevel.o)
+                               0x367a (size before relaxing)
+ .debug_str     0x0000372a       0x44 ../src/src-romvars.a(isr.o)
+                               0x366a (size before relaxing)
+
+.debug_loc      0x00000000      0x694
+ *(.debug_loc)
+ .debug_loc     0x00000000      0x44c obj_freescale-ncb/flasher.o
+ .debug_loc     0x0000044c      0x113 obj_freescale-ncb/board.a(put.o)
+ .debug_loc     0x0000055f       0x5d ../lib/libmc1322x.a(uart1.o)
+ .debug_loc     0x000005bc       0xb9 ../src/src-romvars.a(default_lowlevel.o)
+ .debug_loc     0x00000675       0x1f ../src/src-romvars.a(isr.o)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.debug_pubtypes
+ *(.debug_pubtypes)
+
+.debug_ranges   0x00000000       0xd8
+ *(.debug_ranges)
+ .debug_ranges  0x00000000       0x38 obj_freescale-ncb/flasher.o
+ .debug_ranges  0x00000038       0x38 obj_freescale-ncb/board.a(put.o)
+ .debug_ranges  0x00000070       0x28 ../lib/libmc1322x.a(uart1.o)
+ .debug_ranges  0x00000098       0x20 ../src/src-romvars.a(default_lowlevel.o)
+ .debug_ranges  0x000000b8       0x20 ../src/src-romvars.a(isr.o)
+
+.gnu.attributes
+ *(.gnu.attributes)
+
+.note.gnu.arm.ident
+ *(.note.gnu.arm.ident)
+
+/DISCARD/
+ *(.note.GNU-stack)
+ *(.gnu_debuglink)
+OUTPUT(flasher_freescale-ncb.elf elf32-littlearm)
+
+.ARM.attributes
+                0x00000000       0x2a
+ .ARM.attributes
+                0x00000000       0x2a obj_freescale-ncb/flasher.o
+ .ARM.attributes
+                0x0000002a       0x2a obj_freescale-ncb/board.a(put.o)
+ .ARM.attributes
+                0x00000054       0x26 ../lib/libmc1322x.a(nvm.o)
+ .ARM.attributes
+                0x0000007a       0x2a ../lib/libmc1322x.a(uart1.o)
+ .ARM.attributes
+                0x000000a4       0x2a ../src/src-romvars.a(default_lowlevel.o)
+ .ARM.attributes
+                0x000000ce       0x1a ../src/src-romvars.a(start-romvars.o)
+ .ARM.attributes
+                0x000000e8       0x28 ../src/src-romvars.a(isr.o)

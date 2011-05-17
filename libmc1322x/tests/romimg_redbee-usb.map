@@ -1,0 +1,496 @@
+Archive member included because of file (symbol)
+
+../lib/libmc1322x.a(uart1.o)  obj_redbee-usb/romimg.o (uart1_putc)
+../src/src-romvars.a(default_lowlevel.o)
+                              obj_redbee-usb/romimg.o (uart1_init)
+../src/src-romvars.a(start-romvars.o)
+                              (_start)
+../src/src-romvars.a(isr.o)   ../src/src-romvars.a(start-romvars.o) (irq)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+ram              0x00400000         0x00018000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+START GROUP
+LOAD obj_redbee-usb/romimg.o
+LOAD obj_redbee-usb/board.a
+LOAD ../lib/libmc1322x.a
+LOAD ../src/src-romvars.a
+LOAD /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libm.a
+END GROUP
+START GROUP
+LOAD /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a
+LOAD /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a
+END GROUP
+                0x00000400                SYS_STACK_SIZE = 0x400
+                0x00000100                IRQ_STACK_SIZE = 0x100
+                0x00000100                FIQ_STACK_SIZE = 0x100
+                0x00000100                SVC_STACK_SIZE = 0x100
+                0x00000010                ABT_STACK_SIZE = 0x10
+                0x00000010                UND_STACK_SIZE = 0x10
+                0x00000400                HEAP_SIZE = 0x400
+                0x00400000                PROVIDE (__executable_start, 0x400000)
+                0x00400000                . = 0x400000
+
+.text           0x00400000     0x1404
+ *(.start)
+ .start         0x00400000     0x1000 ../src/src-romvars.a(start-romvars.o)
+                0x00400880                _bss_start
+                0x00400884                _bss_end
+                0x00400000                _start
+ *(.irq)
+ .irq           0x00401000      0x1dc ../src/src-romvars.a(isr.o)
+                0x00401000                irq
+ *(.text .stub .text.* .gnu.linkonce.t.*)
+ .text          0x004011dc        0x0 obj_redbee-usb/romimg.o
+ .text.main     0x004011dc       0x40 obj_redbee-usb/romimg.o
+                0x004011e4                .real_start_ofmain
+                0x004011dc                main
+ .text          0x0040121c        0x0 ../lib/libmc1322x.a(uart1.o)
+ .text.uart1_isr
+                0x0040121c       0x54 ../lib/libmc1322x.a(uart1.o)
+                0x0040121c                uart1_isr
+                0x00401224                .real_start_ofuart1_isr
+ .text.uart1_putc
+                0x00401270       0x78 ../lib/libmc1322x.a(uart1.o)
+                0x00401278                .real_start_ofuart1_putc
+                0x00401270                uart1_putc
+ .text.uart1_getc
+                0x004012e8       0x28 ../lib/libmc1322x.a(uart1.o)
+                0x004012e8                uart1_getc
+                0x004012f0                .real_start_ofuart1_getc
+ .text          0x00401310        0x0 ../src/src-romvars.a(default_lowlevel.o)
+ .text.default_vreg_init
+                0x00401310       0x4c ../src/src-romvars.a(default_lowlevel.o)
+                0x00401318                .real_start_ofdefault_vreg_init
+                0x00401310                default_vreg_init
+ .text.uart1_init
+                0x0040135c       0x98 ../src/src-romvars.a(default_lowlevel.o)
+                0x0040135c                uart1_init
+                0x00401364                .real_start_ofuart1_init
+ .text          0x004013f4        0x0 ../src/src-romvars.a(start-romvars.o)
+ .text          0x004013f4        0x0 ../src/src-romvars.a(isr.o)
+ .text.irq_register_timer_handler
+                0x004013f4       0x10 ../src/src-romvars.a(isr.o)
+                0x004013f4                irq_register_timer_handler
+ *(.gnu.warning)
+ *(.glue_7t)
+ .glue_7t       0x00401404        0x0 obj_redbee-usb/romimg.o
+ .glue_7t       0x00401404        0x0 ../lib/libmc1322x.a(uart1.o)
+ .glue_7t       0x00401404        0x0 ../src/src-romvars.a(default_lowlevel.o)
+ .glue_7t       0x00401404        0x0 ../src/src-romvars.a(start-romvars.o)
+ .glue_7t       0x00401404        0x0 ../src/src-romvars.a(isr.o)
+ *(.glue_7)
+ .glue_7        0x00401404        0x0 obj_redbee-usb/romimg.o
+ .glue_7        0x00401404        0x0 ../lib/libmc1322x.a(uart1.o)
+ .glue_7        0x00401404        0x0 ../src/src-romvars.a(default_lowlevel.o)
+ .glue_7        0x00401404        0x0 ../src/src-romvars.a(start-romvars.o)
+ .glue_7        0x00401404        0x0 ../src/src-romvars.a(isr.o)
+ *(.vfp11_veneer)
+ .vfp11_veneer  0x00401404        0x0 obj_redbee-usb/romimg.o
+ .vfp11_veneer  0x00401404        0x0 ../lib/libmc1322x.a(uart1.o)
+ .vfp11_veneer  0x00401404        0x0 ../src/src-romvars.a(default_lowlevel.o)
+ .vfp11_veneer  0x00401404        0x0 ../src/src-romvars.a(start-romvars.o)
+ .vfp11_veneer  0x00401404        0x0 ../src/src-romvars.a(isr.o)
+ *(.v4_bx)
+ .v4_bx         0x00401404        0x0 obj_redbee-usb/romimg.o
+ .v4_bx         0x00401404        0x0 ../lib/libmc1322x.a(uart1.o)
+ .v4_bx         0x00401404        0x0 ../src/src-romvars.a(default_lowlevel.o)
+ .v4_bx         0x00401404        0x0 ../src/src-romvars.a(start-romvars.o)
+ .v4_bx         0x00401404        0x0 ../src/src-romvars.a(isr.o)
+
+.janus_2cc_veneer
+                0x00401404        0x0
+ .janus_2cc_veneer
+                0x00401404        0x0 obj_redbee-usb/romimg.o
+ .janus_2cc_veneer
+                0x00401404        0x0 ../lib/libmc1322x.a(uart1.o)
+ .janus_2cc_veneer
+                0x00401404        0x0 ../src/src-romvars.a(default_lowlevel.o)
+ .janus_2cc_veneer
+                0x00401404        0x0 ../src/src-romvars.a(start-romvars.o)
+ .janus_2cc_veneer
+                0x00401404        0x0 ../src/src-romvars.a(isr.o)
+
+.interp
+ *(.interp)
+
+.note.gnu.build-id
+ *(.note.gnu.build-id)
+
+.hash
+ *(.hash)
+
+.gnu.hash
+ *(.gnu.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.dyn
+ *(.rel.init)
+ *(.rel.text .rel.text.* .rel.gnu.linkonce.t.*)
+ *(.rel.fini)
+ *(.rel.rodata .rel.rodata.* .rel.gnu.linkonce.r.*)
+ *(.rel.data.rel.ro* .rel.gnu.linkonce.d.rel.ro.*)
+ *(.rel.data .rel.data.* .rel.gnu.linkonce.d.*)
+ *(.rel.tdata .rel.tdata.* .rel.gnu.linkonce.td.*)
+ *(.rel.tbss .rel.tbss.* .rel.gnu.linkonce.tb.*)
+ *(.rel.ctors)
+ *(.rel.dtors)
+ *(.rel.got)
+ *(.rel.bss .rel.bss.* .rel.gnu.linkonce.b.*)
+
+.rela.dyn
+ *(.rela.init)
+ *(.rela.text .rela.text.* .rela.gnu.linkonce.t.*)
+ *(.rela.fini)
+ *(.rela.rodata .rela.rodata.* .rela.gnu.linkonce.r.*)
+ *(.rela.data .rela.data.* .rela.gnu.linkonce.d.*)
+ *(.rela.tdata .rela.tdata.* .rela.gnu.linkonce.td.*)
+ *(.rela.tbss .rela.tbss.* .rela.gnu.linkonce.tb.*)
+ *(.rela.ctors)
+ *(.rela.dtors)
+ *(.rela.got)
+ *(.rela.bss .rela.bss.* .rela.gnu.linkonce.b.*)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.init
+ *(.init)
+
+.plt
+ *(.plt)
+
+.fini
+ *(.fini)
+                0x00401404                PROVIDE (__etext, .)
+                0x00401404                PROVIDE (_etext, .)
+                0x00401404                PROVIDE (etext, .)
+
+.rodata
+ *(.rodata .rodata.* .gnu.linkonce.r.*)
+
+.rodata1
+ *(.rodata1)
+
+.eh_frame_hdr
+ *(.eh_frame_hdr)
+
+.eh_frame
+ *(.eh_frame)
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+                0x00401404                . = ALIGN (0x4)
+                0x00401404                . = (0x4 DATA_SEGMENT_ALIGN 0x4)
+
+.eh_frame
+ *(.eh_frame)
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+
+.tdata
+ *(.tdata .tdata.* .gnu.linkonce.td.*)
+
+.tbss
+ *(.tbss .tbss.* .gnu.linkonce.tb.*)
+ *(.tcommon)
+
+.preinit_array  0x00401404        0x0
+                0x00401404                PROVIDE (__preinit_array_start, .)
+ *(.preinit_array)
+                0x00401404                PROVIDE (__preinit_array_end, .)
+
+.init_array     0x00401404        0x0
+                0x00401404                PROVIDE (__init_array_start, .)
+ *(SORT(.init_array.*))
+ *(.init_array)
+                0x00401404                PROVIDE (__init_array_end, .)
+
+.fini_array     0x00401404        0x0
+                0x00401404                PROVIDE (__fini_array_start, .)
+ *(.fini_array)
+ *(SORT(.fini_array.*))
+                0x00401404                PROVIDE (__fini_array_end, .)
+
+.ctors
+ *crtbegin.o(.ctors)
+ *crtbegin?.o(.ctors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .ctors)
+ *(SORT(.ctors.*))
+ *(.ctors)
+
+.dtors
+ *crtbegin.o(.dtors)
+ *crtbegin?.o(.dtors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .dtors)
+ *(SORT(.dtors.*))
+ *(.dtors)
+
+.jcr
+ *(.jcr)
+
+.data.rel.ro
+ *(.data.rel.ro.local* .gnu.linkonce.d.rel.ro.local.*)
+ *(.data.rel.ro* .gnu.linkonce.d.rel.ro.*)
+
+.dynamic
+ *(.dynamic)
+                0x00401404                . = (. DATA_SEGMENT_RELRO_END 0x0)
+
+.got
+ *(.got.plt)
+ *(.got)
+
+.data           0x00401404       0x10
+                0x00401404                __data_start = .
+ *(.data .data.* .gnu.linkonce.d.*)
+ .data          0x00401404        0x0 obj_redbee-usb/romimg.o
+ .data          0x00401404        0x0 ../lib/libmc1322x.a(uart1.o)
+ .data          0x00401404        0x0 ../src/src-romvars.a(default_lowlevel.o)
+ .data          0x00401404        0x0 ../src/src-romvars.a(start-romvars.o)
+ .data          0x00401404       0x10 ../src/src-romvars.a(isr.o)
+
+.data1
+ *(.data1)
+                0x00401414                _edata = .
+                0x00401414                PROVIDE (edata, .)
+
+.stack          0x00401414      0x720
+                0x00401414                __stack_start__ = .
+                0x00401514                . = (. + IRQ_STACK_SIZE)
+ *fill*         0x00401414      0x100 00
+                0x00401514                . = ALIGN (0x4)
+                0x00401514                __irq_stack_top__ = .
+                0x00401614                . = (. + FIQ_STACK_SIZE)
+ *fill*         0x00401514      0x100 00
+                0x00401614                . = ALIGN (0x4)
+                0x00401614                __fiq_stack_top__ = .
+                0x00401714                . = (. + SVC_STACK_SIZE)
+ *fill*         0x00401614      0x100 00
+                0x00401714                . = ALIGN (0x4)
+                0x00401714                __svc_stack_top__ = .
+                0x00401724                . = (. + ABT_STACK_SIZE)
+ *fill*         0x00401714       0x10 00
+                0x00401724                . = ALIGN (0x4)
+                0x00401724                __abt_stack_top__ = .
+                0x00401734                . = (. + UND_STACK_SIZE)
+ *fill*         0x00401724       0x10 00
+                0x00401734                . = ALIGN (0x4)
+                0x00401734                __und_stack_top__ = .
+                0x00401b34                . = (. + SYS_STACK_SIZE)
+ *fill*         0x00401734      0x400 00
+                0x00401b34                . = ALIGN (0x4)
+                0x00401b34                __sys_stack_top__ = .
+                0x00401b34                __stack_end__ = .
+                0x00401b34                __bss_start = .
+                0x00401b34                __bss_start__ = .
+
+.bss            0x00401b34       0x48
+ *(.dynbss)
+ *(.bss .bss.* .gnu.linkonce.b.*)
+ .bss           0x00401b34        0x0 obj_redbee-usb/romimg.o
+ .bss           0x00401b34       0x48 ../lib/libmc1322x.a(uart1.o)
+                0x00401b3c                u1_tx_buf
+                0x00401b38                u1_tail
+                0x00401b34                u1_head
+ .bss           0x00401b7c        0x0 ../src/src-romvars.a(default_lowlevel.o)
+ .bss           0x00401b7c        0x0 ../src/src-romvars.a(start-romvars.o)
+ .bss           0x00401b7c        0x0 ../src/src-romvars.a(isr.o)
+ *(COMMON)
+                0x00401b7c                . = ALIGN ((. != 0x0)?0x4:0x1)
+                0x00401b7c                _bss_end__ = .
+                0x00401b7c                __bss_end__ = .
+                0x00401b7c                . = ALIGN (0x4)
+
+.heap           0x00401b7c      0x400
+                0x00401b7c                __heap_start__ = .
+ *(.heap)
+                0x00401f7c                . = (. + HEAP_SIZE)
+ *fill*         0x00401b7c      0x400 00
+                0x00401f7c                . = ALIGN (0x4)
+                0x00401f7c                __heap_end__ = .
+                0x00401f7c                . = ALIGN (0x4)
+                0x00401f7c                __end__ = .
+                0x00401f7c                _end = .
+                0x00401f7c                PROVIDE (end, .)
+                0x00401f7c                . = DATA_SEGMENT_END (.)
+
+.stab           0x00000000      0x1e0
+ *(.stab)
+ .stab          0x00000000      0x1e0 ../src/src-romvars.a(start-romvars.o)
+
+.stabstr        0x00000000       0x21
+ *(.stabstr)
+ .stabstr       0x00000000       0x21 ../src/src-romvars.a(start-romvars.o)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x00000000       0xa8
+ *(.comment)
+ .comment       0x00000000       0x2a obj_redbee-usb/romimg.o
+ .comment       0x0000002a       0x2a ../lib/libmc1322x.a(uart1.o)
+ .comment       0x00000054       0x2a ../src/src-romvars.a(default_lowlevel.o)
+ .comment       0x0000007e       0x2a ../src/src-romvars.a(isr.o)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000       0xa0
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x20 obj_redbee-usb/romimg.o
+ .debug_aranges
+                0x00000020       0x30 ../lib/libmc1322x.a(uart1.o)
+ .debug_aranges
+                0x00000050       0x28 ../src/src-romvars.a(default_lowlevel.o)
+ .debug_aranges
+                0x00000078       0x28 ../src/src-romvars.a(isr.o)
+
+.debug_pubnames
+                0x00000000       0xef
+ *(.debug_pubnames)
+ .debug_pubnames
+                0x00000000       0x1b obj_redbee-usb/romimg.o
+ .debug_pubnames
+                0x0000001b       0x64 ../lib/libmc1322x.a(uart1.o)
+ .debug_pubnames
+                0x0000007f       0x37 ../src/src-romvars.a(default_lowlevel.o)
+ .debug_pubnames
+                0x000000b6       0x39 ../src/src-romvars.a(isr.o)
+
+.debug_info     0x00000000    0x212fb
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x00000000     0x8440 obj_redbee-usb/romimg.o
+ .debug_info    0x00008440     0x8502 ../lib/libmc1322x.a(uart1.o)
+ .debug_info    0x00010942     0x84e5 ../src/src-romvars.a(default_lowlevel.o)
+ .debug_info    0x00018e27     0x84d4 ../src/src-romvars.a(isr.o)
+
+.debug_abbrev   0x00000000      0x644
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000      0x155 obj_redbee-usb/romimg.o
+ .debug_abbrev  0x00000155      0x1aa ../lib/libmc1322x.a(uart1.o)
+ .debug_abbrev  0x000002ff      0x19c ../src/src-romvars.a(default_lowlevel.o)
+ .debug_abbrev  0x0000049b      0x1a9 ../src/src-romvars.a(isr.o)
+
+.debug_line     0x00000000      0x450
+ *(.debug_line)
+ .debug_line    0x00000000       0xe9 obj_redbee-usb/romimg.o
+ .debug_line    0x000000e9      0x125 ../lib/libmc1322x.a(uart1.o)
+ .debug_line    0x0000020e      0x12b ../src/src-romvars.a(default_lowlevel.o)
+ .debug_line    0x00000339      0x117 ../src/src-romvars.a(isr.o)
+
+.debug_frame    0x00000000      0x104
+ *(.debug_frame)
+ .debug_frame   0x00000000       0x28 obj_redbee-usb/romimg.o
+ .debug_frame   0x00000028       0x58 ../lib/libmc1322x.a(uart1.o)
+ .debug_frame   0x00000080       0x40 ../src/src-romvars.a(default_lowlevel.o)
+ .debug_frame   0x000000c0       0x44 ../src/src-romvars.a(isr.o)
+
+.debug_str      0x00000000     0x350b
+ *(.debug_str)
+ .debug_str     0x00000000     0x33a9 obj_redbee-usb/romimg.o
+                               0x35a8 (size before relaxing)
+ .debug_str     0x000033a9       0xe2 ../lib/libmc1322x.a(uart1.o)
+                               0x367c (size before relaxing)
+ .debug_str     0x0000348b       0x3c ../src/src-romvars.a(default_lowlevel.o)
+                               0x367a (size before relaxing)
+ .debug_str     0x000034c7       0x44 ../src/src-romvars.a(isr.o)
+                               0x366a (size before relaxing)
+
+.debug_loc      0x00000000      0x154
+ *(.debug_loc)
+ .debug_loc     0x00000000       0x1f obj_redbee-usb/romimg.o
+ .debug_loc     0x0000001f       0x5d ../lib/libmc1322x.a(uart1.o)
+ .debug_loc     0x0000007c       0xb9 ../src/src-romvars.a(default_lowlevel.o)
+ .debug_loc     0x00000135       0x1f ../src/src-romvars.a(isr.o)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.debug_pubtypes
+ *(.debug_pubtypes)
+
+.debug_ranges   0x00000000       0x80
+ *(.debug_ranges)
+ .debug_ranges  0x00000000       0x18 obj_redbee-usb/romimg.o
+ .debug_ranges  0x00000018       0x28 ../lib/libmc1322x.a(uart1.o)
+ .debug_ranges  0x00000040       0x20 ../src/src-romvars.a(default_lowlevel.o)
+ .debug_ranges  0x00000060       0x20 ../src/src-romvars.a(isr.o)
+
+.gnu.attributes
+ *(.gnu.attributes)
+
+.note.gnu.arm.ident
+ *(.note.gnu.arm.ident)
+
+/DISCARD/
+ *(.note.GNU-stack)
+ *(.gnu_debuglink)
+OUTPUT(romimg_redbee-usb.elf elf32-littlearm)
+
+.ARM.attributes
+                0x00000000       0x2a
+ .ARM.attributes
+                0x00000000       0x2a obj_redbee-usb/romimg.o
+ .ARM.attributes
+                0x0000002a       0x2a ../lib/libmc1322x.a(uart1.o)
+ .ARM.attributes
+                0x00000054       0x2a ../src/src-romvars.a(default_lowlevel.o)
+ .ARM.attributes
+                0x0000007e       0x1a ../src/src-romvars.a(start-romvars.o)
+ .ARM.attributes
+                0x00000098       0x28 ../src/src-romvars.a(isr.o)
