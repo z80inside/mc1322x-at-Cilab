@@ -435,14 +435,14 @@ END GROUP
  .debug_frame   0x0000005c      0x128 ../lib/libmc1322x.a(gpio.o)
  .debug_frame   0x00000184       0x44 ../src/src.a(isr.o)
 
-.debug_str      0x00000000     0x3548
+.debug_str      0x00000000     0x3559
  *(.debug_str)
- .debug_str     0x00000000     0x3453 obj_redbee-dev/tmr-ints.o
-                               0x3652 (size before relaxing)
- .debug_str     0x00003453       0xb1 ../lib/libmc1322x.a(gpio.o)
-                               0x3648 (size before relaxing)
- .debug_str     0x00003504       0x44 ../src/src.a(isr.o)
-                               0x366a (size before relaxing)
+ .debug_str     0x00000000     0x3464 obj_redbee-dev/tmr-ints.o
+                               0x3663 (size before relaxing)
+ .debug_str     0x00003464       0xb1 ../lib/libmc1322x.a(gpio.o)
+                               0x3659 (size before relaxing)
+ .debug_str     0x00003515       0x44 ../src/src.a(isr.o)
+                               0x367b (size before relaxing)
 
 .debug_loc      0x00000000      0x24e
  *(.debug_loc)

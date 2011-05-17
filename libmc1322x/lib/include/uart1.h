@@ -71,9 +71,13 @@
 #define UART2_UBRCNT     ((volatile uint32_t *) ( UART2_BASE + UBRCNT ))
 
 extern volatile uint32_t  u1_head, u1_tail;
+extern volatile uint32_t  u2_head, u2_tail;
 void uart1_putc(char c);
+void uart2_putc(char c);
 #define uart1_can_get() (*UART1_URXCON > 0)
+#define uart2_can_get() (*UART2_URXCON > 0)
 uint8_t uart1_getc(void);
+uint8_t uart2_getc(void);
 
 
 

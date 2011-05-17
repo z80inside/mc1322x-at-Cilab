@@ -38,6 +38,8 @@
 
 volatile char u1_tx_buf[64];
 volatile uint32_t u1_head, u1_tail;
+volatile char u2_tx_buf[64];
+volatile uint32_t u2_head, u2_tail;
 
 void uart1_isr(void) {
  	while( *UART1_UTXCON != 0 ) {
@@ -76,3 +78,42 @@ uint8_t uart1_getc(void) {
 	while(uart1_can_get() == 0) { continue; }
 	return *UART1_UDATA;
 }
+
+void uart2_isr(void) {
+ 	while( *UART2_UTXCON != 0 ) {
+		if (u2_head == u2_tail) {
+			disable_irq(UART2);
+			return;
+		}
+		*UART2_UDATA = u2_tx_buf[u2_tail];
+		u2_tail++;		
+		if (u2_tail >= sizeof(u2_tx_buf))
+			u2_tail = 0;
+	}
+}
+
+void uart2_putc(char c) {
+	/* disable UART2 since */
+	/* UART2 isr modifies u2_head and u2_tail */ 
+	disable_irq(UART2);
+
+	if( (u2_head == u2_tail) &&
+	    (*UART2_UTXCON != 0)) {
+		*UART2_UDATA = c;
+	} else {
+		u2_tx_buf[u2_head] = c;
+		u2_head += 1;
+		if (u2_head >= sizeof(u2_tx_buf))
+			u2_head = 0;
+		if (u2_head == u2_tail) { /* drop chars when no room */
+			if (u2_head) { u2_head -=1; } else { u2_head = sizeof(u2_tx_buf); }
+		}
+		enable_irq(UART2);
+	}
+}
+
+uint8_t uart2_getc(void) {
+	while(uart2_can_get() == 0) { continue; }
+	return *UART2_UDATA;
+}
+

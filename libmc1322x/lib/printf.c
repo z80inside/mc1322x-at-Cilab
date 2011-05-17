@@ -72,7 +72,10 @@
 #include <mc1322x.h>
 #include <stdint.h>
 
-#define __putc(x) uart1_putc(x)
+/**
+ * Global variable for selecting which UART to printf to 
+ */
+int uart = 1;
 
 /**
  * Structure to hold data to be passed to print function with format.
@@ -103,6 +106,17 @@ typedef struct __print_ctx_t	_print_ctx_t;
 #define _PRINTFMT_INT_BUF_LEN	12
 
 /**
+ * Function to set the uart to use in all the following printfs
+ */
+void sel_uart(int u)
+{
+	if (u == 2)
+		uart = 2;
+	else
+		uart = 1;
+}
+
+/**
  * Print a character to stdout (if string is null)
  * otherwise, put the character at the end of the provided string.
  */
@@ -130,7 +144,10 @@ static void __print_char( _print_ctx_t* ctx, char c )
 			}
 		}
 	} else {
-		__putc( (uint8_t)c );
+		if (uart == 2)
+			uart2_putc( (uint8_t)c );
+		else
+			uart1_putc( (uint8_t)c );
 	}
 }
 

@@ -425,14 +425,14 @@ END GROUP
  .debug_frame   0x00000028      0x128 ../lib/libmc1322x.a(gpio.o)
  .debug_frame   0x00000150       0x44 ../src/src.a(isr.o)
 
-.debug_str      0x00000000     0x352d
+.debug_str      0x00000000     0x353e
  *(.debug_str)
- .debug_str     0x00000000     0x339f obj_redbee-dev/blink-red.o
-                               0x359e (size before relaxing)
- .debug_str     0x0000339f       0xb1 ../lib/libmc1322x.a(gpio.o)
-                               0x3648 (size before relaxing)
- .debug_str     0x00003450       0xdd ../src/src.a(isr.o)
-                               0x366a (size before relaxing)
+ .debug_str     0x00000000     0x33b0 obj_redbee-dev/blink-red.o
+                               0x35af (size before relaxing)
+ .debug_str     0x000033b0       0xb1 ../lib/libmc1322x.a(gpio.o)
+                               0x3659 (size before relaxing)
+ .debug_str     0x00003461       0xdd ../src/src.a(isr.o)
+                               0x367b (size before relaxing)
 
 .debug_loc      0x00000000      0x25e
  *(.debug_loc)

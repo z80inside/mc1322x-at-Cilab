@@ -37,7 +37,7 @@ END GROUP
                 0x00400000                PROVIDE (__executable_start, 0x400000)
                 0x00400000                . = 0x400000
 
-.text           0x00400000      0xe6c
+.text           0x00400000      0xf68
  *(.start)
  .start         0x00400000      0x800 ../src/src.a(start.o)
                 0x00400090                _bss_start
@@ -96,50 +96,62 @@ END GROUP
                 0x00400e44       0x28 ../lib/libmc1322x.a(uart1.o)
                 0x00400e44                uart1_getc
                 0x00400e4c                .real_start_ofuart1_getc
+ .text.uart2_isr
+                0x00400e6c       0x58 ../lib/libmc1322x.a(uart1.o)
+                0x00400e6c                uart2_isr
+                0x00400e74                .real_start_ofuart2_isr
+ .text.uart2_putc
+                0x00400ec4       0x7c ../lib/libmc1322x.a(uart1.o)
+                0x00400ecc                .real_start_ofuart2_putc
+                0x00400ec4                uart2_putc
+ .text.uart2_getc
+                0x00400f40       0x28 ../lib/libmc1322x.a(uart1.o)
+                0x00400f40                uart2_getc
+                0x00400f48                .real_start_ofuart2_getc
  *(.gnu.warning)
  *(.glue_7t)
- .glue_7t       0x00400e6c        0x0 obj_redbee-dev/sleep.o
- .glue_7t       0x00400e6c        0x0 obj_redbee-dev/board.a(put.o)
- .glue_7t       0x00400e6c        0x0 ../src/src.a(default_lowlevel.o)
- .glue_7t       0x00400e6c        0x0 ../src/src.a(start.o)
- .glue_7t       0x00400e6c        0x0 ../src/src.a(isr.o)
- .glue_7t       0x00400e6c        0x0 ../lib/libmc1322x.a(uart1.o)
+ .glue_7t       0x00400f68        0x0 obj_redbee-dev/sleep.o
+ .glue_7t       0x00400f68        0x0 obj_redbee-dev/board.a(put.o)
+ .glue_7t       0x00400f68        0x0 ../src/src.a(default_lowlevel.o)
+ .glue_7t       0x00400f68        0x0 ../src/src.a(start.o)
+ .glue_7t       0x00400f68        0x0 ../src/src.a(isr.o)
+ .glue_7t       0x00400f68        0x0 ../lib/libmc1322x.a(uart1.o)
  *(.glue_7)
- .glue_7        0x00400e6c        0x0 obj_redbee-dev/sleep.o
- .glue_7        0x00400e6c        0x0 obj_redbee-dev/board.a(put.o)
- .glue_7        0x00400e6c        0x0 ../src/src.a(default_lowlevel.o)
- .glue_7        0x00400e6c        0x0 ../src/src.a(start.o)
- .glue_7        0x00400e6c        0x0 ../src/src.a(isr.o)
- .glue_7        0x00400e6c        0x0 ../lib/libmc1322x.a(uart1.o)
+ .glue_7        0x00400f68        0x0 obj_redbee-dev/sleep.o
+ .glue_7        0x00400f68        0x0 obj_redbee-dev/board.a(put.o)
+ .glue_7        0x00400f68        0x0 ../src/src.a(default_lowlevel.o)
+ .glue_7        0x00400f68        0x0 ../src/src.a(start.o)
+ .glue_7        0x00400f68        0x0 ../src/src.a(isr.o)
+ .glue_7        0x00400f68        0x0 ../lib/libmc1322x.a(uart1.o)
  *(.vfp11_veneer)
- .vfp11_veneer  0x00400e6c        0x0 obj_redbee-dev/sleep.o
- .vfp11_veneer  0x00400e6c        0x0 obj_redbee-dev/board.a(put.o)
- .vfp11_veneer  0x00400e6c        0x0 ../src/src.a(default_lowlevel.o)
- .vfp11_veneer  0x00400e6c        0x0 ../src/src.a(start.o)
- .vfp11_veneer  0x00400e6c        0x0 ../src/src.a(isr.o)
- .vfp11_veneer  0x00400e6c        0x0 ../lib/libmc1322x.a(uart1.o)
+ .vfp11_veneer  0x00400f68        0x0 obj_redbee-dev/sleep.o
+ .vfp11_veneer  0x00400f68        0x0 obj_redbee-dev/board.a(put.o)
+ .vfp11_veneer  0x00400f68        0x0 ../src/src.a(default_lowlevel.o)
+ .vfp11_veneer  0x00400f68        0x0 ../src/src.a(start.o)
+ .vfp11_veneer  0x00400f68        0x0 ../src/src.a(isr.o)
+ .vfp11_veneer  0x00400f68        0x0 ../lib/libmc1322x.a(uart1.o)
  *(.v4_bx)
- .v4_bx         0x00400e6c        0x0 obj_redbee-dev/sleep.o
- .v4_bx         0x00400e6c        0x0 obj_redbee-dev/board.a(put.o)
- .v4_bx         0x00400e6c        0x0 ../src/src.a(default_lowlevel.o)
- .v4_bx         0x00400e6c        0x0 ../src/src.a(start.o)
- .v4_bx         0x00400e6c        0x0 ../src/src.a(isr.o)
- .v4_bx         0x00400e6c        0x0 ../lib/libmc1322x.a(uart1.o)
+ .v4_bx         0x00400f68        0x0 obj_redbee-dev/sleep.o
+ .v4_bx         0x00400f68        0x0 obj_redbee-dev/board.a(put.o)
+ .v4_bx         0x00400f68        0x0 ../src/src.a(default_lowlevel.o)
+ .v4_bx         0x00400f68        0x0 ../src/src.a(start.o)
+ .v4_bx         0x00400f68        0x0 ../src/src.a(isr.o)
+ .v4_bx         0x00400f68        0x0 ../lib/libmc1322x.a(uart1.o)
 
 .janus_2cc_veneer
-                0x00400e6c        0x0
+                0x00400f68        0x0
  .janus_2cc_veneer
-                0x00400e6c        0x0 obj_redbee-dev/sleep.o
+                0x00400f68        0x0 obj_redbee-dev/sleep.o
  .janus_2cc_veneer
-                0x00400e6c        0x0 obj_redbee-dev/board.a(put.o)
+                0x00400f68        0x0 obj_redbee-dev/board.a(put.o)
  .janus_2cc_veneer
-                0x00400e6c        0x0 ../src/src.a(default_lowlevel.o)
+                0x00400f68        0x0 ../src/src.a(default_lowlevel.o)
  .janus_2cc_veneer
-                0x00400e6c        0x0 ../src/src.a(start.o)
+                0x00400f68        0x0 ../src/src.a(start.o)
  .janus_2cc_veneer
-                0x00400e6c        0x0 ../src/src.a(isr.o)
+                0x00400f68        0x0 ../src/src.a(isr.o)
  .janus_2cc_veneer
-                0x00400e6c        0x0 ../lib/libmc1322x.a(uart1.o)
+                0x00400f68        0x0 ../lib/libmc1322x.a(uart1.o)
 
 .interp
  *(.interp)
@@ -209,16 +221,16 @@ END GROUP
 
 .fini
  *(.fini)
-                0x00400e6c                PROVIDE (__etext, .)
-                0x00400e6c                PROVIDE (_etext, .)
-                0x00400e6c                PROVIDE (etext, .)
+                0x00400f68                PROVIDE (__etext, .)
+                0x00400f68                PROVIDE (_etext, .)
+                0x00400f68                PROVIDE (etext, .)
 
-.rodata         0x00400e6c       0x5b
+.rodata         0x00400f68       0x5b
  *(.rodata .rodata.* .gnu.linkonce.r.*)
  .rodata.str1.1
-                0x00400e6c       0x4b obj_redbee-dev/sleep.o
- .rodata        0x00400eb7       0x10 obj_redbee-dev/board.a(put.o)
-                0x00400eb7                hex
+                0x00400f68       0x4b obj_redbee-dev/sleep.o
+ .rodata        0x00400fb3       0x10 obj_redbee-dev/board.a(put.o)
+                0x00400fb3                hex
 
 .rodata1
  *(.rodata1)
@@ -231,8 +243,8 @@ END GROUP
 
 .gcc_except_table
  *(.gcc_except_table .gcc_except_table.*)
-                0x00400ec8                . = ALIGN (0x4)
-                0x00400ec8                . = (0x4 DATA_SEGMENT_ALIGN 0x4)
+                0x00400fc4                . = ALIGN (0x4)
+                0x00400fc4                . = (0x4 DATA_SEGMENT_ALIGN 0x4)
 
 .eh_frame
  *(.eh_frame)
@@ -247,22 +259,22 @@ END GROUP
  *(.tbss .tbss.* .gnu.linkonce.tb.*)
  *(.tcommon)
 
-.preinit_array  0x00400ec8        0x0
-                0x00400ec8                PROVIDE (__preinit_array_start, .)
+.preinit_array  0x00400fc4        0x0
+                0x00400fc4                PROVIDE (__preinit_array_start, .)
  *(.preinit_array)
-                0x00400ec8                PROVIDE (__preinit_array_end, .)
+                0x00400fc4                PROVIDE (__preinit_array_end, .)
 
-.init_array     0x00400ec8        0x0
-                0x00400ec8                PROVIDE (__init_array_start, .)
+.init_array     0x00400fc4        0x0
+                0x00400fc4                PROVIDE (__init_array_start, .)
  *(SORT(.init_array.*))
  *(.init_array)
-                0x00400ec8                PROVIDE (__init_array_end, .)
+                0x00400fc4                PROVIDE (__init_array_end, .)
 
-.fini_array     0x00400ec8        0x0
-                0x00400ec8                PROVIDE (__fini_array_start, .)
+.fini_array     0x00400fc4        0x0
+                0x00400fc4                PROVIDE (__fini_array_start, .)
  *(.fini_array)
  *(SORT(.fini_array.*))
-                0x00400ec8                PROVIDE (__fini_array_end, .)
+                0x00400fc4                PROVIDE (__fini_array_end, .)
 
 .ctors
  *crtbegin.o(.ctors)
@@ -287,87 +299,90 @@ END GROUP
 
 .dynamic
  *(.dynamic)
-                0x00400ec8                . = (. DATA_SEGMENT_RELRO_END 0x0)
+                0x00400fc4                . = (. DATA_SEGMENT_RELRO_END 0x0)
 
 .got
  *(.got.plt)
  *(.got)
 
-.data           0x00400ec8       0x10
-                0x00400ec8                __data_start = .
+.data           0x00400fc4       0x10
+                0x00400fc4                __data_start = .
  *(.data .data.* .gnu.linkonce.d.*)
- .data          0x00400ec8        0x0 obj_redbee-dev/sleep.o
- .data          0x00400ec8        0x0 obj_redbee-dev/board.a(put.o)
- .data          0x00400ec8        0x0 ../src/src.a(default_lowlevel.o)
- .data          0x00400ec8        0x0 ../src/src.a(start.o)
- .data          0x00400ec8       0x10 ../src/src.a(isr.o)
- .data          0x00400ed8        0x0 ../lib/libmc1322x.a(uart1.o)
+ .data          0x00400fc4        0x0 obj_redbee-dev/sleep.o
+ .data          0x00400fc4        0x0 obj_redbee-dev/board.a(put.o)
+ .data          0x00400fc4        0x0 ../src/src.a(default_lowlevel.o)
+ .data          0x00400fc4        0x0 ../src/src.a(start.o)
+ .data          0x00400fc4       0x10 ../src/src.a(isr.o)
+ .data          0x00400fd4        0x0 ../lib/libmc1322x.a(uart1.o)
 
 .data1
  *(.data1)
-                0x00400ed8                _edata = .
-                0x00400ed8                PROVIDE (edata, .)
+                0x00400fd4                _edata = .
+                0x00400fd4                PROVIDE (edata, .)
 
-.stack          0x00400ed8      0x720
-                0x00400ed8                __stack_start__ = .
-                0x00400fd8                . = (. + IRQ_STACK_SIZE)
- *fill*         0x00400ed8      0x100 00
-                0x00400fd8                . = ALIGN (0x4)
-                0x00400fd8                __irq_stack_top__ = .
-                0x004010d8                . = (. + FIQ_STACK_SIZE)
- *fill*         0x00400fd8      0x100 00
-                0x004010d8                . = ALIGN (0x4)
-                0x004010d8                __fiq_stack_top__ = .
-                0x004011d8                . = (. + SVC_STACK_SIZE)
- *fill*         0x004010d8      0x100 00
-                0x004011d8                . = ALIGN (0x4)
-                0x004011d8                __svc_stack_top__ = .
-                0x004011e8                . = (. + ABT_STACK_SIZE)
- *fill*         0x004011d8       0x10 00
-                0x004011e8                . = ALIGN (0x4)
-                0x004011e8                __abt_stack_top__ = .
-                0x004011f8                . = (. + UND_STACK_SIZE)
- *fill*         0x004011e8       0x10 00
-                0x004011f8                . = ALIGN (0x4)
-                0x004011f8                __und_stack_top__ = .
-                0x004015f8                . = (. + SYS_STACK_SIZE)
- *fill*         0x004011f8      0x400 00
-                0x004015f8                . = ALIGN (0x4)
-                0x004015f8                __sys_stack_top__ = .
-                0x004015f8                __stack_end__ = .
-                0x004015f8                __bss_start = .
-                0x004015f8                __bss_start__ = .
+.stack          0x00400fd4      0x720
+                0x00400fd4                __stack_start__ = .
+                0x004010d4                . = (. + IRQ_STACK_SIZE)
+ *fill*         0x00400fd4      0x100 00
+                0x004010d4                . = ALIGN (0x4)
+                0x004010d4                __irq_stack_top__ = .
+                0x004011d4                . = (. + FIQ_STACK_SIZE)
+ *fill*         0x004010d4      0x100 00
+                0x004011d4                . = ALIGN (0x4)
+                0x004011d4                __fiq_stack_top__ = .
+                0x004012d4                . = (. + SVC_STACK_SIZE)
+ *fill*         0x004011d4      0x100 00
+                0x004012d4                . = ALIGN (0x4)
+                0x004012d4                __svc_stack_top__ = .
+                0x004012e4                . = (. + ABT_STACK_SIZE)
+ *fill*         0x004012d4       0x10 00
+                0x004012e4                . = ALIGN (0x4)
+                0x004012e4                __abt_stack_top__ = .
+                0x004012f4                . = (. + UND_STACK_SIZE)
+ *fill*         0x004012e4       0x10 00
+                0x004012f4                . = ALIGN (0x4)
+                0x004012f4                __und_stack_top__ = .
+                0x004016f4                . = (. + SYS_STACK_SIZE)
+ *fill*         0x004012f4      0x400 00
+                0x004016f4                . = ALIGN (0x4)
+                0x004016f4                __sys_stack_top__ = .
+                0x004016f4                __stack_end__ = .
+                0x004016f4                __bss_start = .
+                0x004016f4                __bss_start__ = .
 
-.bss            0x004015f8       0x48
+.bss            0x004016f4       0x90
  *(.dynbss)
  *(.bss .bss.* .gnu.linkonce.b.*)
- .bss           0x004015f8        0x0 obj_redbee-dev/sleep.o
- .bss           0x004015f8        0x0 obj_redbee-dev/board.a(put.o)
- .bss           0x004015f8        0x0 ../src/src.a(default_lowlevel.o)
- .bss           0x004015f8        0x0 ../src/src.a(start.o)
- .bss           0x004015f8        0x0 ../src/src.a(isr.o)
- .bss           0x004015f8       0x48 ../lib/libmc1322x.a(uart1.o)
-                0x00401600                u1_tx_buf
-                0x004015fc                u1_tail
-                0x004015f8                u1_head
+ .bss           0x004016f4        0x0 obj_redbee-dev/sleep.o
+ .bss           0x004016f4        0x0 obj_redbee-dev/board.a(put.o)
+ .bss           0x004016f4        0x0 ../src/src.a(default_lowlevel.o)
+ .bss           0x004016f4        0x0 ../src/src.a(start.o)
+ .bss           0x004016f4        0x0 ../src/src.a(isr.o)
+ .bss           0x004016f4       0x90 ../lib/libmc1322x.a(uart1.o)
+                0x00401744                u2_tx_buf
+                0x004016fc                u1_tx_buf
+                0x0040173c                u2_head
+                0x004016f8                u1_tail
+                0x00401740                u2_tail
+                0x004016f4                u1_head
  *(COMMON)
-                0x00401640                . = ALIGN ((. != 0x0)?0x4:0x1)
-                0x00401640                _bss_end__ = .
-                0x00401640                __bss_end__ = .
-                0x00401640                . = ALIGN (0x4)
+                0x00401784                . = ALIGN ((. != 0x0)?0x4:0x1)
+                0x00401784                _bss_end__ = .
+                0x00401784                __bss_end__ = .
+                0x00401784                . = ALIGN (0x4)
 
-.heap           0x00401640      0x400
-                0x00401640                __heap_start__ = .
+.heap           0x00401784      0x400
+                0x00401784                __heap_start__ = .
  *(.heap)
-                0x00401a40                . = (. + HEAP_SIZE)
- *fill*         0x00401640      0x400 00
-                0x00401a40                . = ALIGN (0x4)
-                0x00401a40                __heap_end__ = .
-                0x00401a40                . = ALIGN (0x4)
-                0x00401a40                __end__ = .
-                0x00401a40                _end = .
-                0x00401a40                PROVIDE (end, .)
-                0x00401a40                . = DATA_SEGMENT_END (.)
+                0x00401b84                . = (. + HEAP_SIZE)
+ *fill*         0x00401784      0x400 00
+                0x00401b84                . = ALIGN (0x4)
+                0x00401b84                __heap_end__ = .
+                0x00401b84                . = ALIGN (0x4)
+                0x00401b84                __end__ = .
+                0x00401b84                _end = .
+                0x00401b84                PROVIDE (end, .)
+                0x00401b84                . = DATA_SEGMENT_END (.)
 
 .stab           0x00000000      0x18c
  *(.stab)
@@ -409,7 +424,7 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000       0xe0
+.debug_aranges  0x00000000       0xf8
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x20 obj_redbee-dev/sleep.o
@@ -420,10 +435,10 @@ END GROUP
  .debug_aranges
                 0x00000088       0x28 ../src/src.a(isr.o)
  .debug_aranges
-                0x000000b0       0x30 ../lib/libmc1322x.a(uart1.o)
+                0x000000b0       0x48 ../lib/libmc1322x.a(uart1.o)
 
 .debug_pubnames
-                0x00000000      0x147
+                0x00000000      0x199
  *(.debug_pubnames)
  .debug_pubnames
                 0x00000000       0x1b obj_redbee-dev/sleep.o
@@ -434,15 +449,15 @@ END GROUP
  .debug_pubnames
                 0x000000aa       0x39 ../src/src.a(isr.o)
  .debug_pubnames
-                0x000000e3       0x64 ../lib/libmc1322x.a(uart1.o)
+                0x000000e3       0xb6 ../lib/libmc1322x.a(uart1.o)
 
-.debug_info     0x00000000    0x297e8
+.debug_info     0x00000000    0x29876
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000     0x842a obj_redbee-dev/sleep.o
  .debug_info    0x0000842a     0x8503 obj_redbee-dev/board.a(put.o)
  .debug_info    0x0001092d     0x84e5 ../src/src.a(default_lowlevel.o)
  .debug_info    0x00018e12     0x84d4 ../src/src.a(isr.o)
- .debug_info    0x000212e6     0x8502 ../lib/libmc1322x.a(uart1.o)
+ .debug_info    0x000212e6     0x8590 ../lib/libmc1322x.a(uart1.o)
 
 .debug_abbrev   0x00000000      0x7b9
  *(.debug_abbrev)
@@ -452,42 +467,42 @@ END GROUP
  .debug_abbrev  0x00000466      0x1a9 ../src/src.a(isr.o)
  .debug_abbrev  0x0000060f      0x1aa ../lib/libmc1322x.a(uart1.o)
 
-.debug_line     0x00000000      0x5c3
+.debug_line     0x00000000      0x60d
  *(.debug_line)
  .debug_line    0x00000000      0x11c obj_redbee-dev/sleep.o
  .debug_line    0x0000011c      0x140 obj_redbee-dev/board.a(put.o)
  .debug_line    0x0000025c      0x12b ../src/src.a(default_lowlevel.o)
  .debug_line    0x00000387      0x117 ../src/src.a(isr.o)
- .debug_line    0x0000049e      0x125 ../lib/libmc1322x.a(uart1.o)
+ .debug_line    0x0000049e      0x16f ../lib/libmc1322x.a(uart1.o)
 
-.debug_frame    0x00000000      0x1a0
+.debug_frame    0x00000000      0x1e8
  *(.debug_frame)
  .debug_frame   0x00000000       0x30 obj_redbee-dev/sleep.o
  .debug_frame   0x00000030       0x94 obj_redbee-dev/board.a(put.o)
  .debug_frame   0x000000c4       0x40 ../src/src.a(default_lowlevel.o)
  .debug_frame   0x00000104       0x44 ../src/src.a(isr.o)
- .debug_frame   0x00000148       0x58 ../lib/libmc1322x.a(uart1.o)
+ .debug_frame   0x00000148       0xa0 ../lib/libmc1322x.a(uart1.o)
 
-.debug_str      0x00000000     0x3535
+.debug_str      0x00000000     0x3580
  *(.debug_str)
- .debug_str     0x00000000     0x339b obj_redbee-dev/sleep.o
-                               0x359a (size before relaxing)
- .debug_str     0x0000339b       0x38 obj_redbee-dev/board.a(put.o)
-                               0x35ca (size before relaxing)
- .debug_str     0x000033d3       0xe5 ../src/src.a(default_lowlevel.o)
-                               0x367a (size before relaxing)
- .debug_str     0x000034b8       0x44 ../src/src.a(isr.o)
-                               0x366a (size before relaxing)
- .debug_str     0x000034fc       0x39 ../lib/libmc1322x.a(uart1.o)
-                               0x367c (size before relaxing)
+ .debug_str     0x00000000     0x33ac obj_redbee-dev/sleep.o
+                               0x35ab (size before relaxing)
+ .debug_str     0x000033ac       0x38 obj_redbee-dev/board.a(put.o)
+                               0x35db (size before relaxing)
+ .debug_str     0x000033e4       0xe5 ../src/src.a(default_lowlevel.o)
+                               0x368b (size before relaxing)
+ .debug_str     0x000034c9       0x44 ../src/src.a(isr.o)
+                               0x367b (size before relaxing)
+ .debug_str     0x0000350d       0x73 ../lib/libmc1322x.a(uart1.o)
+                               0x36c7 (size before relaxing)
 
-.debug_loc      0x00000000      0x2d9
+.debug_loc      0x00000000      0x336
  *(.debug_loc)
  .debug_loc     0x00000000       0x91 obj_redbee-dev/sleep.o
  .debug_loc     0x00000091      0x113 obj_redbee-dev/board.a(put.o)
  .debug_loc     0x000001a4       0xb9 ../src/src.a(default_lowlevel.o)
  .debug_loc     0x0000025d       0x1f ../src/src.a(isr.o)
- .debug_loc     0x0000027c       0x5d ../lib/libmc1322x.a(uart1.o)
+ .debug_loc     0x0000027c       0xba ../lib/libmc1322x.a(uart1.o)
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -507,13 +522,13 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0xb8
+.debug_ranges   0x00000000       0xd0
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x18 obj_redbee-dev/sleep.o
  .debug_ranges  0x00000018       0x38 obj_redbee-dev/board.a(put.o)
  .debug_ranges  0x00000050       0x20 ../src/src.a(default_lowlevel.o)
  .debug_ranges  0x00000070       0x20 ../src/src.a(isr.o)
- .debug_ranges  0x00000090       0x28 ../lib/libmc1322x.a(uart1.o)
+ .debug_ranges  0x00000090       0x40 ../lib/libmc1322x.a(uart1.o)
 
 .gnu.attributes
  *(.gnu.attributes)

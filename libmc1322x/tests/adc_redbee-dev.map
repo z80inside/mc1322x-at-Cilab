@@ -46,7 +46,7 @@ END GROUP
                 0x00400000                PROVIDE (__executable_start, 0x400000)
                 0x00400000                . = 0x400000
 
-.text           0x00400000     0x1488
+.text           0x00400000     0x15bc
  *(.start)
  .start         0x00400000      0x800 ../src/src.a(start.o)
                 0x00400090                _bss_start
@@ -107,130 +107,146 @@ END GROUP
                 0x00400c78                .real_start_ofgpio_read
                 0x00400c70                gpio_read
  .text          0x00400c94        0x0 ../lib/libmc1322x.a(printf.o)
+ .text.sel_uart
+                0x00400c94       0x20 ../lib/libmc1322x.a(printf.o)
+                0x00400c9c                .real_start_ofsel_uart
+                0x00400c94                sel_uart
  .text.__print_char
-                0x00400c94       0x60 ../lib/libmc1322x.a(printf.o)
+                0x00400cb4       0x78 ../lib/libmc1322x.a(printf.o)
  .text.__print_str
-                0x00400cf4       0xf4 ../lib/libmc1322x.a(printf.o)
+                0x00400d2c       0xf4 ../lib/libmc1322x.a(printf.o)
  .text.__print_int
-                0x00400de8       0xdc ../lib/libmc1322x.a(printf.o)
+                0x00400e20       0xdc ../lib/libmc1322x.a(printf.o)
  .text.__print_fmt
-                0x00400ec4      0x1bc ../lib/libmc1322x.a(printf.o)
- .text.printf   0x00401080       0x30 ../lib/libmc1322x.a(printf.o)
-                0x00401080                printf
-                0x00401088                .real_start_ofprintf
- .text.sprintf  0x004010b0       0x3c ../lib/libmc1322x.a(printf.o)
-                0x004010b8                .real_start_ofsprintf
-                0x004010b0                sprintf
- .text          0x004010ec        0x0 ../lib/libmc1322x.a(uart1.o)
+                0x00400efc      0x1bc ../lib/libmc1322x.a(printf.o)
+ .text.printf   0x004010b8       0x30 ../lib/libmc1322x.a(printf.o)
+                0x004010b8                printf
+                0x004010c0                .real_start_ofprintf
+ .text.sprintf  0x004010e8       0x3c ../lib/libmc1322x.a(printf.o)
+                0x004010f0                .real_start_ofsprintf
+                0x004010e8                sprintf
+ .text          0x00401124        0x0 ../lib/libmc1322x.a(uart1.o)
  .text.uart1_isr
-                0x004010ec       0x54 ../lib/libmc1322x.a(uart1.o)
-                0x004010ec                uart1_isr
-                0x004010f4                .real_start_ofuart1_isr
+                0x00401124       0x54 ../lib/libmc1322x.a(uart1.o)
+                0x00401124                uart1_isr
+                0x0040112c                .real_start_ofuart1_isr
  .text.uart1_putc
-                0x00401140       0x78 ../lib/libmc1322x.a(uart1.o)
-                0x00401148                .real_start_ofuart1_putc
-                0x00401140                uart1_putc
+                0x00401178       0x78 ../lib/libmc1322x.a(uart1.o)
+                0x00401180                .real_start_ofuart1_putc
+                0x00401178                uart1_putc
  .text.uart1_getc
-                0x004011b8       0x28 ../lib/libmc1322x.a(uart1.o)
-                0x004011b8                uart1_getc
-                0x004011c0                .real_start_ofuart1_getc
- .text          0x004011e0        0x0 ../src/src.a(default_lowlevel.o)
+                0x004011f0       0x28 ../lib/libmc1322x.a(uart1.o)
+                0x004011f0                uart1_getc
+                0x004011f8                .real_start_ofuart1_getc
+ .text.uart2_isr
+                0x00401218       0x58 ../lib/libmc1322x.a(uart1.o)
+                0x00401218                uart2_isr
+                0x00401220                .real_start_ofuart2_isr
+ .text.uart2_putc
+                0x00401270       0x7c ../lib/libmc1322x.a(uart1.o)
+                0x00401278                .real_start_ofuart2_putc
+                0x00401270                uart2_putc
+ .text.uart2_getc
+                0x004012ec       0x28 ../lib/libmc1322x.a(uart1.o)
+                0x004012ec                uart2_getc
+                0x004012f4                .real_start_ofuart2_getc
+ .text          0x00401314        0x0 ../src/src.a(default_lowlevel.o)
  .text.default_vreg_init
-                0x004011e0       0x4c ../src/src.a(default_lowlevel.o)
-                0x004011e8                .real_start_ofdefault_vreg_init
-                0x004011e0                default_vreg_init
+                0x00401314       0x4c ../src/src.a(default_lowlevel.o)
+                0x0040131c                .real_start_ofdefault_vreg_init
+                0x00401314                default_vreg_init
  .text.uart1_init
-                0x0040122c       0x98 ../src/src.a(default_lowlevel.o)
-                0x0040122c                uart1_init
-                0x00401234                .real_start_ofuart1_init
- .text          0x004012c4        0x0 ../src/src.a(start.o)
- .text          0x004012c4        0x0 ../src/src.a(isr.o)
+                0x00401360       0x98 ../src/src.a(default_lowlevel.o)
+                0x00401360                uart1_init
+                0x00401368                .real_start_ofuart1_init
+ .text          0x004013f8        0x0 ../src/src.a(start.o)
+ .text          0x004013f8        0x0 ../src/src.a(isr.o)
  .text.irq_register_timer_handler
-                0x004012c4       0x10 ../src/src.a(isr.o)
-                0x004012c4                irq_register_timer_handler
- .text          0x004012d4      0x114 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_udivsi3.o)
-                0x004012d4                __udivsi3
-                0x004012d4                __aeabi_uidiv
-                0x004013c8                __aeabi_uidivmod
- .text          0x004013e8        0x4 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_dvmd_tls.o)
-                0x004013e8                __aeabi_ldiv0
-                0x004013e8                __aeabi_idiv0
- .text          0x004013ec       0x9c /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a(lib_a-strlen.o)
-                0x004013ec                strlen
+                0x004013f8       0x10 ../src/src.a(isr.o)
+                0x004013f8                irq_register_timer_handler
+ .text          0x00401408      0x114 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_udivsi3.o)
+                0x00401408                __udivsi3
+                0x00401408                __aeabi_uidiv
+                0x004014fc                __aeabi_uidivmod
+ .text          0x0040151c        0x4 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_dvmd_tls.o)
+                0x0040151c                __aeabi_ldiv0
+                0x0040151c                __aeabi_idiv0
+ .text          0x00401520       0x9c /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a(lib_a-strlen.o)
+                0x00401520                strlen
  *(.gnu.warning)
  *(.glue_7t)
- .glue_7t       0x00401488        0x0 obj_redbee-dev/adc.o
- .glue_7t       0x00401488        0x0 ../lib/libmc1322x.a(adc.o)
- .glue_7t       0x00401488        0x0 ../lib/libmc1322x.a(gpio-util.o)
- .glue_7t       0x00401488        0x0 ../lib/libmc1322x.a(printf.o)
- .glue_7t       0x00401488        0x0 ../lib/libmc1322x.a(uart1.o)
- .glue_7t       0x00401488        0x0 ../src/src.a(default_lowlevel.o)
- .glue_7t       0x00401488        0x0 ../src/src.a(start.o)
- .glue_7t       0x00401488        0x0 ../src/src.a(isr.o)
- .glue_7t       0x00401488        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_udivsi3.o)
- .glue_7t       0x00401488        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_dvmd_tls.o)
- .glue_7t       0x00401488        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a(lib_a-strlen.o)
+ .glue_7t       0x004015bc        0x0 obj_redbee-dev/adc.o
+ .glue_7t       0x004015bc        0x0 ../lib/libmc1322x.a(adc.o)
+ .glue_7t       0x004015bc        0x0 ../lib/libmc1322x.a(gpio-util.o)
+ .glue_7t       0x004015bc        0x0 ../lib/libmc1322x.a(printf.o)
+ .glue_7t       0x004015bc        0x0 ../lib/libmc1322x.a(uart1.o)
+ .glue_7t       0x004015bc        0x0 ../src/src.a(default_lowlevel.o)
+ .glue_7t       0x004015bc        0x0 ../src/src.a(start.o)
+ .glue_7t       0x004015bc        0x0 ../src/src.a(isr.o)
+ .glue_7t       0x004015bc        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_udivsi3.o)
+ .glue_7t       0x004015bc        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_dvmd_tls.o)
+ .glue_7t       0x004015bc        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a(lib_a-strlen.o)
  *(.glue_7)
- .glue_7        0x00401488        0x0 obj_redbee-dev/adc.o
- .glue_7        0x00401488        0x0 ../lib/libmc1322x.a(adc.o)
- .glue_7        0x00401488        0x0 ../lib/libmc1322x.a(gpio-util.o)
- .glue_7        0x00401488        0x0 ../lib/libmc1322x.a(printf.o)
- .glue_7        0x00401488        0x0 ../lib/libmc1322x.a(uart1.o)
- .glue_7        0x00401488        0x0 ../src/src.a(default_lowlevel.o)
- .glue_7        0x00401488        0x0 ../src/src.a(start.o)
- .glue_7        0x00401488        0x0 ../src/src.a(isr.o)
- .glue_7        0x00401488        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_udivsi3.o)
- .glue_7        0x00401488        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_dvmd_tls.o)
- .glue_7        0x00401488        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a(lib_a-strlen.o)
+ .glue_7        0x004015bc        0x0 obj_redbee-dev/adc.o
+ .glue_7        0x004015bc        0x0 ../lib/libmc1322x.a(adc.o)
+ .glue_7        0x004015bc        0x0 ../lib/libmc1322x.a(gpio-util.o)
+ .glue_7        0x004015bc        0x0 ../lib/libmc1322x.a(printf.o)
+ .glue_7        0x004015bc        0x0 ../lib/libmc1322x.a(uart1.o)
+ .glue_7        0x004015bc        0x0 ../src/src.a(default_lowlevel.o)
+ .glue_7        0x004015bc        0x0 ../src/src.a(start.o)
+ .glue_7        0x004015bc        0x0 ../src/src.a(isr.o)
+ .glue_7        0x004015bc        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_udivsi3.o)
+ .glue_7        0x004015bc        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_dvmd_tls.o)
+ .glue_7        0x004015bc        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a(lib_a-strlen.o)
  *(.vfp11_veneer)
- .vfp11_veneer  0x00401488        0x0 obj_redbee-dev/adc.o
- .vfp11_veneer  0x00401488        0x0 ../lib/libmc1322x.a(adc.o)
- .vfp11_veneer  0x00401488        0x0 ../lib/libmc1322x.a(gpio-util.o)
- .vfp11_veneer  0x00401488        0x0 ../lib/libmc1322x.a(printf.o)
- .vfp11_veneer  0x00401488        0x0 ../lib/libmc1322x.a(uart1.o)
- .vfp11_veneer  0x00401488        0x0 ../src/src.a(default_lowlevel.o)
- .vfp11_veneer  0x00401488        0x0 ../src/src.a(start.o)
- .vfp11_veneer  0x00401488        0x0 ../src/src.a(isr.o)
- .vfp11_veneer  0x00401488        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_udivsi3.o)
- .vfp11_veneer  0x00401488        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_dvmd_tls.o)
- .vfp11_veneer  0x00401488        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a(lib_a-strlen.o)
+ .vfp11_veneer  0x004015bc        0x0 obj_redbee-dev/adc.o
+ .vfp11_veneer  0x004015bc        0x0 ../lib/libmc1322x.a(adc.o)
+ .vfp11_veneer  0x004015bc        0x0 ../lib/libmc1322x.a(gpio-util.o)
+ .vfp11_veneer  0x004015bc        0x0 ../lib/libmc1322x.a(printf.o)
+ .vfp11_veneer  0x004015bc        0x0 ../lib/libmc1322x.a(uart1.o)
+ .vfp11_veneer  0x004015bc        0x0 ../src/src.a(default_lowlevel.o)
+ .vfp11_veneer  0x004015bc        0x0 ../src/src.a(start.o)
+ .vfp11_veneer  0x004015bc        0x0 ../src/src.a(isr.o)
+ .vfp11_veneer  0x004015bc        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_udivsi3.o)
+ .vfp11_veneer  0x004015bc        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_dvmd_tls.o)
+ .vfp11_veneer  0x004015bc        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a(lib_a-strlen.o)
  *(.v4_bx)
- .v4_bx         0x00401488        0x0 obj_redbee-dev/adc.o
- .v4_bx         0x00401488        0x0 ../lib/libmc1322x.a(adc.o)
- .v4_bx         0x00401488        0x0 ../lib/libmc1322x.a(gpio-util.o)
- .v4_bx         0x00401488        0x0 ../lib/libmc1322x.a(printf.o)
- .v4_bx         0x00401488        0x0 ../lib/libmc1322x.a(uart1.o)
- .v4_bx         0x00401488        0x0 ../src/src.a(default_lowlevel.o)
- .v4_bx         0x00401488        0x0 ../src/src.a(start.o)
- .v4_bx         0x00401488        0x0 ../src/src.a(isr.o)
- .v4_bx         0x00401488        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_udivsi3.o)
- .v4_bx         0x00401488        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_dvmd_tls.o)
- .v4_bx         0x00401488        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a(lib_a-strlen.o)
+ .v4_bx         0x004015bc        0x0 obj_redbee-dev/adc.o
+ .v4_bx         0x004015bc        0x0 ../lib/libmc1322x.a(adc.o)
+ .v4_bx         0x004015bc        0x0 ../lib/libmc1322x.a(gpio-util.o)
+ .v4_bx         0x004015bc        0x0 ../lib/libmc1322x.a(printf.o)
+ .v4_bx         0x004015bc        0x0 ../lib/libmc1322x.a(uart1.o)
+ .v4_bx         0x004015bc        0x0 ../src/src.a(default_lowlevel.o)
+ .v4_bx         0x004015bc        0x0 ../src/src.a(start.o)
+ .v4_bx         0x004015bc        0x0 ../src/src.a(isr.o)
+ .v4_bx         0x004015bc        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_udivsi3.o)
+ .v4_bx         0x004015bc        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_dvmd_tls.o)
+ .v4_bx         0x004015bc        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a(lib_a-strlen.o)
 
 .janus_2cc_veneer
-                0x00401488        0x0
+                0x004015bc        0x0
  .janus_2cc_veneer
-                0x00401488        0x0 obj_redbee-dev/adc.o
+                0x004015bc        0x0 obj_redbee-dev/adc.o
  .janus_2cc_veneer
-                0x00401488        0x0 ../lib/libmc1322x.a(adc.o)
+                0x004015bc        0x0 ../lib/libmc1322x.a(adc.o)
  .janus_2cc_veneer
-                0x00401488        0x0 ../lib/libmc1322x.a(gpio-util.o)
+                0x004015bc        0x0 ../lib/libmc1322x.a(gpio-util.o)
  .janus_2cc_veneer
-                0x00401488        0x0 ../lib/libmc1322x.a(printf.o)
+                0x004015bc        0x0 ../lib/libmc1322x.a(printf.o)
  .janus_2cc_veneer
-                0x00401488        0x0 ../lib/libmc1322x.a(uart1.o)
+                0x004015bc        0x0 ../lib/libmc1322x.a(uart1.o)
  .janus_2cc_veneer
-                0x00401488        0x0 ../src/src.a(default_lowlevel.o)
+                0x004015bc        0x0 ../src/src.a(default_lowlevel.o)
  .janus_2cc_veneer
-                0x00401488        0x0 ../src/src.a(start.o)
+                0x004015bc        0x0 ../src/src.a(start.o)
  .janus_2cc_veneer
-                0x00401488        0x0 ../src/src.a(isr.o)
+                0x004015bc        0x0 ../src/src.a(isr.o)
  .janus_2cc_veneer
-                0x00401488        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_udivsi3.o)
+                0x004015bc        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_udivsi3.o)
  .janus_2cc_veneer
-                0x00401488        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_dvmd_tls.o)
+                0x004015bc        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_dvmd_tls.o)
  .janus_2cc_veneer
-                0x00401488        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a(lib_a-strlen.o)
+                0x004015bc        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a(lib_a-strlen.o)
 
 .interp
  *(.interp)
@@ -300,16 +316,16 @@ END GROUP
 
 .fini
  *(.fini)
-                0x00401488                PROVIDE (__etext, .)
-                0x00401488                PROVIDE (_etext, .)
-                0x00401488                PROVIDE (etext, .)
+                0x004015bc                PROVIDE (__etext, .)
+                0x004015bc                PROVIDE (_etext, .)
+                0x004015bc                PROVIDE (etext, .)
 
-.rodata         0x00401488       0x2f
+.rodata         0x004015bc       0x2f
  *(.rodata .rodata.* .gnu.linkonce.r.*)
  .rodata.str1.1
-                0x00401488       0x28 obj_redbee-dev/adc.o
+                0x004015bc       0x28 obj_redbee-dev/adc.o
  .rodata.str1.1
-                0x004014b0        0x7 ../lib/libmc1322x.a(printf.o)
+                0x004015e4        0x7 ../lib/libmc1322x.a(printf.o)
 
 .rodata1
  *(.rodata1)
@@ -322,8 +338,8 @@ END GROUP
 
 .gcc_except_table
  *(.gcc_except_table .gcc_except_table.*)
-                0x004014b8                . = ALIGN (0x4)
-                0x004014b8                . = (0x4 DATA_SEGMENT_ALIGN 0x4)
+                0x004015ec                . = ALIGN (0x4)
+                0x004015ec                . = (0x4 DATA_SEGMENT_ALIGN 0x4)
 
 .eh_frame
  *(.eh_frame)
@@ -338,22 +354,22 @@ END GROUP
  *(.tbss .tbss.* .gnu.linkonce.tb.*)
  *(.tcommon)
 
-.preinit_array  0x004014b8        0x0
-                0x004014b8                PROVIDE (__preinit_array_start, .)
+.preinit_array  0x004015ec        0x0
+                0x004015ec                PROVIDE (__preinit_array_start, .)
  *(.preinit_array)
-                0x004014b8                PROVIDE (__preinit_array_end, .)
+                0x004015ec                PROVIDE (__preinit_array_end, .)
 
-.init_array     0x004014b8        0x0
-                0x004014b8                PROVIDE (__init_array_start, .)
+.init_array     0x004015ec        0x0
+                0x004015ec                PROVIDE (__init_array_start, .)
  *(SORT(.init_array.*))
  *(.init_array)
-                0x004014b8                PROVIDE (__init_array_end, .)
+                0x004015ec                PROVIDE (__init_array_end, .)
 
-.fini_array     0x004014b8        0x0
-                0x004014b8                PROVIDE (__fini_array_start, .)
+.fini_array     0x004015ec        0x0
+                0x004015ec                PROVIDE (__fini_array_start, .)
  *(.fini_array)
  *(SORT(.fini_array.*))
-                0x004014b8                PROVIDE (__fini_array_end, .)
+                0x004015ec                PROVIDE (__fini_array_end, .)
 
 .ctors
  *crtbegin.o(.ctors)
@@ -378,99 +394,103 @@ END GROUP
 
 .dynamic
  *(.dynamic)
-                0x004014b8                . = (. DATA_SEGMENT_RELRO_END 0x0)
+                0x004015ec                . = (. DATA_SEGMENT_RELRO_END 0x0)
 
 .got
  *(.got.plt)
  *(.got)
 
-.data           0x004014b8       0x10
-                0x004014b8                __data_start = .
+.data           0x004015ec       0x14
+                0x004015ec                __data_start = .
  *(.data .data.* .gnu.linkonce.d.*)
- .data          0x004014b8        0x0 obj_redbee-dev/adc.o
- .data          0x004014b8        0x0 ../lib/libmc1322x.a(adc.o)
- .data          0x004014b8        0x0 ../lib/libmc1322x.a(gpio-util.o)
- .data          0x004014b8        0x0 ../lib/libmc1322x.a(printf.o)
- .data          0x004014b8        0x0 ../lib/libmc1322x.a(uart1.o)
- .data          0x004014b8        0x0 ../src/src.a(default_lowlevel.o)
- .data          0x004014b8        0x0 ../src/src.a(start.o)
- .data          0x004014b8       0x10 ../src/src.a(isr.o)
- .data          0x004014c8        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_udivsi3.o)
- .data          0x004014c8        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_dvmd_tls.o)
- .data          0x004014c8        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a(lib_a-strlen.o)
+ .data          0x004015ec        0x0 obj_redbee-dev/adc.o
+ .data          0x004015ec        0x0 ../lib/libmc1322x.a(adc.o)
+ .data          0x004015ec        0x0 ../lib/libmc1322x.a(gpio-util.o)
+ .data          0x004015ec        0x4 ../lib/libmc1322x.a(printf.o)
+                0x004015ec                uart
+ .data          0x004015f0        0x0 ../lib/libmc1322x.a(uart1.o)
+ .data          0x004015f0        0x0 ../src/src.a(default_lowlevel.o)
+ .data          0x004015f0        0x0 ../src/src.a(start.o)
+ .data          0x004015f0       0x10 ../src/src.a(isr.o)
+ .data          0x00401600        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_udivsi3.o)
+ .data          0x00401600        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_dvmd_tls.o)
+ .data          0x00401600        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a(lib_a-strlen.o)
 
 .data1
  *(.data1)
-                0x004014c8                _edata = .
-                0x004014c8                PROVIDE (edata, .)
+                0x00401600                _edata = .
+                0x00401600                PROVIDE (edata, .)
 
-.stack          0x004014c8      0x720
-                0x004014c8                __stack_start__ = .
-                0x004015c8                . = (. + IRQ_STACK_SIZE)
- *fill*         0x004014c8      0x100 00
-                0x004015c8                . = ALIGN (0x4)
-                0x004015c8                __irq_stack_top__ = .
-                0x004016c8                . = (. + FIQ_STACK_SIZE)
- *fill*         0x004015c8      0x100 00
-                0x004016c8                . = ALIGN (0x4)
-                0x004016c8                __fiq_stack_top__ = .
-                0x004017c8                . = (. + SVC_STACK_SIZE)
- *fill*         0x004016c8      0x100 00
-                0x004017c8                . = ALIGN (0x4)
-                0x004017c8                __svc_stack_top__ = .
-                0x004017d8                . = (. + ABT_STACK_SIZE)
- *fill*         0x004017c8       0x10 00
-                0x004017d8                . = ALIGN (0x4)
-                0x004017d8                __abt_stack_top__ = .
-                0x004017e8                . = (. + UND_STACK_SIZE)
- *fill*         0x004017d8       0x10 00
-                0x004017e8                . = ALIGN (0x4)
-                0x004017e8                __und_stack_top__ = .
-                0x00401be8                . = (. + SYS_STACK_SIZE)
- *fill*         0x004017e8      0x400 00
-                0x00401be8                . = ALIGN (0x4)
-                0x00401be8                __sys_stack_top__ = .
-                0x00401be8                __stack_end__ = .
-                0x00401be8                __bss_start = .
-                0x00401be8                __bss_start__ = .
+.stack          0x00401600      0x720
+                0x00401600                __stack_start__ = .
+                0x00401700                . = (. + IRQ_STACK_SIZE)
+ *fill*         0x00401600      0x100 00
+                0x00401700                . = ALIGN (0x4)
+                0x00401700                __irq_stack_top__ = .
+                0x00401800                . = (. + FIQ_STACK_SIZE)
+ *fill*         0x00401700      0x100 00
+                0x00401800                . = ALIGN (0x4)
+                0x00401800                __fiq_stack_top__ = .
+                0x00401900                . = (. + SVC_STACK_SIZE)
+ *fill*         0x00401800      0x100 00
+                0x00401900                . = ALIGN (0x4)
+                0x00401900                __svc_stack_top__ = .
+                0x00401910                . = (. + ABT_STACK_SIZE)
+ *fill*         0x00401900       0x10 00
+                0x00401910                . = ALIGN (0x4)
+                0x00401910                __abt_stack_top__ = .
+                0x00401920                . = (. + UND_STACK_SIZE)
+ *fill*         0x00401910       0x10 00
+                0x00401920                . = ALIGN (0x4)
+                0x00401920                __und_stack_top__ = .
+                0x00401d20                . = (. + SYS_STACK_SIZE)
+ *fill*         0x00401920      0x400 00
+                0x00401d20                . = ALIGN (0x4)
+                0x00401d20                __sys_stack_top__ = .
+                0x00401d20                __stack_end__ = .
+                0x00401d20                __bss_start = .
+                0x00401d20                __bss_start__ = .
 
-.bss            0x00401be8       0x5c
+.bss            0x00401d20       0xa4
  *(.dynbss)
  *(.bss .bss.* .gnu.linkonce.b.*)
- .bss           0x00401be8        0x0 obj_redbee-dev/adc.o
- .bss           0x00401be8       0x12 ../lib/libmc1322x.a(adc.o)
-                0x00401be8                adc_reading
- .bss           0x00401bfa        0x0 ../lib/libmc1322x.a(gpio-util.o)
- .bss           0x00401bfa        0x0 ../lib/libmc1322x.a(printf.o)
- *fill*         0x00401bfa        0x2 00
- .bss           0x00401bfc       0x48 ../lib/libmc1322x.a(uart1.o)
-                0x00401c04                u1_tx_buf
-                0x00401c00                u1_tail
-                0x00401bfc                u1_head
- .bss           0x00401c44        0x0 ../src/src.a(default_lowlevel.o)
- .bss           0x00401c44        0x0 ../src/src.a(start.o)
- .bss           0x00401c44        0x0 ../src/src.a(isr.o)
- .bss           0x00401c44        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_udivsi3.o)
- .bss           0x00401c44        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_dvmd_tls.o)
- .bss           0x00401c44        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a(lib_a-strlen.o)
+ .bss           0x00401d20        0x0 obj_redbee-dev/adc.o
+ .bss           0x00401d20       0x12 ../lib/libmc1322x.a(adc.o)
+                0x00401d20                adc_reading
+ .bss           0x00401d32        0x0 ../lib/libmc1322x.a(gpio-util.o)
+ .bss           0x00401d32        0x0 ../lib/libmc1322x.a(printf.o)
+ *fill*         0x00401d32        0x2 00
+ .bss           0x00401d34       0x90 ../lib/libmc1322x.a(uart1.o)
+                0x00401d84                u2_tx_buf
+                0x00401d3c                u1_tx_buf
+                0x00401d7c                u2_head
+                0x00401d38                u1_tail
+                0x00401d80                u2_tail
+                0x00401d34                u1_head
+ .bss           0x00401dc4        0x0 ../src/src.a(default_lowlevel.o)
+ .bss           0x00401dc4        0x0 ../src/src.a(start.o)
+ .bss           0x00401dc4        0x0 ../src/src.a(isr.o)
+ .bss           0x00401dc4        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_udivsi3.o)
+ .bss           0x00401dc4        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_dvmd_tls.o)
+ .bss           0x00401dc4        0x0 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a(lib_a-strlen.o)
  *(COMMON)
-                0x00401c44                . = ALIGN ((. != 0x0)?0x4:0x1)
-                0x00401c44                _bss_end__ = .
-                0x00401c44                __bss_end__ = .
-                0x00401c44                . = ALIGN (0x4)
+                0x00401dc4                . = ALIGN ((. != 0x0)?0x4:0x1)
+                0x00401dc4                _bss_end__ = .
+                0x00401dc4                __bss_end__ = .
+                0x00401dc4                . = ALIGN (0x4)
 
-.heap           0x00401c44      0x400
-                0x00401c44                __heap_start__ = .
+.heap           0x00401dc4      0x400
+                0x00401dc4                __heap_start__ = .
  *(.heap)
-                0x00402044                . = (. + HEAP_SIZE)
- *fill*         0x00401c44      0x400 00
-                0x00402044                . = ALIGN (0x4)
-                0x00402044                __heap_end__ = .
-                0x00402044                . = ALIGN (0x4)
-                0x00402044                __end__ = .
-                0x00402044                _end = .
-                0x00402044                PROVIDE (end, .)
-                0x00402044                . = DATA_SEGMENT_END (.)
+                0x004021c4                . = (. + HEAP_SIZE)
+ *fill*         0x00401dc4      0x400 00
+                0x004021c4                . = ALIGN (0x4)
+                0x004021c4                __heap_end__ = .
+                0x004021c4                . = ALIGN (0x4)
+                0x004021c4                __end__ = .
+                0x004021c4                _end = .
+                0x004021c4                PROVIDE (end, .)
+                0x004021c4                . = DATA_SEGMENT_END (.)
 
 .stab           0x00000000      0x18c
  *(.stab)
@@ -514,7 +534,7 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x170
+.debug_aranges  0x00000000      0x190
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x20 obj_redbee-dev/adc.o
@@ -523,16 +543,16 @@ END GROUP
  .debug_aranges
                 0x00000058       0x50 ../lib/libmc1322x.a(gpio-util.o)
  .debug_aranges
-                0x000000a8       0x48 ../lib/libmc1322x.a(printf.o)
+                0x000000a8       0x50 ../lib/libmc1322x.a(printf.o)
  .debug_aranges
-                0x000000f0       0x30 ../lib/libmc1322x.a(uart1.o)
+                0x000000f8       0x48 ../lib/libmc1322x.a(uart1.o)
  .debug_aranges
-                0x00000120       0x28 ../src/src.a(default_lowlevel.o)
+                0x00000140       0x28 ../src/src.a(default_lowlevel.o)
  .debug_aranges
-                0x00000148       0x28 ../src/src.a(isr.o)
+                0x00000168       0x28 ../src/src.a(isr.o)
 
 .debug_pubnames
-                0x00000000      0x200
+                0x00000000      0x268
  *(.debug_pubnames)
  .debug_pubnames
                 0x00000000       0x1b obj_redbee-dev/adc.o
@@ -541,82 +561,82 @@ END GROUP
  .debug_pubnames
                 0x00000075       0x8e ../lib/libmc1322x.a(gpio-util.o)
  .debug_pubnames
-                0x00000103       0x29 ../lib/libmc1322x.a(printf.o)
+                0x00000103       0x3f ../lib/libmc1322x.a(printf.o)
  .debug_pubnames
-                0x0000012c       0x64 ../lib/libmc1322x.a(uart1.o)
+                0x00000142       0xb6 ../lib/libmc1322x.a(uart1.o)
  .debug_pubnames
-                0x00000190       0x37 ../src/src.a(default_lowlevel.o)
+                0x000001f8       0x37 ../src/src.a(default_lowlevel.o)
  .debug_pubnames
-                0x000001c7       0x39 ../src/src.a(isr.o)
+                0x0000022f       0x39 ../src/src.a(isr.o)
 
-.debug_info     0x00000000    0x337ca
+.debug_info     0x00000000    0x3388f
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000     0x89c3 obj_redbee-dev/adc.o
  .debug_info    0x000089c3     0x10fc ../lib/libmc1322x.a(adc.o)
  .debug_info    0x00009abf     0x863a ../lib/libmc1322x.a(gpio-util.o)
- .debug_info    0x000120f9     0x8816 ../lib/libmc1322x.a(printf.o)
- .debug_info    0x0001a90f     0x8502 ../lib/libmc1322x.a(uart1.o)
- .debug_info    0x00022e11     0x84e5 ../src/src.a(default_lowlevel.o)
- .debug_info    0x0002b2f6     0x84d4 ../src/src.a(isr.o)
+ .debug_info    0x000120f9     0x884d ../lib/libmc1322x.a(printf.o)
+ .debug_info    0x0001a946     0x8590 ../lib/libmc1322x.a(uart1.o)
+ .debug_info    0x00022ed6     0x84e5 ../src/src.a(default_lowlevel.o)
+ .debug_info    0x0002b3bb     0x84d4 ../src/src.a(isr.o)
 
-.debug_abbrev   0x00000000      0xc66
+.debug_abbrev   0x00000000      0xc9d
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x175 obj_redbee-dev/adc.o
  .debug_abbrev  0x00000175      0x1bd ../lib/libmc1322x.a(adc.o)
  .debug_abbrev  0x00000332      0x1bf ../lib/libmc1322x.a(gpio-util.o)
- .debug_abbrev  0x000004f1      0x286 ../lib/libmc1322x.a(printf.o)
- .debug_abbrev  0x00000777      0x1aa ../lib/libmc1322x.a(uart1.o)
- .debug_abbrev  0x00000921      0x19c ../src/src.a(default_lowlevel.o)
- .debug_abbrev  0x00000abd      0x1a9 ../src/src.a(isr.o)
+ .debug_abbrev  0x000004f1      0x2bd ../lib/libmc1322x.a(printf.o)
+ .debug_abbrev  0x000007ae      0x1aa ../lib/libmc1322x.a(uart1.o)
+ .debug_abbrev  0x00000958      0x19c ../src/src.a(default_lowlevel.o)
+ .debug_abbrev  0x00000af4      0x1a9 ../src/src.a(isr.o)
 
-.debug_line     0x00000000      0x914
+.debug_line     0x00000000      0x974
  *(.debug_line)
  .debug_line    0x00000000       0xf8 obj_redbee-dev/adc.o
  .debug_line    0x000000f8      0x11e ../lib/libmc1322x.a(adc.o)
  .debug_line    0x00000216      0x162 ../lib/libmc1322x.a(gpio-util.o)
- .debug_line    0x00000378      0x235 ../lib/libmc1322x.a(printf.o)
- .debug_line    0x000005ad      0x125 ../lib/libmc1322x.a(uart1.o)
- .debug_line    0x000006d2      0x12b ../src/src.a(default_lowlevel.o)
- .debug_line    0x000007fd      0x117 ../src/src.a(isr.o)
+ .debug_line    0x00000378      0x24b ../lib/libmc1322x.a(printf.o)
+ .debug_line    0x000005c3      0x16f ../lib/libmc1322x.a(uart1.o)
+ .debug_line    0x00000732      0x12b ../src/src.a(default_lowlevel.o)
+ .debug_line    0x0000085d      0x117 ../src/src.a(isr.o)
 
-.debug_frame    0x00000000      0x30c
+.debug_frame    0x00000000      0x36c
  *(.debug_frame)
  .debug_frame   0x00000000       0x2c obj_redbee-dev/adc.o
  .debug_frame   0x0000002c       0x74 ../lib/libmc1322x.a(adc.o)
  .debug_frame   0x000000a0       0x90 ../lib/libmc1322x.a(gpio-util.o)
- .debug_frame   0x00000130       0xc0 ../lib/libmc1322x.a(printf.o)
- .debug_frame   0x000001f0       0x58 ../lib/libmc1322x.a(uart1.o)
- .debug_frame   0x00000248       0x40 ../src/src.a(default_lowlevel.o)
- .debug_frame   0x00000288       0x44 ../src/src.a(isr.o)
- .debug_frame   0x000002cc       0x20 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_udivsi3.o)
- .debug_frame   0x000002ec       0x20 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a(lib_a-strlen.o)
+ .debug_frame   0x00000130       0xd8 ../lib/libmc1322x.a(printf.o)
+ .debug_frame   0x00000208       0xa0 ../lib/libmc1322x.a(uart1.o)
+ .debug_frame   0x000002a8       0x40 ../src/src.a(default_lowlevel.o)
+ .debug_frame   0x000002e8       0x44 ../src/src.a(isr.o)
+ .debug_frame   0x0000032c       0x20 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/libgcc.a(_udivsi3.o)
+ .debug_frame   0x0000034c       0x20 /usr/local/xtools/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/4.3.2/../../../../arm-none-eabi/lib/libc.a(lib_a-strlen.o)
 
-.debug_str      0x00000000     0x38d0
+.debug_str      0x00000000     0x3949
  *(.debug_str)
- .debug_str     0x00000000     0x35b7 obj_redbee-dev/adc.o
-                               0x37ef (size before relaxing)
- .debug_str     0x000035b7       0x43 ../lib/libmc1322x.a(adc.o)
+ .debug_str     0x00000000     0x35c8 obj_redbee-dev/adc.o
+                               0x3800 (size before relaxing)
+ .debug_str     0x000035c8       0x68 ../lib/libmc1322x.a(adc.o)
                                 0x902 (size before relaxing)
- .debug_str     0x000035fa       0x9a ../lib/libmc1322x.a(gpio-util.o)
-                               0x363a (size before relaxing)
- .debug_str     0x00003694       0xda ../lib/libmc1322x.a(printf.o)
-                               0x368e (size before relaxing)
- .debug_str     0x0000376e       0xe2 ../lib/libmc1322x.a(uart1.o)
-                               0x367c (size before relaxing)
- .debug_str     0x00003850       0x3c ../src/src.a(default_lowlevel.o)
-                               0x367a (size before relaxing)
- .debug_str     0x0000388c       0x44 ../src/src.a(isr.o)
-                               0x366a (size before relaxing)
+ .debug_str     0x00003630       0x9a ../lib/libmc1322x.a(gpio-util.o)
+                               0x364b (size before relaxing)
+ .debug_str     0x000036ca       0xe3 ../lib/libmc1322x.a(printf.o)
+                               0x36ad (size before relaxing)
+ .debug_str     0x000037ad      0x11c ../lib/libmc1322x.a(uart1.o)
+                               0x36c7 (size before relaxing)
+ .debug_str     0x000038c9       0x3c ../src/src.a(default_lowlevel.o)
+                               0x368b (size before relaxing)
+ .debug_str     0x00003905       0x44 ../src/src.a(isr.o)
+                               0x367b (size before relaxing)
 
-.debug_loc      0x00000000      0xb43
+.debug_loc      0x00000000      0xbca
  *(.debug_loc)
  .debug_loc     0x00000000       0x1f obj_redbee-dev/adc.o
  .debug_loc     0x0000001f       0x9a ../lib/libmc1322x.a(adc.o)
  .debug_loc     0x000000b9      0x161 ../lib/libmc1322x.a(gpio-util.o)
- .debug_loc     0x0000021a      0x7f4 ../lib/libmc1322x.a(printf.o)
- .debug_loc     0x00000a0e       0x5d ../lib/libmc1322x.a(uart1.o)
- .debug_loc     0x00000a6b       0xb9 ../src/src.a(default_lowlevel.o)
- .debug_loc     0x00000b24       0x1f ../src/src.a(isr.o)
+ .debug_loc     0x0000021a      0x81e ../lib/libmc1322x.a(printf.o)
+ .debug_loc     0x00000a38       0xba ../lib/libmc1322x.a(uart1.o)
+ .debug_loc     0x00000af2       0xb9 ../src/src.a(default_lowlevel.o)
+ .debug_loc     0x00000bab       0x1f ../src/src.a(isr.o)
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -636,15 +656,15 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x138
+.debug_ranges   0x00000000      0x158
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x18 obj_redbee-dev/adc.o
  .debug_ranges  0x00000018       0x30 ../lib/libmc1322x.a(adc.o)
  .debug_ranges  0x00000048       0x48 ../lib/libmc1322x.a(gpio-util.o)
- .debug_ranges  0x00000090       0x40 ../lib/libmc1322x.a(printf.o)
- .debug_ranges  0x000000d0       0x28 ../lib/libmc1322x.a(uart1.o)
- .debug_ranges  0x000000f8       0x20 ../src/src.a(default_lowlevel.o)
- .debug_ranges  0x00000118       0x20 ../src/src.a(isr.o)
+ .debug_ranges  0x00000090       0x48 ../lib/libmc1322x.a(printf.o)
+ .debug_ranges  0x000000d8       0x40 ../lib/libmc1322x.a(uart1.o)
+ .debug_ranges  0x00000118       0x20 ../src/src.a(default_lowlevel.o)
+ .debug_ranges  0x00000138       0x20 ../src/src.a(isr.o)
 
 .gnu.attributes
  *(.gnu.attributes)
