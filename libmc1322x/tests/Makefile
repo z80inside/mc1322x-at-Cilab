@@ -9,16 +9,16 @@ COBJS := tests.o put.o
 TARGETS := blink-red blink-green blink-blue blink-white blink-allio \
            uart1-loopback \
            tmr tmr-ints \
+	   kbi-int \
            sleep \
            printf \
 	   asm \
 	   adc \
-	   pwm \
-           wdt
+	   pwm
 
 # these targets are built with space reserved for variables needed by ROM services
 # this space is initialized with a rom call to rom_data_init
-TARGETS_WITH_ROM_VARS := nvm-read nvm-write romimg flasher \
+TARGETS_WITH_ROM_VARS := flash_test nvm-read nvm-write romimg flasher \
                          rftest-rx rftest-tx \
                          autoack-rx autoack-tx \
 	                 per
