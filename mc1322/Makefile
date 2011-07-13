@@ -1,5 +1,5 @@
 PROGRAM = test
-OBJS = test.o lib/Crm.o lib/GPIO_Interface.o lib/Delay.o
+OBJS = test.o lib/GPIO_Interface.o lib/Delay.o lib/buck.o
 
 SRCDIR = src
 LIBDIR = lib

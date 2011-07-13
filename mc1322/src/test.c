@@ -3,8 +3,8 @@
 #include "config.h"
 #include "rtc.h"
 #include "gpio-util.h"
-//#include "crm.h"
-#include "Crm.h"
+#include "crm.h"
+//#include "Crm.h"
 #include "Delay.h"
 
 uint16_t uip_chksum(uint16_t data[], uint8_t len);
@@ -28,7 +28,7 @@ void sleep()
 
 int main(void)
 {
-	buck_regulator_setup(1);
+//	buck_regulator_setup(1);
 	rtc_init_osc(0);
 	rtc_calibrate();
 	vreg_init();
