@@ -38,6 +38,11 @@
 
 #define DELAY 400000
 
+void kbi4_isr(void)
+{
+
+}
+
 void main(void) {
 	
 	*GPIO_FUNC_SEL0 = 0xffffffff;

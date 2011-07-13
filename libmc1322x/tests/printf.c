@@ -41,6 +41,8 @@
 
 #include "tests.h"
 #include "config.h"
+#include "kbi.h"
+#include "rtc.h"
 
 #define print_size(x) do { \
 	printf("sizeof(");			\
@@ -65,6 +67,26 @@ size_t fwrite(const void *ptr, size_t size, size_t nmemb,
 }
 #endif
 
+void kbi4_isr(void)
+{
+	printf("Hola\n");
+}
+
+void kbi5_isr(void)
+{
+	printf("Hola\n");
+}
+
+void kbi6_isr(void)
+{
+	printf("Hola\n");
+}
+
+void kbi7_isr(void)
+{
+	printf("Hola\n");
+}
+
 int main(void)
 {
 	char *ptr = "Hello world!";
@@ -74,7 +96,21 @@ int main(void)
 	int mi;
 //	char buf[80];
 
+	GPIO->FUNC_SEL.GPIO_26 = 1;
+	GPIO->FUNC_SEL.GPIO_27 = 1;
+	GPIO->FUNC_SEL.GPIO_28 = 1;
+	GPIO->FUNC_SEL.GPIO_29 = 1;
+	rtc_init();
 	uart_init(INC, MOD, SAMP);
+	enable_irq(CRM);
+	enable_irq_kbi(4);
+	kbi_level(4);
+	enable_irq_kbi(5);
+	kbi_level(5);
+	enable_irq_kbi(6);
+	kbi_level(6);
+	enable_irq_kbi(7);
+	kbi_level(7);
 
 	print_size(int8_t);
 	print_size(uint8_t);
@@ -110,7 +146,17 @@ int main(void)
 //	sprintf(buf, "-3: %-4d left justif.\n", -3); printf("%s", buf);
 //	sprintf(buf, "-3: %4d right justif.\n", -3); printf("%s", buf);
 
-	while(1) { continue; }
+	while (1) {
+		rtc_delay_ms(1000);
+		printf("kbi_evnt(0) = %d\n", kbi_evnt(0));
+		printf("kbi_evnt(1) = %d\n", kbi_evnt(1));
+		printf("kbi_evnt(2) = %d\n", kbi_evnt(2));
+		printf("kbi_evnt(3) = %d\n", kbi_evnt(3));
+		printf("kbi_evnt(4) = %d\n", kbi_evnt(4));
+		printf("kbi_evnt(5) = %d\n", kbi_evnt(5));
+		printf("kbi_evnt(6) = %d\n", kbi_evnt(6));
+		printf("kbi_evnt(7) = %d\n", kbi_evnt(7));
+	}
 }
 
 /*

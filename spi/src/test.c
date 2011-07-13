@@ -35,6 +35,7 @@
 #include <pwm.h>
 #include <SPI_Interface.h>
 #include <gpio.h>
+#include <gpio-util.h>
 #include <string.h>
 
 int main(void)
@@ -42,26 +43,38 @@ int main(void)
 	spiErr_t error;
 	spiConfig_t config;
 	uint32_t data;
-	uint32_t i;
+
+	CRM->SYS_CNTLbits.PWR_SOURCE = 1;
+	CRM->VREG_CNTLbits.BUCK_CLKDIV = 0xf;
+	CRM->VREG_CNTLbits.BUCK_SYNC_REC_EN = 1;
+	CRM->VREG_CNTLbits.BUCK_EN = 1;
+	while (!CRM->STATUSbits.VREG_BUCK_RDY)
+		continue;
+	CRM->VREG_CNTLbits.VREG_1P5V_EN = 3;
+	CRM->VREG_CNTLbits.VREG_1P5V_SEL = 3;
+	CRM->VREG_CNTLbits.VREG_1P8V_EN = 1;
+	while (!CRM->STATUSbits.VREG_1P5V_RDY || !CRM->STATUSbits.VREG_1P8V_RDY)
+		continue;
 
 	/* Initialize RTC */
 	rtc_init_osc(0);
 	rtc_calibrate();
 
+#if 0
 	/* Configure SPI pins to Functional 1
 	 * NOTE: GPIOs 0 to 15 except 11 (TMR3) are set in Functional 1 here */
 	*GPIO_FUNC_SEL0 = 0x55155555;
 
 	/* Set GPIO11 (TMR3) to output and HIGH */
 	*GPIO_PAD_DIR0 |= 1 << 11;
-	*GPIO_DATA_SET1 |= 1 << 11;
+	*GPIO_DATA_SET0 |= 1 << 11;
 
 	/* Output data via SPI ten times with one second pauses in between
 	 * GPIO11 (TMR3) is used as an additional Slave Select */
 	data = 0x12345678;
 	error = SPI_Open();
 	for (i = 0; i < 10; ++i) {
-		*GPIO_DATA_RESET1 |= 1 << 11;
+		*GPIO_DATA_RESET0 |= 1 << 11;
 		rtc_delay_ms(2);
 		config.ClkCtrl.Word = 0;
 		config.Setup.Word = 0;
@@ -71,9 +84,16 @@ int main(void)
 		config.Setup.Bits.ClockPhase = 1;
 		error = SPI_SetConfig(&config);
 		error = SPI_WriteSync(data);
-		*GPIO_DATA_SET1 |= 1 << 11;
+		*GPIO_DATA_SET0 |= 1 << 11;
 		rtc_delay_ms(1000);
 	}
 	error = SPI_Close();
-	while (1) ;
+#endif
+	gpio_set_pad_dir(44, 1);
+	while (1) {
+		gpio_set(44);
+		rtc_delay_ms(500);
+		gpio_reset(44);
+		rtc_delay_ms(500);
+	}
 }

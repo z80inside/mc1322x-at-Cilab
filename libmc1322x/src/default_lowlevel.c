@@ -77,3 +77,37 @@ void uart1_init(uint16_t inc, uint16_t mod, uint8_t samp) {
 	/* enable UART1 interrupts in the interrupt controller */
 	enable_irq(UART1);
 }
+
+void uart2_init(uint16_t inc, uint16_t mod, uint8_t samp) {
+		
+        /* UART must be disabled to set the baudrate */
+	*UART2_UCON = 0;
+	*UART2_UBRCNT = ( inc << 16 ) | mod; 
+
+	/* TX and CTS as outputs */
+	GPIO->PAD_DIR_SET.GPIO_14 = 1;
+	GPIO->PAD_DIR_SET.GPIO_16 = 1;
+
+	/* RX and RTS as inputs */
+	GPIO->PAD_DIR_RESET.GPIO_15 = 1;
+	GPIO->PAD_DIR_RESET.GPIO_17 = 1;
+
+	/* see Section 11.5.1.2 Alternate Modes */
+	/* you must enable the peripheral first BEFORE setting the function in GPIO_FUNC_SEL */
+	/* From the datasheet: "The peripheral function will control operation of the pad IF */
+	/* THE PERIPHERAL IS ENABLED. */
+	*UART2_UCON = (1 << 0) | (1 << 1); /* enable receive, transmit */
+	if(samp == UCON_SAMP_16X) 
+		set_bit(*UART2_UCON,UCON_SAMP);
+	*GPIO_FUNC_SEL0 = ( (0x01 << (14*2)) | (0x01 << (15*2)) ); /* set GPIO15-14 to UART (UART1 TX and RX)*/
+       
+	/* interrupt when there are this number or more bytes free in the TX buffer*/
+	*UART2_UTXCON = 16;
+
+	u2_head = 0; u2_tail = 0;
+
+	/* tx and rx interrupts are enabled in the UART by default */
+	/* see status register bits 13 and 14 */
+	/* enable UART1 interrupts in the interrupt controller */
+	enable_irq(UART2);
+}

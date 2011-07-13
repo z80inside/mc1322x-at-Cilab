@@ -1,5 +1,5 @@
 PROGRAM = test
-OBJS = test.o
+OBJS = test.o spi.o
 
 SRCDIR = src
 LIBDIR = lib
@@ -33,7 +33,7 @@ OBJCOPYFLAGS = --gap-fill=0xff
 
 $(PROGRAM).elf: $(OBJS)
 	$(CC) $(LDFLAGS) -o $(PROGRAM).elf $(OBJS) -Wl,--start-group \
-	lib/libmc1322x.a lib/src-romvars.a lib/LLC_2_1.a -lm -Wl,--end-group
+	lib/libmc1322x.a lib/src-romvars.a -lm -Wl,--end-group
 	$(OBJCOPY) $(OBJCOPYFLAGS) -O binary $(PROGRAM).elf $(PROGRAM).bin
 
 %o: $(SRCDIR)/%.S

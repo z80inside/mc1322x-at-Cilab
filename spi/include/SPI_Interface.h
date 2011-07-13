@@ -18,6 +18,8 @@
 *
 ************************************************************************************/
 
+#include <inttypes.h>
+
 #ifndef _SPI_INTERFACE_H_
 #define _SPI_INTERFACE_H_
 
@@ -160,7 +162,7 @@ typedef enum
 *   070406     GB      Created
 * 
 ************************************************************************************/
-spiErr_t  SPI_Open(void);
+extern spiErr_t (*SPI_Open)(void);
 
 /************************************************************************************
 * Function:      SPI_Close
@@ -178,7 +180,7 @@ spiErr_t  SPI_Open(void);
 *   070406     GB      Created
 * 
 ************************************************************************************/
-spiErr_t  SPI_Close(void);
+extern spiErr_t (*SPI_Close)(void);
 
 /************************************************************************************
 * Function:      SPI_SetConfig
@@ -199,7 +201,7 @@ spiErr_t  SPI_Close(void);
 *   070406     GB      Created
 * 
 ************************************************************************************/
-spiErr_t  SPI_SetConfig(spiConfig_t *pConfig);
+extern spiErr_t (*SPI_SetConfig)(spiConfig_t *pConfig);
 
 /************************************************************************************
 * Function:      SPI_GetConfig
@@ -240,7 +242,7 @@ spiErr_t  SPI_GetConfig(spiConfig_t *pConfig);
 *   070406     GB      Created
 * 
 ************************************************************************************/
-spiErr_t  SPI_WriteSync(uint32_t Data);
+extern spiErr_t (*SPI_WriteSync)(uint32_t Data);
 
 /************************************************************************************
 * Function:      SPI_ReadSync

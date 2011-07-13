@@ -325,6 +325,12 @@ static const int XTAL32_EN =   0;
 #define pack_XTAL_CNTL(ctune4pf, ctune, ftune, ibias) \
 	(*CRM_XTAL_CNTL = ((ctune4pf << 25) | (ctune << 21) | ( ftune << 16) | (ibias << 8) | 0x52))
 
+
+void set_power_source(int src);
+void buck_regulator_setup(int en);
+void buck_regulator_mode(int mod);
+
+
 #endif /* REG_NO_COMPAT */
 
 #endif

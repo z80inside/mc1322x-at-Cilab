@@ -69,7 +69,6 @@
 #define BOOT_OK 1
 #define BOOT_SECURE 0
 
-/* sleep */
-#undef USE_32KHZ /* board should have a HAS_32KHZ define */
+#define USE_32KHZ 1 
 
 #endif

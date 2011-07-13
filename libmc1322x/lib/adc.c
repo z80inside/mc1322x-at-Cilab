@@ -58,8 +58,9 @@ void ADC_flush(void) {
 }
 
 uint16_t ADC_READ(void) {
-	while(ADC->FIFO_STATUSbits.EMPTY); // loop while empty
-	return ADC->FIFO_READ; // upper 4 bits are channel number
+//	while(ADC->FIFO_STATUSbits.EMPTY); // loop while empty
+//	return ADC->FIFO_READ; // upper 4 bits are channel number
+	return ADC->RESULT_1;
 }
 
 
@@ -101,7 +102,7 @@ void adc_init(void) {
 	*/
 	ADC->CONVERT_TIME  = 1000000 / (115200 / 8) - 1;
 
-	ADC->MODE          = 0;        // Automatic
+	ADC->MODE          = 1;        // Override mode
 
 #if ADC_USE_INTERRUPTS
 	ADC->FIFO_CONTROL  = 7;

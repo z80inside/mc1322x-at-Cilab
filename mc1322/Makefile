@@ -1,5 +1,5 @@
 PROGRAM = test
-OBJS = test.o
+OBJS = test.o lib/Crm.o lib/GPIO_Interface.o lib/Delay.o
 
 SRCDIR = src
 LIBDIR = lib
@@ -18,7 +18,7 @@ OBJCOPY = $(CROSS_COMPILE)objcopy
 OBJDUMP = $(CROSS_COMPILE)objdump
 RANLIB	= $(CROSS_COMPILE)ranlib
 
-CFLAGS = -march=armv4t -mtune=arm7tdmi-s -mlong-calls -msoft-float\
+CFLAGS = -g -march=armv4t -mtune=arm7tdmi-s -mlong-calls -msoft-float\
 		-mthumb-interwork -fno-strict-aliasing -fno-common\
 		-ffixed-r8 -ffunction-sections -ffreestanding -fno-builtin\
 		-nodefaultlibs -mthumb -mcallee-super-interworking -Wall -Os\
@@ -36,7 +36,7 @@ $(PROGRAM).elf: $(OBJS)
 	lib/libmc1322x.a lib/src-romvars.a -lm -Wl,--end-group
 	$(OBJCOPY) $(OBJCOPYFLAGS) -O binary $(PROGRAM).elf $(PROGRAM).bin
 
-%o: $(SRCDIR)/%.S
+%o: $(SRCDIR)/%s
 	$(CC) $(ASFLAGS) -MMD -c -o $@ $<
 
 %o: $(SRCDIR)/%c
