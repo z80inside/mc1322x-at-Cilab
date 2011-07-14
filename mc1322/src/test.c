@@ -5,7 +5,6 @@
 #include "gpio-util.h"
 #include "crm.h"
 //#include "Crm.h"
-#include "Delay.h"
 
 uint16_t uip_chksum(uint16_t data[], uint8_t len);
 
@@ -82,12 +81,12 @@ int main(void)
 */
 	while(1) {
 		gpio_set(44);
-		DelayMs(100);
+		rtc_delay_ms(500);
 //		gpio_reset(44);
 //		CRM_GoToSleep(&sl_settings);
 //		gpio_set(44);
 		gpio_reset(44);
-		DelayMs(100);
+		rtc_delay_ms(500);
 //		CRM_GoToSleep(&sl_settings);
 		//chksum = uip_chksum(ipblock, 8);
 	}
