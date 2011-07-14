@@ -66,13 +66,15 @@ void rtc_init_osc(int use_32khz)
 		/* the datasheet says to do this after you check that RTC_COUNT
 		   is changing, but it is not correct; it needs to be set first */
 		CRM->SYS_CNTLbits.XTAL32_EXISTS = 1;
+		{
+			old = CRM->RTC_COUNT;
+			while (CRM->RTC_COUNT == old)
+				continue;
 
-		old = CRM->RTC_COUNT;
-		while (CRM->RTC_COUNT == old)
-			continue;
-
-                /* RTC has started up */
-		rtc_freq = 32000;
+			/* RTC has started up */
+			CRM->SYS_CNTLbits.XTAL32_EXISTS = 1;
+			rtc_freq = 32000;
+		}
 	}
 	else
 	{

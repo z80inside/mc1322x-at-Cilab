@@ -40,6 +40,12 @@
 
 #define CRM_BASE         (0x80003000)
 
+enum {
+	pwr_vbatt,
+	pwr_buck,
+	pwr_1p8v,
+};
+
 /* Structure-based CRM access */
 struct CRM_struct {
 	union {

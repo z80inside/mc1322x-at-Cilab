@@ -9,7 +9,7 @@ void set_power_source(int src)
 void buck_regulator_setup(int en)
 {
 	if (en) {
-		set_power_source(1);
+		set_power_source(pwr_buck);
 		CRM->VREG_CNTLbits.BUCK_CLKDIV = 0xf;
 		CRM->VREG_CNTLbits.BUCK_SYNC_REC_EN = 1;
 		CRM->VREG_CNTLbits.BUCK_EN = 1;

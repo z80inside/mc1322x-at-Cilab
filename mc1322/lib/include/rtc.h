@@ -36,6 +36,11 @@
 #ifndef RTC_H
 #define RTC_H
 
+enum {
+	rtc_2KHz,
+	rtc_32KHz
+};
+
 /* Init RTC (and calibrate, if using ring oscillator) */
 void rtc_init_osc(int use_32khz);
 

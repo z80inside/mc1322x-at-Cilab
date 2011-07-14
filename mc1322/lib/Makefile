@@ -14,13 +14,18 @@ OBJS += pwm.o
 OBJS += rtc.o
 OBJS += tmr.o
 
+CFLAGS = -march=armv4t -mtune=arm7tdmi-s -mlong-calls -msoft-float \
+		-mthumb-interwork -fno-strict-aliasing -fno-common -ffixed-r8 \
+		-ffunction-sections -ffreestanding -fno-builtin -Os
+CFLAGS_THUMB = -mthumb -mcallee-super-interworking
+
 all: start.o $(OBJS)
 
 start.o: src/start.S
 	arm-none-eabi-gcc -MMD -DUSE_ROM_VARS -c -o $@ $<
 
 %.o: src/%.c
-	arm-none-eabi-gcc -c -o $@ $< -Iinclude
+	arm-none-eabi-gcc $(CFLAGS) -MMD -c -o $@ $< -lm -Iinclude
 
 clean:
 	rm *.o *.d
