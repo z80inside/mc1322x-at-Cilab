@@ -1,4 +1,4 @@
-SOURCE = src/test.c
+SOURCE = src/fade.c
 
 OBJS = lib/start.o
 OBJS += lib/default_lowlevel.o
@@ -9,6 +9,8 @@ OBJS += lib/gpio-util.o
 OBJS += lib/rtc.o
 OBJS += lib/crm.o
 OBJS += lib/printf.o
+OBJS += lib/pwm.o
+OBJS += lib/tmr.o
 
 CFLAGS = -march=armv4t -mtune=arm7tdmi-s -mlong-calls -msoft-float\
 	-mthumb-interwork -fno-strict-aliasing -fno-common -ffixed-r8\
