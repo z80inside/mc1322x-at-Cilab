@@ -47,5 +47,7 @@
 #include "uart1.h"
 #include "utils.h"
 #include "asm.h"
+#include "default_lowlevel.h"
+#include "board-conf.h"
 
 #endif
