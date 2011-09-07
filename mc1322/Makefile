@@ -1,8 +1,5 @@
-#SOURCE = src/basic_radio_tx.c
-SOURCE = src/basic_radio_rx.c
-
-#PROJ = basic_radio_tx.bin
-PROJ = basic_radio_rx.bin
+PROJ := basic_radio_rx
+PROJ += basic_radio_tx
 
 OBJS = lib/start.o
 OBJS += lib/default_lowlevel.o
@@ -25,12 +22,16 @@ CFLAGS = -march=armv4t -mtune=arm7tdmi-s -mlong-calls -msoft-float\
 LNKSCRIPT = mc1322x.lds
 LNKFLAGS = -nostartfiles -static -export-dynamic -u_start
 
-$(PROJ).bin: $(PROJ).elf
-	arm-none-eabi-objcopy --gap-fill=0xff -O binary $(PROJ).elf $(PROJ).bin
-	
-$(PROJ).elf: $(SOURCE)
-	arm-none-eabi-gcc $(CFLAGS) -T $(LNKSCRIPT) $(LNKFLAGS) -MMD -o $(PROJ).elf $(SOURCE) $(OBJS) -lm -Ilib/include
+all: $(addsuffix .bin, $(PROJ))
+
+define build_elf
+$(1).elf: src/$(1).c
+	arm-none-eabi-gcc $$(CFLAGS) -T $$(LNKSCRIPT) $$(LNKFLAGS) -MMD -o $(1).elf src/$(1).c $$(OBJS) -lm -Ilib/include
+endef
+$(foreach t, $(PROJ), $(eval $(call build_elf,$(t))))
+
+%.bin: %.elf
+	arm-none-eabi-objcopy --gap-fill=0xff -O binary $< $@
 
 clean:
-	rm *.bin *.elf *.d *.o
-
+	rm -f *.bin *.elf *.d
