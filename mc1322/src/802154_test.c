@@ -214,7 +214,7 @@ void main(void) {
 				p = get_free_packet();
 				if(p) {
 					pinfo.seq = count++;
-					pinfo.dst_panid = 0xabcd;
+					pinfo.dst_panid = 0xaaaa;
 					pinfo.src = 0x2222;
 					pinfo.dst = 0x1111;
 					pinfo.fcf_info.fcf_bits.src_addr_mode = 2;
@@ -238,7 +238,7 @@ void main(void) {
 				p = get_free_packet();
 				if(p) {
 					pinfo.seq = count++;
-					pinfo.dst_panid = 0xabcd;
+					pinfo.dst_panid = 0xaaaa;
 					pinfo.src = 0x2222;
 					pinfo.dst = 0x1111;
 					pinfo.fcf_info.fcf_bits.ftype = 0;
@@ -259,6 +259,30 @@ void main(void) {
 					pinfo.sf_info.sf_bits.asoc = 1;
 
 					compose_frame(p, &pinfo, "b", 1);
+					
+					printf("autoack-tx --- ");
+					
+					tx_packet(p);				
+				}
+				break;
+			case 'a':
+				p = get_free_packet();
+				if(p) {
+					pinfo.seq = count++;
+					pinfo.dst_panid = 0xaaaa;
+					pinfo.src = 0x2222;
+					pinfo.dst = 0x1111;
+					pinfo.fcf_info.fcf_bits.ftype = 2;
+					pinfo.fcf_info.fcf_bits.sec_en = 0;
+					pinfo.fcf_info.fcf_bits.fpend = 0;
+					pinfo.fcf_info.fcf_bits.ackreq = 0;
+					pinfo.fcf_info.fcf_bits.panid_comp = 0;
+					pinfo.fcf_info.fcf_bits.rsvd = 0;
+					pinfo.fcf_info.fcf_bits.dest_addr_mode = 0;
+					pinfo.fcf_info.fcf_bits.fver = 0;
+					pinfo.fcf_info.fcf_bits.src_addr_mode = 0;
+
+					compose_frame(p, &pinfo, "", 0);
 					
 					printf("autoack-tx --- ");
 					
