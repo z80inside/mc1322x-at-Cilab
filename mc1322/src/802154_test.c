@@ -9,20 +9,19 @@
 union fcf {
 	uint16_t fcf_field;
 	struct fcf_ctrl {
-		uint16_t src_addr_mode:2;
-		uint16_t fver:2;
-		uint16_t dest_addr_mode:2;
-		uint16_t rsvd:3;
-		uint16_t panid_comp:1;
-		uint16_t ackreq:1;
-		uint16_t fpend:1;
-		uint16_t sec_en:1;
 		uint16_t ftype:3;
+		uint16_t sec_en:1;
+		uint16_t fpend:1;
+		uint16_t ackreq:1;
+		uint16_t panid_comp:1;
+		uint16_t rsvd:3;
+		uint16_t dest_addr_mode:2;
+		uint16_t fver:2;
+		uint16_t src_addr_mode:2;
 	} fcf_bits;
 };
 
 struct pkt_info {
-	int type;
 	int seq;
 	int dst_panid;
 	int src_panid;
@@ -31,15 +30,10 @@ struct pkt_info {
 	union fcf fcf_info;
 };
 
-/*
- *****************************************************************************
- *     TO DO                                                                 *
- *     Make sure that the endianess of the panid and address fields are OK   *
- *****************************************************************************
- */
-void compose_frame(volatile packet_t *p, struct pkt_info *pi, int *pay, int len)
+void compose_frame(volatile packet_t *p, struct pkt_info *pi, uint8_t *pay, int len)
 {
 	int i = 0;
+	int j;
 
 	/* Offset = 0 for transmitting */
 	p->offset = 0;
@@ -65,7 +59,7 @@ void compose_frame(volatile packet_t *p, struct pkt_info *pi, int *pay, int len)
 			p->data[i++] = (uint8_t)(pi->dst & 0x00000000000000FF);
 			p->data[i++] = (uint8_t)(pi->dst >> 8);
 		}
-		if (pi->fcf_info.fcf_bits.panid_comp) {
+		if (!pi->fcf_info.fcf_bits.panid_comp) {
 			/* Src PAN ID */
 			p->data[i++] = (uint8_t)(pi->src_panid & 0x000000FF);
 			p->data[i++] = (uint8_t)(pi->src_panid >> 8);
@@ -83,35 +77,12 @@ void compose_frame(volatile packet_t *p, struct pkt_info *pi, int *pay, int len)
 		/* MAC command */
 		break;
 	}
+	p->length = len + i;
 
 	/** Payload **/
-
-	p->length = len + i;
-}
-
-void fill_packet(volatile packet_t *p) {
-	static volatile uint8_t count=0;
-
-	p->length = 16;
-	p->offset = 0;
-	p->data[0] = 0x71;  /* 0b 10 01 10 000 1 1 0 0 001 data, ack request, short addr */
-	p->data[1] = 0x98;  /* 0b 10 01 10 000 1 1 0 0 001 data, ack request, short addr */
-	p->data[2] = count++; /* dsn */
-	p->data[3] = 0xaa;    /* pan */
-	p->data[4] = 0xaa;
-	p->data[5] = 0x11;    /* dest. short addr. */
- 	p->data[6] = 0x11;
-	p->data[7] = 0x22;    /* src. short addr. */
- 	p->data[8] = 0x22;
-
-	/* payload */
-	p->data[9] = 'a';
-	p->data[10] = 'c';
-	p->data[11] = 'k';
-	p->data[12] = 't';
-	p->data[13] = 'e';
-	p->data[14] = 's';
-	p->data[15] = 't';
+	for (j = 0; j < len; j++) {
+		p->data[i++] = pay[j];
+	}
 }
 
 void maca_tx_callback(volatile packet_t *p) {
@@ -135,6 +106,8 @@ void main(void) {
 	char c;
 	uint16_t r=30; /* start reception 100us before ack should arrive */
 	uint16_t end=180; /* 750 us receive window*/
+	struct pkt_info pinfo;
+	int count = 0;
 
 	/* trim the reference osc. to 24MHz */
 	trim_xtal();
@@ -150,13 +123,6 @@ void main(void) {
 //	set_power(0x11); /* 0x11 = 3dbm, see 3-22 */
 	set_power(0x12); /* 0x12 is the highest, not documented */
 
-        /* sets up tx_on, should be a board specific item */
-	//GPIO->FUNC_SEL_44 = 1;	 
-	//GPIO->PAD_DIR_SET_44 = 1;	 
-
-	//GPIO->FUNC_SEL_45 = 2;	 
-	//GPIO->PAD_DIR_SET_45 = 1;	 
-
 	*MACA_RXACKDELAY = r;
 	
 	printf("rx warmup: %d\n\r", (int)(*MACA_WARMUP & 0xfff));
@@ -167,8 +133,6 @@ void main(void) {
 
 	set_prm_mode(AUTOACK);
 
-	//print_welcome("rftest-tx");
-
 	while(1) {		
 	    		
 		/* call check_maca() periodically --- this works around */
@@ -178,14 +142,12 @@ void main(void) {
 		while((p = rx_packet())) {
 			if(p) {
 				printf("RX: ");
-				//print_packet(p);
 				free_packet(p);
 			}
 		}
 
 		if(uart1_can_get()) {
 			c = uart1_getc();
-
 			switch(c) {
 			case 'z':
 				r++;
@@ -213,10 +175,23 @@ void main(void) {
 			default:
 				p = get_free_packet();
 				if(p) {
-					fill_packet(p);
+					pinfo.seq = count++;
+					pinfo.dst_panid = 0xabcd;
+					pinfo.src = 0x2222;
+					pinfo.dst = 0x1111;
+					pinfo.fcf_info.fcf_bits.src_addr_mode = 2;
+					pinfo.fcf_info.fcf_bits.fver = 1;
+					pinfo.fcf_info.fcf_bits.dest_addr_mode = 2;
+					pinfo.fcf_info.fcf_bits.rsvd = 0;
+					pinfo.fcf_info.fcf_bits.panid_comp = 1;
+					pinfo.fcf_info.fcf_bits.ackreq = 1;
+					pinfo.fcf_info.fcf_bits.fpend = 0;
+					pinfo.fcf_info.fcf_bits.sec_en = 0;
+					pinfo.fcf_info.fcf_bits.ftype = 1;
+
+					compose_frame(p, &pinfo, "hola", 4);
 					
 					printf("autoack-tx --- ");
-					//print_packet(p);
 					
 					tx_packet(p);				
 				}
