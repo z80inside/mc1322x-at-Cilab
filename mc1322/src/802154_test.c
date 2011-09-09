@@ -1,5 +1,6 @@
 #include "mc1322x.h"
 #include "config.h"
+#include <string.h>
 #include <stdio.h>
 
 /* 802.15.4 PSDU is 127 MAX */
@@ -21,6 +22,19 @@ union fcf {
 	} fcf_bits;
 };
 
+union superframe {
+	uint16_t sf_field;
+	struct sf_ctrl {
+		uint16_t bc_order:4;
+		uint16_t sf_order:4;
+		uint16_t final_cap:4;
+		uint16_t ble:1;
+		uint16_t rsvd:1;
+		uint16_t pan_coord:1;
+		uint16_t asoc:1;
+	} sf_bits;
+};
+
 struct pkt_info {
 	int seq;
 	int dst_panid;
@@ -28,6 +42,7 @@ struct pkt_info {
 	long long src;
 	long long dst;
 	union fcf fcf_info;
+	union superframe sf_info;
 };
 
 void compose_frame(volatile packet_t *p, struct pkt_info *pi, uint8_t *pay, int len)
@@ -37,6 +52,9 @@ void compose_frame(volatile packet_t *p, struct pkt_info *pi, uint8_t *pay, int 
 
 	/* Offset = 0 for transmitting */
 	p->offset = 0;
+
+	for (j = 0; j < MAX_PAYLOAD_SIZE; j++)
+		p->data[j] = 0;
 
 	/** MAC header **/
 	/* Frame Control Field */
@@ -48,6 +66,26 @@ void compose_frame(volatile packet_t *p, struct pkt_info *pi, uint8_t *pay, int 
 	switch (pi->fcf_info.fcf_bits.ftype) {
 	case 0:
 		/* Beacon frame */
+		/* PAN ID */
+		p->data[i++] = (uint8_t)(pi->dst_panid & 0x000000FF);
+		p->data[i++] = (uint8_t)(pi->dst_panid >> 8);
+		if (pi->fcf_info.fcf_bits.dest_addr_mode == 2) {
+			/* Dest. address (short) */
+			p->data[i++] = (uint8_t)(pi->dst & 0x00000000000000FF);
+			p->data[i++] = (uint8_t)(pi->dst >> 8);
+		}
+		if (pi->fcf_info.fcf_bits.src_addr_mode == 2) {
+			/* Src. address (short) */
+			p->data[i++] = (uint8_t)(pi->src & 0x00000000000000FF);
+			p->data[i++] = (uint8_t)(pi->src >> 8);
+		}
+		/* Superframe specification */
+		p->data[i++] = (uint8_t)(pi->sf_info.sf_field & 0x00FF);
+		p->data[i++] = (uint8_t)(pi->sf_info.sf_field >> 8);
+		/* GTS specification */
+		p->data[i++] = 0;
+		/* Pending address specification */
+		p->data[++i] = 0;
 		break;
 	case 1:
 		/* Data frame */
@@ -106,8 +144,8 @@ void main(void) {
 	char c;
 	uint16_t r=30; /* start reception 100us before ack should arrive */
 	uint16_t end=180; /* 750 us receive window*/
-	struct pkt_info pinfo;
 	int count = 0;
+	struct pkt_info pinfo;
 
 	/* trim the reference osc. to 24MHz */
 	trim_xtal();
@@ -172,7 +210,7 @@ void main(void) {
 				*MACA_RXEND = end;
 				printf("rx end: %d\n\r", end);
 				break;
-			default:
+			case 'd':
 				p = get_free_packet();
 				if(p) {
 					pinfo.seq = count++;
@@ -190,6 +228,37 @@ void main(void) {
 					pinfo.fcf_info.fcf_bits.ftype = 1;
 
 					compose_frame(p, &pinfo, "hola", 4);
+					
+					printf("autoack-tx --- ");
+					
+					tx_packet(p);				
+				}
+				break;
+			case 'b':
+				p = get_free_packet();
+				if(p) {
+					pinfo.seq = count++;
+					pinfo.dst_panid = 0xabcd;
+					pinfo.src = 0x2222;
+					pinfo.dst = 0x1111;
+					pinfo.fcf_info.fcf_bits.ftype = 0;
+					pinfo.fcf_info.fcf_bits.sec_en = 0;
+					pinfo.fcf_info.fcf_bits.fpend = 0;
+					pinfo.fcf_info.fcf_bits.ackreq = 1;
+					pinfo.fcf_info.fcf_bits.panid_comp = 1;
+					pinfo.fcf_info.fcf_bits.rsvd = 0;
+					pinfo.fcf_info.fcf_bits.dest_addr_mode = 2;
+					pinfo.fcf_info.fcf_bits.fver = 1;
+					pinfo.fcf_info.fcf_bits.src_addr_mode = 2;
+					pinfo.sf_info.sf_bits.bc_order = 0;
+					pinfo.sf_info.sf_bits.sf_order = 0;
+					pinfo.sf_info.sf_bits.final_cap = 0;
+					pinfo.sf_info.sf_bits.ble = 0;
+					pinfo.sf_info.sf_bits.rsvd = 0;
+					pinfo.sf_info.sf_bits.pan_coord = 1;
+					pinfo.sf_info.sf_bits.asoc = 1;
+
+					compose_frame(p, &pinfo, "b", 1);
 					
 					printf("autoack-tx --- ");
 					
