@@ -1,5 +1,7 @@
 PROJ := basic_radio_rx
 PROJ += basic_radio_tx
+PROJ += 802154_test
+PROJ += p2p
 
 OBJS = lib/start.o
 OBJS += lib/default_lowlevel.o
